@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0e1a">
+  <meta name="description" content="Prédictions de score pour les matchs de football avec analyse IA">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FootPredict">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>FootPredict ⚽</title>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">⚽</div>
+    <h1>FootPredict</h1>
+    <span>IA Prédictions</span>
+  </header>
+
+  <!-- INSTALL BANNER -->
+  <div id="install-banner" class="install-banner hidden">
+    <span style="font-size:24px">📲</span>
+    <div class="ib-text">
+      <strong>Installer l'application</strong>
+      <span>Accès rapide + menu Partager</span>
+    </div>
+    <button id="install-btn">Installer</button>
+  </div>
+
+  <!-- SHARE BANNER -->
+  <div id="share-banner" class="share-banner hidden">
+    <span class="icon">🔗</span>
+    <div>
+      <div style="font-weight:600;font-size:13px">Match reçu depuis Partager</div>
+      <div style="color:var(--muted);font-size:12px" id="share-text"></div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-section">
+    <div class="search-box">
+      <input id="search-input" type="text" placeholder="PSG Chelsea, Barcelone vs Real..." autocomplete="off" autocorrect="off">
+      <button id="search-btn">Analyser</button>
+    </div>
+    <div class="hint">💡 Partage un match depuis Google → <strong>FootPredict apparaît dans le menu</strong></div>
+  </div>
+
+  <!-- HOME -->
+  <div id="home" class="home">
+    <div class="home-icon">⚽</div>
+    <h2>Prédictions <span>Football</span><br>alimentées par l'IA</h2>
+    <p>Tape un match ou partage directement depuis Google, Twitter, ou n'importe quelle app.</p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="fi">📊</div>
+        <div>
+          <div class="ft">Analyse statistique complète</div>
+          <div class="fd">Forme, xG, possession, H2H...</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="fi">🔗</div>
+        <div>
+          <div class="ft">Partage direct depuis Google</div>
+          <div class="fd">Installe l'app → apparaît dans "Partager"</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="fi">🌍</div>
+        <div>
+          <div class="ft">50+ équipes européennes</div>
+          <div class="fd">Ligue 1, PL, Liga, Bundesliga, Serie A</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="fi">⚡</div>
+        <div>
+          <div class="ft">Données en temps réel</div>
+          <div class="fd">Via API football-data.org (optionnel)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemples rapides -->
+    <div style="width:100%;max-width:360px">
+      <div class="section-title" style="margin-bottom:10px">Essaie maintenant</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button onclick="document.getElementById('search-input').value='PSG Chelsea';document.getElementById('search-btn').click()" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer">PSG – Chelsea</button>
+        <button onclick="document.getElementById('search-input').value='Real Madrid Barcelona';document.getElementById('search-btn').click()" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer">Real Madrid – Barça</button>
+        <button onclick="document.getElementById('search-input').value='Bayern Munich Dortmund';document.getElementById('search-btn').click()" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer">Bayern – BVB</button>
+        <button onclick="document.getElementById('search-input').value='Arsenal Liverpool';document.getElementById('search-btn').click()" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer">Arsenal – Liverpool</button>
+      </div>
+    </div>
+
+    <!-- Config API -->
+    <div class="api-setup" style="width:100%;max-width:360px">
+      <h3>🔑 Clé API (optionnel)</h3>
+      <p>Ajoute une clé <strong>football-data.org</strong> gratuite pour des données en temps réel. Sans clé, l'analyse utilise notre base statistique intégrée.</p>
+      <input id="api-key-input" type="password" placeholder="Ta clé API football-data.org">
+      <button id="save-key-btn" class="btn-save">Sauvegarder</button>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading" class="loading hidden">
+    <div class="spinner"></div>
+    <p>Analyse en cours...</p>
+  </div>
+
+  <!-- ERROR -->
+  <div id="error-box" class="error-box hidden">
+    <div class="err-icon">🤔</div>
+    <h3>Équipes non trouvées</h3>
+    <p id="error-msg"></p>
+    <button onclick="showHome()" style="margin-top:12px;background:var(--card2);border:1px solid var(--border);color:var(--text);padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px">← Retour</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="result hidden">
+    <div style="padding:12px 0 4px">
+      <button id="back-btn" style="background:none;border:none;color:var(--accent);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:4px">← Nouvelle analyse</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
