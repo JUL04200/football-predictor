@@ -3,123 +3,116 @@
 const API_BASE = 'https://api.football-data.org/v4';
 let API_KEY = localStorage.getItem('fd_api_key') || '3c68cf8da2ef4dc7bc2bc71a2bd164c1';
 
-// ─── BASE D'ÉQUIPES ───────────────────────────────────────────────────────────
+// ─── BASE D'ÉQUIPES (IDs vérifiés via API) ────────────────────────────────────
+// comp = code compétition principale pour récupérer les matchs
 const TEAM_DB = {
-  // France L1
-  'psg': { id: 524, name: 'Paris Saint-Germain', emoji: '🔵🔴', league: 'Ligue 1' },
-  'paris saint-germain': { id: 524, name: 'Paris Saint-Germain', emoji: '🔵🔴', league: 'Ligue 1' },
-  'paris': { id: 524, name: 'Paris Saint-Germain', emoji: '🔵🔴', league: 'Ligue 1' },
-  'marseille': { id: 516, name: 'Olympique de Marseille', emoji: '🔵⚪', league: 'Ligue 1' },
-  'om': { id: 516, name: 'Olympique de Marseille', emoji: '🔵⚪', league: 'Ligue 1' },
-  'lyon': { id: 523, name: 'Olympique Lyonnais', emoji: '🔴⚪', league: 'Ligue 1' },
-  'ol': { id: 523, name: 'Olympique Lyonnais', emoji: '🔴⚪', league: 'Ligue 1' },
-  'monaco': { id: 548, name: 'AS Monaco', emoji: '🔴⚪', league: 'Ligue 1' },
-  'nice': { id: 522, name: 'OGC Nice', emoji: '🔴⚫', league: 'Ligue 1' },
-  'lens': { id: 546, name: 'RC Lens', emoji: '🟡🔴', league: 'Ligue 1' },
-  'rennes': { id: 529, name: 'Stade Rennais', emoji: '🔴⚫', league: 'Ligue 1' },
-  'lille': { id: 521, name: 'LOSC Lille', emoji: '🔴⚪', league: 'Ligue 1' },
-  'losc': { id: 521, name: 'LOSC Lille', emoji: '🔴⚪', league: 'Ligue 1' },
-  'nantes': { id: 543, name: 'FC Nantes', emoji: '🟡🟢', league: 'Ligue 1' },
-  'strasbourg': { id: 576, name: 'RC Strasbourg', emoji: '🔵⚪', league: 'Ligue 1' },
-  'reims': { id: 548, name: 'Stade de Reims', emoji: '🔴⚪', league: 'Ligue 1' },
-  'saint-etienne': { id: 519, name: 'AS Saint-Étienne', emoji: '🟢⚪', league: 'Ligue 1' },
-  'asse': { id: 519, name: 'AS Saint-Étienne', emoji: '🟢⚪', league: 'Ligue 1' },
-  // Premier League
-  'chelsea': { id: 61, name: 'Chelsea FC', emoji: '🔵', league: 'Premier League' },
-  'manchester city': { id: 65, name: 'Manchester City', emoji: '🔵', league: 'Premier League' },
-  'man city': { id: 65, name: 'Manchester City', emoji: '🔵', league: 'Premier League' },
-  'manchester united': { id: 66, name: 'Manchester United', emoji: '🔴', league: 'Premier League' },
-  'man united': { id: 66, name: 'Manchester United', emoji: '🔴', league: 'Premier League' },
-  'man utd': { id: 66, name: 'Manchester United', emoji: '🔴', league: 'Premier League' },
-  'arsenal': { id: 57, name: 'Arsenal', emoji: '🔴⚪', league: 'Premier League' },
-  'liverpool': { id: 64, name: 'Liverpool', emoji: '🔴', league: 'Premier League' },
-  'tottenham': { id: 73, name: 'Tottenham Hotspur', emoji: '⚪', league: 'Premier League' },
-  'spurs': { id: 73, name: 'Tottenham Hotspur', emoji: '⚪', league: 'Premier League' },
-  'newcastle': { id: 67, name: 'Newcastle United', emoji: '⚫⚪', league: 'Premier League' },
-  'aston villa': { id: 58, name: 'Aston Villa', emoji: '🟣🔵', league: 'Premier League' },
-  'west ham': { id: 563, name: 'West Ham United', emoji: '🔵🔴', league: 'Premier League' },
-  'brighton': { id: 397, name: 'Brighton', emoji: '🔵⚪', league: 'Premier League' },
-  'everton': { id: 62, name: 'Everton', emoji: '🔵', league: 'Premier League' },
-  // La Liga
-  'real madrid': { id: 86, name: 'Real Madrid', emoji: '⚪', league: 'La Liga' },
-  'barcelona': { id: 81, name: 'FC Barcelona', emoji: '🔵🔴', league: 'La Liga' },
-  'barca': { id: 81, name: 'FC Barcelona', emoji: '🔵🔴', league: 'La Liga' },
-  'atletico madrid': { id: 78, name: 'Atlético de Madrid', emoji: '🔴⚪', league: 'La Liga' },
-  'atletico': { id: 78, name: 'Atlético de Madrid', emoji: '🔴⚪', league: 'La Liga' },
-  'sevilla': { id: 559, name: 'Sevilla FC', emoji: '⚪🔴', league: 'La Liga' },
-  'villarreal': { id: 94, name: 'Villarreal CF', emoji: '🟡', league: 'La Liga' },
-  'real sociedad': { id: 92, name: 'Real Sociedad', emoji: '🔵⚪', league: 'La Liga' },
-  // Bundesliga
-  'bayern munich': { id: 5, name: 'Bayern München', emoji: '🔴', league: 'Bundesliga' },
-  'bayern': { id: 5, name: 'Bayern München', emoji: '🔴', league: 'Bundesliga' },
-  'borussia dortmund': { id: 4, name: 'Borussia Dortmund', emoji: '🟡⚫', league: 'Bundesliga' },
-  'dortmund': { id: 4, name: 'Borussia Dortmund', emoji: '🟡⚫', league: 'Bundesliga' },
-  'bvb': { id: 4, name: 'Borussia Dortmund', emoji: '🟡⚫', league: 'Bundesliga' },
-  'rb leipzig': { id: 721, name: 'RB Leipzig', emoji: '🔴⚪', league: 'Bundesliga' },
-  'bayer leverkusen': { id: 3, name: 'Bayer Leverkusen', emoji: '🔴⚫', league: 'Bundesliga' },
-  'leverkusen': { id: 3, name: 'Bayer Leverkusen', emoji: '🔴⚫', league: 'Bundesliga' },
-  // Serie A
-  'juventus': { id: 109, name: 'Juventus FC', emoji: '⚫⚪', league: 'Serie A' },
-  'juve': { id: 109, name: 'Juventus FC', emoji: '⚫⚪', league: 'Serie A' },
-  'inter milan': { id: 108, name: 'Inter Milan', emoji: '🔵⚫', league: 'Serie A' },
-  'inter': { id: 108, name: 'Inter Milan', emoji: '🔵⚫', league: 'Serie A' },
-  'ac milan': { id: 98, name: 'AC Milan', emoji: '🔴⚫', league: 'Serie A' },
-  'milan': { id: 98, name: 'AC Milan', emoji: '🔴⚫', league: 'Serie A' },
-  'napoli': { id: 113, name: 'SSC Napoli', emoji: '🔵', league: 'Serie A' },
-  'roma': { id: 100, name: 'AS Roma', emoji: '🔴🟡', league: 'Serie A' },
-  'as roma': { id: 100, name: 'AS Roma', emoji: '🔴🟡', league: 'Serie A' },
-  'lazio': { id: 110, name: 'SS Lazio', emoji: '🔵⚪', league: 'Serie A' },
-  // Équipes nationales
-  'france': { id: 773, name: 'France', emoji: '🇫🇷', league: 'Équipe Nationale' },
-  'les bleus': { id: 773, name: 'France', emoji: '🇫🇷', league: 'Équipe Nationale' },
-  'senegal': { id: 907, name: 'Sénégal', emoji: '🇸🇳', league: 'Équipe Nationale' },
-  'sénégal': { id: 907, name: 'Sénégal', emoji: '🇸🇳', league: 'Équipe Nationale' },
-  'maroc': { id: 816, name: 'Maroc', emoji: '🇲🇦', league: 'Équipe Nationale' },
-  'morocco': { id: 816, name: 'Maroc', emoji: '🇲🇦', league: 'Équipe Nationale' },
-  'algerie': { id: 803, name: 'Algérie', emoji: '🇩🇿', league: 'Équipe Nationale' },
-  'algérie': { id: 803, name: 'Algérie', emoji: '🇩🇿', league: 'Équipe Nationale' },
-  'tunisie': { id: 907, name: 'Tunisie', emoji: '🇹🇳', league: 'Équipe Nationale' },
-  'nigeria': { id: 886, name: 'Nigeria', emoji: '🇳🇬', league: 'Équipe Nationale' },
-  'ghana': { id: 854, name: 'Ghana', emoji: '🇬🇭', league: 'Équipe Nationale' },
-  "cote d'ivoire": { id: 840, name: "Côte d'Ivoire", emoji: '🇨🇮', league: 'Équipe Nationale' },
-  'ivory coast': { id: 840, name: "Côte d'Ivoire", emoji: '🇨🇮', league: 'Équipe Nationale' },
-  'cameroun': { id: 825, name: 'Cameroun', emoji: '🇨🇲', league: 'Équipe Nationale' },
-  'cameroon': { id: 825, name: 'Cameroun', emoji: '🇨🇲', league: 'Équipe Nationale' },
-  'egypte': { id: 849, name: 'Égypte', emoji: '🇪🇬', league: 'Équipe Nationale' },
-  'egypt': { id: 849, name: 'Égypte', emoji: '🇪🇬', league: 'Équipe Nationale' },
-  'bresil': { id: 764, name: 'Brésil', emoji: '🇧🇷', league: 'Équipe Nationale' },
-  'brazil': { id: 764, name: 'Brésil', emoji: '🇧🇷', league: 'Équipe Nationale' },
-  'brésil': { id: 764, name: 'Brésil', emoji: '🇧🇷', league: 'Équipe Nationale' },
-  'argentine': { id: 762, name: 'Argentine', emoji: '🇦🇷', league: 'Équipe Nationale' },
-  'argentina': { id: 762, name: 'Argentine', emoji: '🇦🇷', league: 'Équipe Nationale' },
-  'espagne': { id: 760, name: 'Espagne', emoji: '🇪🇸', league: 'Équipe Nationale' },
-  'spain': { id: 760, name: 'Espagne', emoji: '🇪🇸', league: 'Équipe Nationale' },
-  'allemagne': { id: 759, name: 'Allemagne', emoji: '🇩🇪', league: 'Équipe Nationale' },
-  'germany': { id: 759, name: 'Allemagne', emoji: '🇩🇪', league: 'Équipe Nationale' },
-  'angleterre': { id: 770, name: 'Angleterre', emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', league: 'Équipe Nationale' },
-  'england': { id: 770, name: 'Angleterre', emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', league: 'Équipe Nationale' },
-  'italie': { id: 784, name: 'Italie', emoji: '🇮🇹', league: 'Équipe Nationale' },
-  'italy': { id: 784, name: 'Italie', emoji: '🇮🇹', league: 'Équipe Nationale' },
-  'portugal': { id: 765, name: 'Portugal', emoji: '🇵🇹', league: 'Équipe Nationale' },
-  'belgique': { id: 805, name: 'Belgique', emoji: '🇧🇪', league: 'Équipe Nationale' },
-  'belgium': { id: 805, name: 'Belgique', emoji: '🇧🇪', league: 'Équipe Nationale' },
-  'pays-bas': { id: 779, name: 'Pays-Bas', emoji: '🇳🇱', league: 'Équipe Nationale' },
-  'netherlands': { id: 779, name: 'Pays-Bas', emoji: '🇳🇱', league: 'Équipe Nationale' },
-  'hollande': { id: 779, name: 'Pays-Bas', emoji: '🇳🇱', league: 'Équipe Nationale' },
-  'croatie': { id: 799, name: 'Croatie', emoji: '🇭🇷', league: 'Équipe Nationale' },
-  'croatia': { id: 799, name: 'Croatie', emoji: '🇭🇷', league: 'Équipe Nationale' },
-  'uruguay': { id: 769, name: 'Uruguay', emoji: '🇺🇾', league: 'Équipe Nationale' },
-  'colombie': { id: 801, name: 'Colombie', emoji: '🇨🇴', league: 'Équipe Nationale' },
-  'colombia': { id: 801, name: 'Colombie', emoji: '🇨🇴', league: 'Équipe Nationale' },
-  'mexique': { id: 788, name: 'Mexique', emoji: '🇲🇽', league: 'Équipe Nationale' },
-  'mexico': { id: 788, name: 'Mexique', emoji: '🇲🇽', league: 'Équipe Nationale' },
-  'usa': { id: 768, name: 'États-Unis', emoji: '🇺🇸', league: 'Équipe Nationale' },
-  'etats-unis': { id: 768, name: 'États-Unis', emoji: '🇺🇸', league: 'Équipe Nationale' },
-  'japon': { id: 785, name: 'Japon', emoji: '🇯🇵', league: 'Équipe Nationale' },
-  'japan': { id: 785, name: 'Japon', emoji: '🇯🇵', league: 'Équipe Nationale' },
-  'suisse': { id: 788, name: 'Suisse', emoji: '🇨🇭', league: 'Équipe Nationale' },
-  'danemark': { id: 782, name: 'Danemark', emoji: '🇩🇰', league: 'Équipe Nationale' },
-  'pologne': { id: 781, name: 'Pologne', emoji: '🇵🇱', league: 'Équipe Nationale' },
+  // Ligue 1 (comp: FL1)
+  'psg': { id: 524, name: 'Paris Saint-Germain', emoji: '🔵🔴', league: 'Ligue 1', comp: 'FL1' },
+  'paris saint-germain': { id: 524, name: 'Paris Saint-Germain', emoji: '🔵🔴', league: 'Ligue 1', comp: 'FL1' },
+  'paris': { id: 524, name: 'Paris Saint-Germain', emoji: '🔵🔴', league: 'Ligue 1', comp: 'FL1' },
+  'marseille': { id: 516, name: 'Olympique de Marseille', emoji: '🔵⚪', league: 'Ligue 1', comp: 'FL1' },
+  'om': { id: 516, name: 'Olympique de Marseille', emoji: '🔵⚪', league: 'Ligue 1', comp: 'FL1' },
+  'lyon': { id: 523, name: 'Olympique Lyonnais', emoji: '🔴⚪', league: 'Ligue 1', comp: 'FL1' },
+  'ol': { id: 523, name: 'Olympique Lyonnais', emoji: '🔴⚪', league: 'Ligue 1', comp: 'FL1' },
+  'monaco': { id: 548, name: 'AS Monaco', emoji: '🔴⚪', league: 'Ligue 1', comp: 'FL1' },
+  'nice': { id: 522, name: 'OGC Nice', emoji: '🔴⚫', league: 'Ligue 1', comp: 'FL1' },
+  'lens': { id: 546, name: 'RC Lens', emoji: '🟡🔴', league: 'Ligue 1', comp: 'FL1' },
+  'rennes': { id: 529, name: 'Stade Rennais', emoji: '🔴⚫', league: 'Ligue 1', comp: 'FL1' },
+  'lille': { id: 521, name: 'LOSC Lille', emoji: '🔴⚪', league: 'Ligue 1', comp: 'FL1' },
+  'losc': { id: 521, name: 'LOSC Lille', emoji: '🔴⚪', league: 'Ligue 1', comp: 'FL1' },
+  'nantes': { id: 543, name: 'FC Nantes', emoji: '🟡🟢', league: 'Ligue 1', comp: 'FL1' },
+  'strasbourg': { id: 576, name: 'RC Strasbourg', emoji: '🔵⚪', league: 'Ligue 1', comp: 'FL1' },
+  'saint-etienne': { id: 519, name: 'AS Saint-Étienne', emoji: '🟢⚪', league: 'Ligue 1', comp: 'FL1' },
+  'asse': { id: 519, name: 'AS Saint-Étienne', emoji: '🟢⚪', league: 'Ligue 1', comp: 'FL1' },
+  // Premier League (comp: PL)
+  'chelsea': { id: 61, name: 'Chelsea FC', emoji: '🔵', league: 'Premier League', comp: 'PL' },
+  'manchester city': { id: 65, name: 'Manchester City', emoji: '🔵', league: 'Premier League', comp: 'PL' },
+  'man city': { id: 65, name: 'Manchester City', emoji: '🔵', league: 'Premier League', comp: 'PL' },
+  'manchester united': { id: 66, name: 'Manchester United', emoji: '🔴', league: 'Premier League', comp: 'PL' },
+  'man united': { id: 66, name: 'Manchester United', emoji: '🔴', league: 'Premier League', comp: 'PL' },
+  'man utd': { id: 66, name: 'Manchester United', emoji: '🔴', league: 'Premier League', comp: 'PL' },
+  'arsenal': { id: 57, name: 'Arsenal', emoji: '🔴⚪', league: 'Premier League', comp: 'PL' },
+  'liverpool': { id: 64, name: 'Liverpool', emoji: '🔴', league: 'Premier League', comp: 'PL' },
+  'tottenham': { id: 73, name: 'Tottenham Hotspur', emoji: '⚪', league: 'Premier League', comp: 'PL' },
+  'spurs': { id: 73, name: 'Tottenham Hotspur', emoji: '⚪', league: 'Premier League', comp: 'PL' },
+  'newcastle': { id: 67, name: 'Newcastle United', emoji: '⚫⚪', league: 'Premier League', comp: 'PL' },
+  'aston villa': { id: 58, name: 'Aston Villa', emoji: '🟣🔵', league: 'Premier League', comp: 'PL' },
+  'west ham': { id: 563, name: 'West Ham United', emoji: '🔵🔴', league: 'Premier League', comp: 'PL' },
+  'brighton': { id: 397, name: 'Brighton', emoji: '🔵⚪', league: 'Premier League', comp: 'PL' },
+  'everton': { id: 62, name: 'Everton', emoji: '🔵', league: 'Premier League', comp: 'PL' },
+  // La Liga (comp: PD)
+  'real madrid': { id: 86, name: 'Real Madrid', emoji: '⚪', league: 'La Liga', comp: 'PD' },
+  'barcelona': { id: 81, name: 'FC Barcelona', emoji: '🔵🔴', league: 'La Liga', comp: 'PD' },
+  'barca': { id: 81, name: 'FC Barcelona', emoji: '🔵🔴', league: 'La Liga', comp: 'PD' },
+  'atletico madrid': { id: 78, name: 'Atlético de Madrid', emoji: '🔴⚪', league: 'La Liga', comp: 'PD' },
+  'atletico': { id: 78, name: 'Atlético de Madrid', emoji: '🔴⚪', league: 'La Liga', comp: 'PD' },
+  'sevilla': { id: 559, name: 'Sevilla FC', emoji: '⚪🔴', league: 'La Liga', comp: 'PD' },
+  'villarreal': { id: 94, name: 'Villarreal CF', emoji: '🟡', league: 'La Liga', comp: 'PD' },
+  'real sociedad': { id: 92, name: 'Real Sociedad', emoji: '🔵⚪', league: 'La Liga', comp: 'PD' },
+  // Bundesliga (comp: BL1)
+  'bayern munich': { id: 5, name: 'Bayern München', emoji: '🔴', league: 'Bundesliga', comp: 'BL1' },
+  'bayern': { id: 5, name: 'Bayern München', emoji: '🔴', league: 'Bundesliga', comp: 'BL1' },
+  'borussia dortmund': { id: 4, name: 'Borussia Dortmund', emoji: '🟡⚫', league: 'Bundesliga', comp: 'BL1' },
+  'dortmund': { id: 4, name: 'Borussia Dortmund', emoji: '🟡⚫', league: 'Bundesliga', comp: 'BL1' },
+  'bvb': { id: 4, name: 'Borussia Dortmund', emoji: '🟡⚫', league: 'Bundesliga', comp: 'BL1' },
+  'rb leipzig': { id: 721, name: 'RB Leipzig', emoji: '🔴⚪', league: 'Bundesliga', comp: 'BL1' },
+  'bayer leverkusen': { id: 3, name: 'Bayer Leverkusen', emoji: '🔴⚫', league: 'Bundesliga', comp: 'BL1' },
+  'leverkusen': { id: 3, name: 'Bayer Leverkusen', emoji: '🔴⚫', league: 'Bundesliga', comp: 'BL1' },
+  // Serie A (comp: SA)
+  'juventus': { id: 109, name: 'Juventus FC', emoji: '⚫⚪', league: 'Serie A', comp: 'SA' },
+  'juve': { id: 109, name: 'Juventus FC', emoji: '⚫⚪', league: 'Serie A', comp: 'SA' },
+  'inter milan': { id: 108, name: 'Inter Milan', emoji: '🔵⚫', league: 'Serie A', comp: 'SA' },
+  'inter': { id: 108, name: 'Inter Milan', emoji: '🔵⚫', league: 'Serie A', comp: 'SA' },
+  'ac milan': { id: 98, name: 'AC Milan', emoji: '🔴⚫', league: 'Serie A', comp: 'SA' },
+  'milan': { id: 98, name: 'AC Milan', emoji: '🔴⚫', league: 'Serie A', comp: 'SA' },
+  'napoli': { id: 113, name: 'SSC Napoli', emoji: '🔵', league: 'Serie A', comp: 'SA' },
+  'roma': { id: 100, name: 'AS Roma', emoji: '🔴🟡', league: 'Serie A', comp: 'SA' },
+  'as roma': { id: 100, name: 'AS Roma', emoji: '🔴🟡', league: 'Serie A', comp: 'SA' },
+  'lazio': { id: 110, name: 'SS Lazio', emoji: '🔵⚪', league: 'Serie A', comp: 'SA' },
+  // Équipes nationales (IDs vérifiés depuis l'API WC 2026)
+  // Européennes → EC (Euro 2024) + WC 2026
+  'france': { id: 773, name: 'France', emoji: '🇫🇷', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'les bleus': { id: 773, name: 'France', emoji: '🇫🇷', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'allemagne': { id: 759, name: 'Allemagne', emoji: '🇩🇪', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'germany': { id: 759, name: 'Allemagne', emoji: '🇩🇪', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'espagne': { id: 760, name: 'Espagne', emoji: '🇪🇸', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'spain': { id: 760, name: 'Espagne', emoji: '🇪🇸', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'angleterre': { id: 770, name: 'Angleterre', emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'england': { id: 770, name: 'Angleterre', emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'portugal': { id: 765, name: 'Portugal', emoji: '🇵🇹', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'belgique': { id: 805, name: 'Belgique', emoji: '🇧🇪', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'belgium': { id: 805, name: 'Belgique', emoji: '🇧🇪', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'pays-bas': { id: 8601, name: 'Pays-Bas', emoji: '🇳🇱', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'netherlands': { id: 8601, name: 'Pays-Bas', emoji: '🇳🇱', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'hollande': { id: 8601, name: 'Pays-Bas', emoji: '🇳🇱', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'croatie': { id: 799, name: 'Croatie', emoji: '🇭🇷', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'croatia': { id: 799, name: 'Croatie', emoji: '🇭🇷', league: 'Équipe Nationale', comp: 'EC', comp2: 'WC' },
+  'italie': { id: 784, name: 'Italie', emoji: '🇮🇹', league: 'Équipe Nationale', comp: 'EC' },
+  'italy': { id: 784, name: 'Italie', emoji: '🇮🇹', league: 'Équipe Nationale', comp: 'EC' },
+  // Non-européennes → WC uniquement
+  'senegal': { id: 804, name: 'Sénégal', emoji: '🇸🇳', league: 'Équipe Nationale', comp: 'WC' },
+  'sénégal': { id: 804, name: 'Sénégal', emoji: '🇸🇳', league: 'Équipe Nationale', comp: 'WC' },
+  'maroc': { id: 815, name: 'Maroc', emoji: '🇲🇦', league: 'Équipe Nationale', comp: 'WC' },
+  'morocco': { id: 815, name: 'Maroc', emoji: '🇲🇦', league: 'Équipe Nationale', comp: 'WC' },
+  'algerie': { id: 778, name: 'Algérie', emoji: '🇩🇿', league: 'Équipe Nationale', comp: 'WC' },
+  'algérie': { id: 778, name: 'Algérie', emoji: '🇩🇿', league: 'Équipe Nationale', comp: 'WC' },
+  'ghana': { id: 763, name: 'Ghana', emoji: '🇬🇭', league: 'Équipe Nationale', comp: 'WC' },
+  "cote d'ivoire": { id: 1935, name: "Côte d'Ivoire", emoji: '🇨🇮', league: 'Équipe Nationale', comp: 'WC' },
+  'ivory coast': { id: 1935, name: "Côte d'Ivoire", emoji: '🇨🇮', league: 'Équipe Nationale', comp: 'WC' },
+  'egypte': { id: 825, name: 'Égypte', emoji: '🇪🇬', league: 'Équipe Nationale', comp: 'WC' },
+  'egypt': { id: 825, name: 'Égypte', emoji: '🇪🇬', league: 'Équipe Nationale', comp: 'WC' },
+  'bresil': { id: 764, name: 'Brésil', emoji: '🇧🇷', league: 'Équipe Nationale', comp: 'WC' },
+  'brazil': { id: 764, name: 'Brésil', emoji: '🇧🇷', league: 'Équipe Nationale', comp: 'WC' },
+  'brésil': { id: 764, name: 'Brésil', emoji: '🇧🇷', league: 'Équipe Nationale', comp: 'WC' },
+  'argentine': { id: 762, name: 'Argentine', emoji: '🇦🇷', league: 'Équipe Nationale', comp: 'WC' },
+  'argentina': { id: 762, name: 'Argentine', emoji: '🇦🇷', league: 'Équipe Nationale', comp: 'WC' },
+  'uruguay': { id: 758, name: 'Uruguay', emoji: '🇺🇾', league: 'Équipe Nationale', comp: 'WC' },
+  'mexique': { id: 795, name: 'Mexique', emoji: '🇲🇽', league: 'Équipe Nationale', comp: 'WC' },
+  'mexico': { id: 795, name: 'Mexique', emoji: '🇲🇽', league: 'Équipe Nationale', comp: 'WC' },
+  'usa': { id: 768, name: 'États-Unis', emoji: '🇺🇸', league: 'Équipe Nationale', comp: 'WC' },
+  'etats-unis': { id: 768, name: 'États-Unis', emoji: '🇺🇸', league: 'Équipe Nationale', comp: 'WC' },
+  'japon': { id: 785, name: 'Japon', emoji: '🇯🇵', league: 'Équipe Nationale', comp: 'WC' },
+  'japan': { id: 785, name: 'Japon', emoji: '🇯🇵', league: 'Équipe Nationale', comp: 'WC' },
 };
 
 // ─── PARSER ───────────────────────────────────────────────────────────────────
@@ -163,85 +156,118 @@ function findTeam(str) {
   return null;
 }
 
-// ─── API CALLS (vraies données) ───────────────────────────────────────────────
+// ─── API CALLS ────────────────────────────────────────────────────────────────
 async function apiFetch(path) {
   const r = await fetch(`${API_BASE}${path}`, { headers: { 'X-Auth-Token': API_KEY } });
-  if (!r.ok) throw new Error(`API ${r.status}: ${r.statusText}`);
+  if (!r.ok) throw new Error(`Erreur API ${r.status} sur ${path}`);
   return r.json();
 }
 
-async function getRealStats(teamId) {
-  const data = await apiFetch(`/teams/${teamId}/matches?status=FINISHED&limit=15`);
-  const matches = data.matches || [];
-  if (matches.length === 0) throw new Error('Aucun match trouvé');
+// Récupère tous les matchs terminés d'une compétition et filtre par équipe
+async function fetchMatchesFromComp(compCode, teamId, season) {
+  const s = season ? `&season=${season}` : '';
+  const data = await apiFetch(`/competitions/${compCode}/matches?status=FINISHED${s}`);
+  const all = data.matches || [];
+  return all.filter(m => m.homeTeam.id === teamId || m.awayTeam.id === teamId);
+}
 
-  const recent = matches.slice(-10); // 10 derniers matchs
-  let goalsFor = 0, goalsAgainst = 0;
+async function getRealStats(team) {
+  const { id, comp, comp2 } = team;
+  let matches = [];
+
+  // Saison courante d'abord, puis saison précédente si pas assez de matchs
+  for (const compCode of [comp, comp2].filter(Boolean)) {
+    for (const season of [null, '2024', '2023']) {
+      try {
+        const m = await fetchMatchesFromComp(compCode, id, season);
+        matches.push(...m);
+        if (matches.length >= 8) break;
+      } catch {}
+      if (matches.length >= 8) break;
+    }
+    if (matches.length >= 5) break;
+  }
+
+  // Dédupliquer par id de match
+  const seen = new Set();
+  matches = matches.filter(m => { if (seen.has(m.id)) return false; seen.add(m.id); return true; });
+
+  // Trier du plus récent au plus ancien
+  matches.sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate));
+  const recent = matches.slice(0, 10);
+
+  if (recent.length === 0) throw new Error(`Aucun match trouvé pour ${team.name} (comp: ${comp})`);
+
+  let goalsFor = 0, goalsAgainst = 0, wins = 0, draws = 0, losses = 0;
   const form = [];
-  let wins = 0, draws = 0, losses = 0;
-  let homeGoals = 0, homeMatches = 0, awayGoals = 0, awayMatches = 0;
 
   for (const m of recent) {
-    const isHome = m.homeTeam.id === teamId;
+    const isHome = m.homeTeam.id === id;
     const gf = isHome ? m.score.fullTime.home : m.score.fullTime.away;
     const ga = isHome ? m.score.fullTime.away : m.score.fullTime.home;
     if (gf === null || ga === null) continue;
-
-    goalsFor += gf;
-    goalsAgainst += ga;
-
-    if (isHome) { homeGoals += gf; homeMatches++; }
-    else { awayGoals += gf; awayMatches++; }
-
+    goalsFor += gf; goalsAgainst += ga;
     if (gf > ga) { form.push('W'); wins++; }
     else if (gf === ga) { form.push('D'); draws++; }
     else { form.push('L'); losses++; }
   }
 
   const n = form.length;
+  if (n === 0) throw new Error(`Scores manquants pour ${team.name}`);
+
   return {
-    form: form.slice(-5).join(''),
+    form: form.slice(0, 5).join(''),
     goalsFor: +(goalsFor / n).toFixed(2),
     goalsAgainst: +(goalsAgainst / n).toFixed(2),
-    homeGoalsAvg: homeMatches > 0 ? +(homeGoals / homeMatches).toFixed(2) : +(goalsFor / n).toFixed(2),
-    awayGoalsAvg: awayMatches > 0 ? +(awayGoals / awayMatches).toFixed(2) : +(goalsFor / n).toFixed(2),
     wins, draws, losses,
     winRate: Math.round((wins / n) * 100),
-    xG: +(goalsFor / n * 0.92).toFixed(2), // approximation xG
+    xG: +(goalsFor / n * 0.92).toFixed(2),
     matchesAnalyzed: n,
-    rawMatches: recent,
+    sourceComp: comp,
   };
 }
 
-async function getRealH2H(homeId, awayId) {
-  // Récupérer les matchs des deux équipes et croiser
-  const [homeData, awayData] = await Promise.all([
-    apiFetch(`/teams/${homeId}/matches?status=FINISHED&limit=50`),
-    apiFetch(`/teams/${awayId}/matches?status=FINISHED&limit=50`),
-  ]);
+async function getRealH2H(homeTeam, awayTeam) {
+  // Chercher dans les mêmes compétitions
+  const comps = [...new Set([homeTeam.comp, homeTeam.comp2, awayTeam.comp, awayTeam.comp2].filter(Boolean))];
+  const h2hMatches = [];
 
-  const homeMatchIds = new Set((homeData.matches || []).map(m => m.id));
-  const h2hMatches = (awayData.matches || []).filter(m => homeMatchIds.has(m.id));
+  for (const compCode of comps) {
+    for (const season of [null, '2024', '2023', '2022']) {
+      try {
+        const data = await apiFetch(`/competitions/${compCode}/matches?status=FINISHED${season ? '&season=' + season : ''}`);
+        const all = data.matches || [];
+        const found = all.filter(m =>
+          (m.homeTeam.id === homeTeam.id && m.awayTeam.id === awayTeam.id) ||
+          (m.homeTeam.id === awayTeam.id && m.awayTeam.id === homeTeam.id)
+        );
+        h2hMatches.push(...found);
+      } catch {}
+    }
+  }
 
   if (h2hMatches.length === 0) return null;
 
-  const results = h2hMatches.slice(0, 10).map(m => {
-    const isHome1 = m.homeTeam.id === homeId;
-    const g1 = isHome1 ? m.score.fullTime.home : m.score.fullTime.away;
-    const g2 = isHome1 ? m.score.fullTime.away : m.score.fullTime.home;
+  // Dédupliquer et trier
+  const seen = new Set();
+  const unique = h2hMatches.filter(m => { if (seen.has(m.id)) return false; seen.add(m.id); return true; });
+  unique.sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate));
+
+  const results = unique.slice(0, 8).map(m => {
+    const isHome = m.homeTeam.id === homeTeam.id;
+    const g1 = isHome ? m.score.fullTime.home : m.score.fullTime.away;
+    const g2 = isHome ? m.score.fullTime.away : m.score.fullTime.home;
     return {
       date: new Date(m.utcDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
       competition: m.competition?.name || '',
-      homeGoals: g1,
-      awayGoals: g2,
+      homeGoals: g1, awayGoals: g2,
     };
   });
 
   const homeWins = results.filter(r => r.homeGoals > r.awayGoals).length;
-  const draws = results.filter(r => r.homeGoals === r.awayGoals).length;
-  const awayWins = results.length - homeWins - draws;
-
-  return { matches: results, homeWins, draws, awayWins, total: results.length };
+  const dr = results.filter(r => r.homeGoals === r.awayGoals).length;
+  const awayWins = results.length - homeWins - dr;
+  return { matches: results, homeWins, draws: dr, awayWins, total: results.length };
 }
 
 // ─── ALGORITHME DE PRÉDICTION (basé sur vraies stats) ─────────────────────────
@@ -544,14 +570,14 @@ async function analyzeMatch(text) {
 
   try {
     showLoading(`Récupération des stats réelles (${home.name})...`);
-    const homeStats = await getRealStats(home.id);
+    const homeStats = await getRealStats(home);
 
     showLoading(`Récupération des stats réelles (${away.name})...`);
-    const awayStats = await getRealStats(away.id);
+    const awayStats = await getRealStats(away);
 
     showLoading('Analyse des confrontations directes...');
     let h2h = null;
-    try { h2h = await getRealH2H(home.id, away.id); } catch {}
+    try { h2h = await getRealH2H(home, away); } catch {}
 
     showLoading('Calcul de la prédiction...');
     const pred = predict(homeStats, awayStats, h2h);
