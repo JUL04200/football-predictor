@@ -60,6 +60,65 @@ const TEAM_DB = {
   'rb leipzig': { id: 721, name: 'RB Leipzig', emoji: '🔴⚪', country: 'Germany', league: 'Bundesliga' },
   'bayer leverkusen': { id: 3, name: 'Bayer Leverkusen', emoji: '🔴⚫', country: 'Germany', league: 'Bundesliga' },
   'leverkusen': { id: 3, name: 'Bayer Leverkusen', emoji: '🔴⚫', country: 'Germany', league: 'Bundesliga' },
+  // ─── ÉQUIPES NATIONALES ───
+  'france': { id: 773, name: 'France', emoji: '🇫🇷', country: 'France', league: 'Équipe Nationale' },
+  'les bleus': { id: 773, name: 'France', emoji: '🇫🇷', country: 'France', league: 'Équipe Nationale' },
+  'senegal': { id: 907, name: 'Sénégal', emoji: '🇸🇳', country: 'Sénégal', league: 'Équipe Nationale' },
+  'sénégal': { id: 907, name: 'Sénégal', emoji: '🇸🇳', country: 'Sénégal', league: 'Équipe Nationale' },
+  'maroc': { id: 816, name: 'Maroc', emoji: '🇲🇦', country: 'Maroc', league: 'Équipe Nationale' },
+  'morocco': { id: 816, name: 'Maroc', emoji: '🇲🇦', country: 'Maroc', league: 'Équipe Nationale' },
+  'algerie': { id: 803, name: 'Algérie', emoji: '🇩🇿', country: 'Algérie', league: 'Équipe Nationale' },
+  'algérie': { id: 803, name: 'Algérie', emoji: '🇩🇿', country: 'Algérie', league: 'Équipe Nationale' },
+  'tunisie': { id: 803, name: 'Tunisie', emoji: '🇹🇳', country: 'Tunisie', league: 'Équipe Nationale' },
+  'tunisie': { id: 803, name: 'Tunisie', emoji: '🇹🇳', country: 'Tunisie', league: 'Équipe Nationale' },
+  'nigeria': { id: 886, name: 'Nigeria', emoji: '🇳🇬', country: 'Nigeria', league: 'Équipe Nationale' },
+  'ghana': { id: 854, name: 'Ghana', emoji: '🇬🇭', country: 'Ghana', league: 'Équipe Nationale' },
+  'cote d\'ivoire': { id: 840, name: "Côte d'Ivoire", emoji: '🇨🇮', country: "Côte d'Ivoire", league: 'Équipe Nationale' },
+  'ivory coast': { id: 840, name: "Côte d'Ivoire", emoji: '🇨🇮', country: "Côte d'Ivoire", league: 'Équipe Nationale' },
+  'cameroun': { id: 825, name: 'Cameroun', emoji: '🇨🇲', country: 'Cameroun', league: 'Équipe Nationale' },
+  'cameroon': { id: 825, name: 'Cameroun', emoji: '🇨🇲', country: 'Cameroun', league: 'Équipe Nationale' },
+  'egypte': { id: 849, name: 'Égypte', emoji: '🇪🇬', country: 'Égypte', league: 'Équipe Nationale' },
+  'egypt': { id: 849, name: 'Égypte', emoji: '🇪🇬', country: 'Égypte', league: 'Équipe Nationale' },
+  'bresil': { id: 764, name: 'Brésil', emoji: '🇧🇷', country: 'Brésil', league: 'Équipe Nationale' },
+  'brazil': { id: 764, name: 'Brésil', emoji: '🇧🇷', country: 'Brésil', league: 'Équipe Nationale' },
+  'brésil': { id: 764, name: 'Brésil', emoji: '🇧🇷', country: 'Brésil', league: 'Équipe Nationale' },
+  'argentine': { id: 762, name: 'Argentine', emoji: '🇦🇷', country: 'Argentine', league: 'Équipe Nationale' },
+  'argentina': { id: 762, name: 'Argentine', emoji: '🇦🇷', country: 'Argentine', league: 'Équipe Nationale' },
+  'espagne': { id: 760, name: 'Espagne', emoji: '🇪🇸', country: 'Espagne', league: 'Équipe Nationale' },
+  'spain': { id: 760, name: 'Espagne', emoji: '🇪🇸', country: 'Espagne', league: 'Équipe Nationale' },
+  'allemagne': { id: 759, name: 'Allemagne', emoji: '🇩🇪', country: 'Allemagne', league: 'Équipe Nationale' },
+  'germany': { id: 759, name: 'Allemagne', emoji: '🇩🇪', country: 'Allemagne', league: 'Équipe Nationale' },
+  'angleterre': { id: 770, name: 'Angleterre', emoji: '󠁧󠁢󠁥󠁮󠁧󠁿🏴', country: 'Angleterre', league: 'Équipe Nationale' },
+  'england': { id: 770, name: 'Angleterre', emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'Angleterre', league: 'Équipe Nationale' },
+  'italie': { id: 784, name: 'Italie', emoji: '🇮🇹', country: 'Italie', league: 'Équipe Nationale' },
+  'italy': { id: 784, name: 'Italie', emoji: '🇮🇹', country: 'Italie', league: 'Équipe Nationale' },
+  'portugal': { id: 765, name: 'Portugal', emoji: '🇵🇹', country: 'Portugal', league: 'Équipe Nationale' },
+  'belgique': { id: 805, name: 'Belgique', emoji: '🇧🇪', country: 'Belgique', league: 'Équipe Nationale' },
+  'belgium': { id: 805, name: 'Belgique', emoji: '🇧🇪', country: 'Belgique', league: 'Équipe Nationale' },
+  'pays-bas': { id: 779, name: 'Pays-Bas', emoji: '🇳🇱', country: 'Pays-Bas', league: 'Équipe Nationale' },
+  'netherlands': { id: 779, name: 'Pays-Bas', emoji: '🇳🇱', country: 'Pays-Bas', league: 'Équipe Nationale' },
+  'hollande': { id: 779, name: 'Pays-Bas', emoji: '🇳🇱', country: 'Pays-Bas', league: 'Équipe Nationale' },
+  'croatie': { id: 799, name: 'Croatie', emoji: '🇭🇷', country: 'Croatie', league: 'Équipe Nationale' },
+  'croatia': { id: 799, name: 'Croatie', emoji: '🇭🇷', country: 'Croatie', league: 'Équipe Nationale' },
+  'uruguay': { id: 769, name: 'Uruguay', emoji: '🇺🇾', country: 'Uruguay', league: 'Équipe Nationale' },
+  'colombie': { id: 801, name: 'Colombie', emoji: '🇨🇴', country: 'Colombie', league: 'Équipe Nationale' },
+  'colombia': { id: 801, name: 'Colombie', emoji: '🇨🇴', country: 'Colombie', league: 'Équipe Nationale' },
+  'mexique': { id: 788, name: 'Mexique', emoji: '🇲🇽', country: 'Mexique', league: 'Équipe Nationale' },
+  'mexico': { id: 788, name: 'Mexique', emoji: '🇲🇽', country: 'Mexique', league: 'Équipe Nationale' },
+  'etats-unis': { id: 768, name: 'États-Unis', emoji: '🇺🇸', country: 'États-Unis', league: 'Équipe Nationale' },
+  'usa': { id: 768, name: 'États-Unis', emoji: '🇺🇸', country: 'États-Unis', league: 'Équipe Nationale' },
+  'japon': { id: 785, name: 'Japon', emoji: '🇯🇵', country: 'Japon', league: 'Équipe Nationale' },
+  'japan': { id: 785, name: 'Japon', emoji: '🇯🇵', country: 'Japon', league: 'Équipe Nationale' },
+  'coree du sud': { id: 796, name: 'Corée du Sud', emoji: '🇰🇷', country: 'Corée du Sud', league: 'Équipe Nationale' },
+  'south korea': { id: 796, name: 'Corée du Sud', emoji: '🇰🇷', country: 'Corée du Sud', league: 'Équipe Nationale' },
+  'suisse': { id: 788, name: 'Suisse', emoji: '🇨🇭', country: 'Suisse', league: 'Équipe Nationale' },
+  'switzerland': { id: 788, name: 'Suisse', emoji: '🇨🇭', country: 'Suisse', league: 'Équipe Nationale' },
+  'danemark': { id: 782, name: 'Danemark', emoji: '🇩🇰', country: 'Danemark', league: 'Équipe Nationale' },
+  'denmark': { id: 782, name: 'Danemark', emoji: '🇩🇰', country: 'Danemark', league: 'Équipe Nationale' },
+  'pologne': { id: 781, name: 'Pologne', emoji: '🇵🇱', country: 'Pologne', league: 'Équipe Nationale' },
+  'poland': { id: 781, name: 'Pologne', emoji: '🇵🇱', country: 'Pologne', league: 'Équipe Nationale' },
+
+  // ─── STATS NATIONALES PAR DÉFAUT ───
   // Serie A
   'juventus': { id: 109, name: 'Juventus FC', emoji: '⚫⚪', country: 'Italy', league: 'Serie A' },
   'juve': { id: 109, name: 'Juventus FC', emoji: '⚫⚪', country: 'Italy', league: 'Serie A' },
@@ -75,6 +134,28 @@ const TEAM_DB = {
 
 // ─── STATS PAR DÉFAUT (utilisées si pas d'API) ───────────────────────────────
 const DEFAULT_STATS = {
+  // Équipes nationales
+  773: { form: 'WWWDW', goalsFor: 2.3, goalsAgainst: 0.7, possession: 58, rank: 2, xG: 2.1 },  // France
+  907: { form: 'WWDWL', goalsFor: 1.8, goalsAgainst: 0.9, possession: 52, rank: 18, xG: 1.6 }, // Sénégal
+  816: { form: 'WWWWW', goalsFor: 1.9, goalsAgainst: 0.5, possession: 50, rank: 13, xG: 1.7 }, // Maroc
+  803: { form: 'WDWWL', goalsFor: 1.5, goalsAgainst: 1.0, possession: 49, rank: 30, xG: 1.4 }, // Algérie
+  886: { form: 'WLWWD', goalsFor: 1.7, goalsAgainst: 1.2, possession: 48, rank: 28, xG: 1.5 }, // Nigeria
+  854: { form: 'DLWWL', goalsFor: 1.4, goalsAgainst: 1.3, possession: 47, rank: 60, xG: 1.2 }, // Ghana
+  840: { form: 'WWLWW', goalsFor: 1.8, goalsAgainst: 1.1, possession: 50, rank: 25, xG: 1.6 }, // Côte d'Ivoire
+  825: { form: 'WDWLW', goalsFor: 1.6, goalsAgainst: 1.1, possession: 48, rank: 40, xG: 1.4 }, // Cameroun
+  849: { form: 'WWDWW', goalsFor: 1.7, goalsAgainst: 0.8, possession: 51, rank: 35, xG: 1.5 }, // Égypte
+  764: { form: 'WWWWW', goalsFor: 2.8, goalsAgainst: 0.6, possession: 63, rank: 1, xG: 2.6 },  // Brésil
+  762: { form: 'WWWWW', goalsFor: 2.5, goalsAgainst: 0.5, possession: 60, rank: 1, xG: 2.3 },  // Argentine
+  760: { form: 'WWWDW', goalsFor: 2.4, goalsAgainst: 0.6, possession: 62, rank: 1, xG: 2.2 },  // Espagne
+  759: { form: 'WWDWW', goalsFor: 2.2, goalsAgainst: 0.8, possession: 59, rank: 4, xG: 2.0 },  // Allemagne
+  770: { form: 'WWWLW', goalsFor: 2.0, goalsAgainst: 0.9, possession: 57, rank: 5, xG: 1.9 },  // Angleterre
+  784: { form: 'WDWWL', goalsFor: 1.6, goalsAgainst: 0.8, possession: 55, rank: 9, xG: 1.5 },  // Italie
+  765: { form: 'WWWWW', goalsFor: 2.3, goalsAgainst: 0.7, possession: 57, rank: 6, xG: 2.1 },  // Portugal
+  779: { form: 'WWWDW', goalsFor: 2.1, goalsAgainst: 0.8, possession: 58, rank: 7, xG: 1.9 },  // Pays-Bas
+  799: { form: 'WDWWL', goalsFor: 1.7, goalsAgainst: 0.9, possession: 52, rank: 10, xG: 1.6 }, // Croatie
+  805: { form: 'WWDWW', goalsFor: 2.2, goalsAgainst: 0.9, possession: 56, rank: 3, xG: 2.0 },  // Belgique
+  769: { form: 'WWWLW', goalsFor: 1.9, goalsAgainst: 0.8, possession: 53, rank: 11, xG: 1.7 }, // Uruguay
+  // Clubs
   524: { form: 'WWDWW', goalsFor: 2.4, goalsAgainst: 0.6, possession: 62, rank: 1, xG: 2.1 },
   61:  { form: 'WDWLW', goalsFor: 1.8, goalsAgainst: 1.0, possession: 56, rank: 5, xG: 1.7 },
   65:  { form: 'WWWWD', goalsFor: 2.6, goalsAgainst: 0.8, possession: 65, rank: 1, xG: 2.4 },
