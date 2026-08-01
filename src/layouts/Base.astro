@@ -5,10 +5,14 @@ import "../styles/global.css";
 interface Props {
   titre: string;
   description?: string;
+  large?: boolean;
 }
 
-const { titre, description = "Généalogie de la ligne paternelle Arrouasse (Tlemcen) et Amsellem–Benchetrit (Alger), juifs séfarades pieds-noirs d'Algérie." } =
-  Astro.props;
+const {
+  titre,
+  description = "Généalogie de la ligne paternelle Arrouasse (Tlemcen) et Amsellem–Benchetrit (Alger), juifs séfarades pieds-noirs d'Algérie.",
+  large = false,
+} = Astro.props;
 
 const LIENS_PRINCIPAUX = [
   { href: "/", label: "Accueil" },
@@ -101,7 +105,7 @@ const chemin = Astro.url.pathname;
       </nav>
     </header>
 
-    <main id="contenu" class="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <main id="contenu" class:list={["mx-auto px-4 py-14 sm:px-6", large ? "max-w-5xl" : "max-w-2xl"]}>
       <slot />
     </main>
 

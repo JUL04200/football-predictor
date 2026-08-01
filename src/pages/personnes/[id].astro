@@ -50,10 +50,10 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
 <Base titre={titrePage}>
   {
     affichee.masquee ? (
-      <section class="max-w-xl border-l-2 border-pierre/15 pl-4">
+      <section class="border-l-2 border-pierre/15 pl-4">
         <StatutBadge statut="inconnu" />
         <h1 class="mt-3 text-2xl font-semibold tracking-tight">Personne vivante</h1>
-        <p class="mt-3 text-sm text-pierre/70">
+        <p class="mt-3 text-pierre/70">
           Par principe, ce site ne publie ni le nom, ni les dates, ni le détail des personnes
           vivantes. Cette fiche n'affiche que sa position dans l'arbre (branche : {" "}
           <span class="donnee">{affichee.branche}</span>).
@@ -70,7 +70,7 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
             {personne.prenoms.join(" ")} {personne.nom}
           </h1>
           {(personne.prenomUsuel || personne.prenomHebraique || (personne.variantesGraphiques && personne.variantesGraphiques.length > 0)) && (
-            <p class="mt-2 text-sm text-pierre/70">
+            <p class="mt-2 text-pierre/70">
               {personne.prenomUsuel && <>dit <span class="donnee">{personne.prenomUsuel}</span> </>}
               {personne.prenomHebraique && <>· prénom hébraïque <span class="donnee">{personne.prenomHebraique}</span> </>}
               {personne.variantesGraphiques && personne.variantesGraphiques.length > 0 && (
@@ -80,7 +80,7 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
           )}
         </header>
 
-        <div class="divide-y divide-pierre/10 [&>section]:py-8 first:[&>section]:pt-0">
+        <div class="divide-y divide-pierre/10 [&>section]:py-10 first:[&>section]:pt-0">
         <section class="grid gap-x-10 gap-y-6 sm:grid-cols-2">
           {personne.naissance && <EvenementBloc evenement={personne.naissance} libelle="Naissance" />}
           {personne.deces && <EvenementBloc evenement={personne.deces} libelle="Décès" />}
@@ -109,17 +109,17 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
         <section class="grid gap-6 sm:grid-cols-2 sm:gap-x-10 sm:divide-x sm:divide-pierre/10">
           <div>
             <h2 class="mb-3 text-xl font-semibold tracking-tight">Famille</h2>
-            <dl class="space-y-3 text-sm">
+            <dl class="space-y-4">
               <div>
-                <dt class="text-pierre/50">Père</dt>
+                <dt class="text-sm text-pierre/50">Père</dt>
                 <dd>{pere ? <a class="text-laiton hover:underline" href={`/personnes/${pere.id}/`}>{nomAffiche(pere)}</a> : <span class="text-pierre/40">inconnu</span>}</dd>
               </div>
               <div>
-                <dt class="text-pierre/50">Mère</dt>
+                <dt class="text-sm text-pierre/50">Mère</dt>
                 <dd>{mere ? <a class="text-laiton hover:underline" href={`/personnes/${mere.id}/`}>{nomAffiche(mere)}</a> : <span class="text-pierre/40">inconnue</span>}</dd>
               </div>
               <div>
-                <dt class="text-pierre/50">Fratrie</dt>
+                <dt class="text-sm text-pierre/50">Fratrie</dt>
                 <dd>
                   {fratrie.length > 0 ? (
                     <ul>
@@ -136,9 +136,9 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
           </div>
           <div>
             <h2 class="mb-3 text-xl font-semibold tracking-tight">Conjoint(s) et enfants</h2>
-            <dl class="space-y-3 text-sm">
+            <dl class="space-y-4">
               <div>
-                <dt class="text-pierre/50">Conjoint(s)</dt>
+                <dt class="text-sm text-pierre/50">Conjoint(s)</dt>
                 <dd>
                   {conjoints.length > 0 ? (
                     <ul>
@@ -152,7 +152,7 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
                 </dd>
               </div>
               <div>
-                <dt class="text-pierre/50">Enfants</dt>
+                <dt class="text-sm text-pierre/50">Enfants</dt>
                 <dd>
                   {enfants.length > 0 ? (
                     <ul>
@@ -172,18 +172,24 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
         {personne.notes && (
           <section>
             <h2 class="mb-2 text-xl font-semibold tracking-tight">Notes</h2>
-            <p class="text-sm text-pierre/75">{personne.notes}</p>
+            <p class="text-pierre/75">{personne.notes}</p>
           </section>
         )}
 
         <section>
-          <h2 class="mb-3 text-xl font-semibold tracking-tight">Toutes les sources</h2>
-          <SourcesListe sourceIds={toutesSourceIds} />
+          <details>
+            <summary class="cursor-pointer text-sm text-pierre/50 hover:text-laiton">
+              Toutes les sources citées sur cette fiche ({toutesSourceIds.length})
+            </summary>
+            <div class="mt-4">
+              <SourcesListe sourceIds={toutesSourceIds} />
+            </div>
+          </details>
         </section>
         </div>
 
-        <section class="mt-8 border-l-2 border-laiton/30 pl-4">
-          <h2 class="mb-2 text-xl font-semibold tracking-tight text-pierre/80">Ce qu'on ne sait pas encore</h2>
+        <section class="mt-10 border-l-2 border-laiton/30 pl-4">
+          <h2 class="mb-2 text-lg font-semibold tracking-tight text-pierre/80">Ce qu'on ne sait pas encore</h2>
           {trous.length > 0 ? (
             <ul class="list-inside list-disc space-y-1 text-sm text-pierre/60">
               {trous.map((t) => <li>{t}</li>)}

@@ -25,7 +25,15 @@
   }
 
   body {
-    @apply bg-nuit text-pierre font-sans antialiased;
+    @apply bg-nuit text-pierre font-sans text-[1.0625rem] leading-relaxed antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply leading-snug;
+  }
+
+  p {
+    @apply leading-relaxed;
   }
 
   ::selection {
@@ -65,6 +73,24 @@
 
   .lien-discret {
     @apply text-laiton/90 no-underline hover:text-laiton hover:underline;
+  }
+
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  details > summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.4em;
+    color: theme("colors.laiton");
+    flex-shrink: 0;
+  }
+  details[open] > summary::before {
+    content: "−";
   }
 }
 

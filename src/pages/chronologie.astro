@@ -68,7 +68,7 @@ entrees.sort((a, b) => a.date.localeCompare(b.date));
 
   <ol class="relative border-l border-pierre/20 pl-6">
     {entrees.map((e) => (
-      <li class="mb-8 last:mb-0">
+      <li class="mb-10 last:mb-0">
         <span
           class:list={[
             "absolute -left-[7px] mt-1.5 h-3 w-3 rounded-full border-2 border-nuit",
@@ -81,7 +81,7 @@ entrees.sort((a, b) => a.date.localeCompare(b.date));
           {e.lien ? <a href={e.lien} class="hover:text-laiton">{e.titre}</a> : e.titre}
           {e.statut && <StatutBadge statut={e.statut} class="ml-2 align-middle" />}
         </h2>
-        {e.description && <p class="mt-1 max-w-2xl text-sm text-pierre/70">{e.description}</p>}
+        {e.description && <p class="mt-1.5 text-pierre/70">{e.description}</p>}
       </li>
     ))}
   </ol>

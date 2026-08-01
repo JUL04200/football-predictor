@@ -31,22 +31,22 @@ import { FAQ } from "../lib/faq";
         </h2>
         <div class="space-y-6">
           {categorie.questions.map((q) => (
-            <article id={q.id} class="faq-item scroll-mt-24" data-texte={(q.question + " " + q.reponse.join(" ")).toLowerCase()}>
-              <div class="flex items-start justify-between gap-3">
-                <h3 class="text-lg text-pierre">{q.question}</h3>
+            <details id={q.id} class="faq-item scroll-mt-24" data-texte={(q.question + " " + q.reponse.join(" ")).toLowerCase()}>
+              <summary class="flex cursor-pointer list-none items-start gap-3 text-pierre">
+                <span class="flex-1 text-lg">{q.question}</span>
                 <button
                   type="button"
                   class="bouton-copier no-print shrink-0 text-xs text-pierre/40 hover:text-laiton"
                   data-id={q.id}
                   aria-label={`Copier le lien vers : ${q.question}`}
                 >
-                  # copier le lien
+                  # lien
                 </button>
-              </div>
-              <div class="mt-2 space-y-2 text-sm text-pierre/75">
+              </summary>
+              <div class="mt-3 space-y-3 text-pierre/75">
                 {q.reponse.map((p) => <p>{p}</p>)}
               </div>
-            </article>
+            </details>
           ))}
         </div>
       </section>
@@ -63,9 +63,10 @@ import { FAQ } from "../lib/faq";
       let total = 0;
       sections.forEach((section) => {
         let visiblesDansSection = 0;
-        section.querySelectorAll<HTMLElement>(".faq-item").forEach((item) => {
+        section.querySelectorAll<HTMLDetailsElement>(".faq-item").forEach((item) => {
           const visible = q === "" || item.dataset.texte!.includes(q);
           item.style.display = visible ? "" : "none";
+          item.open = q !== "" && visible;
           if (visible) {
             visiblesDansSection++;
             total++;
@@ -78,8 +79,18 @@ import { FAQ } from "../lib/faq";
 
     champ.addEventListener("input", filtrer);
 
+    if (location.hash) {
+      const cible = document.querySelector<HTMLDetailsElement>(location.hash);
+      if (cible) {
+        cible.open = true;
+        cible.scrollIntoView();
+      }
+    }
+
     document.querySelectorAll<HTMLButtonElement>(".bouton-copier").forEach((bouton) => {
-      bouton.addEventListener("click", async () => {
+      bouton.addEventListener("click", async (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
         const url = `${location.origin}${location.pathname}#${bouton.dataset.id}`;
         history.replaceState(null, "", `#${bouton.dataset.id}`);
         try {
