@@ -1,0 +1,30 @@
+{
+  "id": "arrouasse-abraham",
+  "nom": "ARROUASSE",
+  "prenoms": ["Abraham"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Dates de naissance et de décès inconnues.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Lien exact avec Jean Arrouasse non établi : père ou grand-père ? Voir question ouverte n°2. Aucun lien structurel (pereId/enfantIds) n'est posé dans les données tant que la génération n'est pas confirmée.",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

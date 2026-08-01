@@ -1,0 +1,61 @@
+---
+import Base from "../../layouts/Base.astro";
+import { toutesLesSources, getSource, personnesDocumenteesPar, nomAffiche } from "../../lib/data";
+
+export function getStaticPaths() {
+  return toutesLesSources().map((s) => ({ params: { id: s.id } }));
+}
+
+const { id } = Astro.params;
+const source = getSource(id as string)!;
+const personnes = personnesDocumenteesPar(source.id);
+---
+
+<Base titre={source.titre}>
+  <p class="mb-4"><a href="/sources/" class="text-sm text-laiton hover:underline">← Toutes les sources</a></p>
+  <h1 class="mb-4 text-2xl font-semibold tracking-tight">{source.titre}</h1>
+  <dl class="carte-fiche mb-8 grid gap-3 text-sm sm:grid-cols-2">
+    <div>
+      <dt class="text-pierre/50">Type</dt>
+      <dd class="donnee">{source.type}</dd>
+    </div>
+    <div>
+      <dt class="text-pierre/50">Date</dt>
+      <dd class="donnee">{source.date ?? "inconnue"}</dd>
+    </div>
+    <div>
+      <dt class="text-pierre/50">Dépôt</dt>
+      <dd>{source.depot ?? <span class="text-pierre/40">inconnu</span>}</dd>
+    </div>
+    <div>
+      <dt class="text-pierre/50">Cote</dt>
+      <dd class="donnee">{source.cote ?? <span class="text-pierre/40 font-sans">inconnue</span>}</dd>
+    </div>
+    {source.lien && (
+      <div class="sm:col-span-2">
+        <dt class="text-pierre/50">Lien</dt>
+        <dd><a class="text-laiton hover:underline" href={source.lien}>{source.lien}</a></dd>
+      </div>
+    )}
+  </dl>
+
+  {source.notes && (
+    <section class="mb-8">
+      <h2 class="mb-2 text-lg font-semibold">Notes</h2>
+      <p class="text-sm text-pierre/80">{source.notes}</p>
+    </section>
+  )}
+
+  <section>
+    <h2 class="mb-3 text-lg font-semibold">Personnes documentées</h2>
+    {personnes.length > 0 ? (
+      <ul class="space-y-1">
+        {personnes.map((p) => (
+          <li><a class="text-laiton hover:underline" href={`/personnes/${p.id}/`}>{nomAffiche(p)}</a></li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-sm text-pierre/50">Aucune personne ne cite encore cette source.</p>
+    )}
+  </section>
+</Base>

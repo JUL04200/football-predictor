@@ -1,0 +1,75 @@
+---
+import Base from "../layouts/Base.astro";
+
+const EMAIL_CONTACT = "larrouasse@aol.com";
+---
+
+<Base titre="Contribuer" description="Envoyer une photo, un acte ou une correction.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Contribuer</h1>
+  <p class="mb-8 max-w-2xl text-pierre/70">
+    Un cousin, une photo de famille, un acte retrouvé dans un tiroir, une erreur repérée sur
+    une fiche ? Chaque contribution compte, même partielle — surtout sur les{" "}
+    <a href="/questions-ouvertes/" class="text-laiton hover:underline">questions ouvertes</a>.
+  </p>
+
+  <div class="grid gap-8 sm:grid-cols-2">
+    <section class="carte-fiche">
+      <h2 class="mb-3 text-lg font-semibold text-pierre">Par email</h2>
+      <p class="mb-4 text-sm text-pierre/70">
+        Le plus simple : décrire ce que vous avez (photo, acte, souvenir) et à quelle
+        personne ou question ça se rapporte.
+      </p>
+      <a
+        href={`mailto:${EMAIL_CONTACT}?subject=${encodeURIComponent("Contribution au site de généalogie")}`}
+        class="inline-block border border-laiton bg-laiton/10 px-4 py-2 text-sm font-medium text-laiton no-underline hover:bg-laiton/20"
+      >
+        Écrire à {EMAIL_CONTACT}
+      </a>
+    </section>
+
+    <section class="carte-fiche">
+      <h2 class="mb-3 text-lg font-semibold text-pierre">Par formulaire</h2>
+      <p class="mb-4 text-sm text-pierre/70">
+        Ce formulaire ouvre directement votre messagerie avec le message pré-rempli — aucune
+        donnée n'est envoyée à un serveur.
+      </p>
+      <form id="formulaire-contribuer" class="space-y-3">
+        <div>
+          <label class="mb-1 block text-xs uppercase text-pierre/50" for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" required class="w-full border border-pierre/25 bg-zellige/60 px-3 py-2 text-sm text-pierre focus:border-laiton" />
+        </div>
+        <div>
+          <label class="mb-1 block text-xs uppercase text-pierre/50" for="personne">Personne ou question concernée</label>
+          <input id="personne" name="personne" type="text" class="w-full border border-pierre/25 bg-zellige/60 px-3 py-2 text-sm text-pierre focus:border-laiton" />
+        </div>
+        <div>
+          <label class="mb-1 block text-xs uppercase text-pierre/50" for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full border border-pierre/25 bg-zellige/60 px-3 py-2 text-sm text-pierre focus:border-laiton"></textarea>
+        </div>
+        <button type="submit" class="border border-laiton bg-laiton/10 px-4 py-2 text-sm font-medium text-laiton hover:bg-laiton/20">
+          Ouvrir dans ma messagerie
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <p class="mt-8 max-w-2xl text-sm text-pierre/50">
+    Vous préférez confier un document physique plutôt que de le photographier vous-même ?
+    Écrivez d'abord par email : on trouvera la meilleure façon de le numériser sans risque
+    pour l'original.
+  </p>
+
+  <script define:vars={{ EMAIL_CONTACT }} is:inline>
+    const formulaire = document.getElementById("formulaire-contribuer");
+    formulaire?.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      const donnees = new FormData(formulaire);
+      const nom = donnees.get("nom") ?? "";
+      const personne = donnees.get("personne") ?? "";
+      const message = donnees.get("message") ?? "";
+      const sujet = `Contribution au site de généalogie — ${personne || "général"}`;
+      const corps = `De : ${nom}\nConcerne : ${personne}\n\n${message}`;
+      window.location.href = `mailto:${EMAIL_CONTACT}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
+    });
+  </script>
+</Base>

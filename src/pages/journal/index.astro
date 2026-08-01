@@ -1,0 +1,25 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const entrees = (await getCollection("journal")).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+
+<Base titre="Le journal de recherche" description="Ce qui a été cherché, trouvé, éliminé — y compris les échecs.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Le journal de recherche</h1>
+  <p class="mb-8 max-w-2xl text-pierre/70">
+    Une session de recherche, une entrée. Y compris quand elle n'aboutit à rien : un
+    échec documenté évite de reparcourir la même impasse deux fois.
+  </p>
+  <ul class="space-y-4">
+    {entrees.map((e) => (
+      <li class="carte-fiche">
+        <p class="donnee text-xs text-pierre/50">{e.data.date}</p>
+        <h2 class="mt-1 text-lg">
+          <a href={`/journal/${e.slug}/`} class="text-pierre hover:text-laiton">{e.data.titre}</a>
+        </h2>
+        <p class="mt-2 text-sm text-pierre/70">{e.data.resume}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

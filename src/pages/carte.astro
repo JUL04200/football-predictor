@@ -1,0 +1,88 @@
+---
+import Base from "../layouts/Base.astro";
+import { toutLesLieux } from "../lib/data";
+
+const lieux = toutLesLieux();
+
+const TRAJECTOIRES = [
+  { nom: "Départ de Maurice Arrouasse, 1962 (Ville d'Oran)", points: ["tlemcen", "oran", "marseille"] },
+  { nom: "Exode d'été 1962 (Alger → Marseille)", points: ["alger", "marseille"] },
+  { nom: "Installation de Jean Arrouasse à Lyon", points: ["marseille", "lyon"] },
+];
+
+const trajectoiresAvecCoords = TRAJECTOIRES.map((t) => ({
+  nom: t.nom,
+  coords: t.points
+    .map((id) => lieux.find((l) => l.id === id))
+    .filter((l): l is NonNullable<typeof l> => Boolean(l && l.latitude != null && l.longitude != null))
+    .map((l) => [l.latitude, l.longitude]),
+}));
+---
+
+<Base titre="Carte" description="Tlemcen, Alger, Oran, Marseille, Lyon, Paris : la géographie de la famille.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Carte</h1>
+  <p class="mb-6 max-w-2xl text-pierre/70">
+    Les lieux documentés et les trajectoires migratoires de la famille, d'Algérie vers la
+    France, en 1962. Les tracés sont illustratifs : ils relient les grandes étapes connues,
+    pas un relevé GPS.
+  </p>
+
+  <div
+    id="carte"
+    class="h-[60vh] w-full border border-laiton/25"
+    role="img"
+    aria-label="Carte des lieux et trajectoires migratoires de la famille"
+    data-lieux={JSON.stringify(lieux)}
+    data-trajectoires={JSON.stringify(trajectoiresAvecCoords)}
+  ></div>
+
+  <ul class="mt-6 grid gap-2 sm:grid-cols-2">
+    {lieux.map((l) => (
+      <li class="carte-fiche text-sm">
+        <span class="text-pierre">{l.nom}</span>
+        <span class="text-pierre/50"> — {l.pays}</span>
+        {l.notes && <p class="mt-1 text-xs text-pierre/60">{l.notes}</p>}
+      </li>
+    ))}
+  </ul>
+
+  <script>
+    import L from "leaflet";
+    import "leaflet/dist/leaflet.css";
+
+    const conteneur = document.getElementById("carte");
+    if (conteneur) {
+      const lieux = JSON.parse(conteneur.dataset.lieux ?? "[]");
+      const trajectoiresAvecCoords = JSON.parse(conteneur.dataset.trajectoires ?? "[]");
+
+      const carte = L.map(conteneur, {
+        scrollWheelZoom: false,
+      }).setView([38, 2], 4);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; contributeurs OpenStreetMap",
+        maxZoom: 18,
+      }).addTo(carte);
+
+      const iconLaiton = L.divIcon({
+        className: "",
+        html: '<span style="display:block;width:10px;height:10px;border-radius:9999px;background:#C89B4A;border:2px solid #101E2E;"></span>',
+        iconSize: [10, 10],
+      });
+
+      for (const lieu of lieux) {
+        if (lieu.latitude == null || lieu.longitude == null) continue;
+        L.marker([lieu.latitude, lieu.longitude], { icon: iconLaiton })
+          .addTo(carte)
+          .bindPopup(`<strong>${lieu.nom}</strong>${lieu.notes ? `<br>${lieu.notes}` : ""}`);
+      }
+
+      for (const trajectoire of trajectoiresAvecCoords) {
+        if (trajectoire.coords.length < 2) continue;
+        L.polyline(trajectoire.coords, { color: "#2E7268", weight: 2, dashArray: "6 4" })
+          .addTo(carte)
+          .bindPopup(trajectoire.nom);
+      }
+    }
+  </script>
+</Base>

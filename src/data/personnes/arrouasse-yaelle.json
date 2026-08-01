@@ -1,0 +1,30 @@
+{
+  "id": "arrouasse-yaelle",
+  "nom": "ARROUASSE",
+  "prenoms": ["Yaëlle"],
+  "prenomUsuel": "Yaëlle",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date de naissance non renseignée.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-laurent-1963",
+  "mereId": "dukan-florence",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": null,
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

@@ -1,0 +1,91 @@
+---
+import Khatem from "../components/Khatem.astro";
+import "../styles/global.css";
+
+interface Props {
+  titre: string;
+  description?: string;
+}
+
+const { titre, description = "Généalogie de la ligne paternelle Arrouasse (Tlemcen) et Amsellem–Benchetrit (Alger), juifs séfarades pieds-noirs d'Algérie." } =
+  Astro.props;
+
+const LIENS = [
+  { href: "/", label: "Accueil" },
+  { href: "/arbre/", label: "Arbre" },
+  { href: "/branches/arrouasse/", label: "Branches" },
+  { href: "/chronologie/", label: "Chronologie" },
+  { href: "/carte/", label: "Carte" },
+  { href: "/sources/", label: "Sources" },
+  { href: "/journal/", label: "Journal" },
+  { href: "/questions-ouvertes/", label: "Questions ouvertes" },
+  { href: "/faq/", label: "FAQ" },
+  { href: "/contribuer/", label: "Contribuer" },
+];
+
+const chemin = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{titre} — Arrouasse · Amsellem</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <a
+      href="#contenu"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-laiton focus:px-3 focus:py-2 focus:text-nuit"
+    >
+      Aller au contenu
+    </a>
+
+    <header class="fond-zellige border-b border-laiton/20">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6">
+        <a href="/" class="flex items-center gap-2 text-pierre no-underline">
+          <Khatem taille={28} class="text-laiton" titre="Khatem, étoile à huit branches" />
+          <span class="text-lg font-semibold tracking-tight">Arrouasse · Amsellem</span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            {LIENS.map((lien) => (
+              <li>
+                <a
+                  href={lien.href}
+                  aria-current={chemin === lien.href ? "page" : undefined}
+                  class:list={[
+                    "no-underline hover:text-laiton",
+                    chemin === lien.href ? "text-laiton" : "text-pierre/80",
+                  ]}
+                >
+                  {lien.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenu" class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <slot />
+    </main>
+
+    <footer class="no-print border-t border-laiton/20 py-8 text-sm text-pierre/60">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <p>
+          Site de généalogie familiale — ligne paternelle Arrouasse (Tlemcen) et Amsellem–Benchetrit
+          (Alger). La branche maternelle Dukan est hors périmètre de ce site.
+        </p>
+        <p class="mt-2">
+          <a href="/perimetre/" class="text-pierre/60 hover:text-laiton">Le périmètre de ce site</a>
+          ·
+          <a href="/contribuer/" class="text-pierre/60 hover:text-laiton">Signaler une erreur ou proposer un document</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

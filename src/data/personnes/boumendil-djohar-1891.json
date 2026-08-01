@@ -1,0 +1,40 @@
+{
+  "id": "boumendil-djohar-1891",
+  "nom": "BOUMENDIL",
+  "prenoms": ["Djohar"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": "1891",
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Année de naissance donnée par l'acte de mariage de 1911 ; lieu non précisé.",
+    "statut": "prouve",
+    "sourceIds": ["anom-acte-mariage-messaoud-arrouasse-djohar-boumendil-1911"]
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": "1911-05-24",
+      "dateTexte": null,
+      "lieuId": "tlemcen",
+      "notes": "Épouse Messaoud Arrouasse. Témoins : Abraham Ben Ghouzi, Joseph Sakoun, Moïse Benhamou, Nathan Labbouz.",
+      "statut": "prouve",
+      "sourceIds": ["anom-acte-mariage-messaoud-arrouasse-djohar-boumendil-1911"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["arrouasse-messaoud-1885"],
+  "enfantIds": null,
+  "branche": "alliee",
+  "vivant": false,
+  "notes": null,
+  "statut": "prouve",
+  "sourceIds": ["anom-acte-mariage-messaoud-arrouasse-djohar-boumendil-1911"]
+}

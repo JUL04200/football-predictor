@@ -1,0 +1,48 @@
+{
+  "id": "sakoun-meriem",
+  "nom": "SAKOUN",
+  "prenoms": ["Meriem"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Domiciliée à Tlemcen. Date de naissance non retrouvée.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": "tlemcen",
+      "notes": "Épouse David Arrouasse.",
+      "statut": "prouve",
+      "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+    }
+  ],
+  "deces": {
+    "type": "deces",
+    "date": "1906",
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Date de décès connue par une mention associée à l'acte de mariage.",
+    "statut": "prouve",
+    "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+  },
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["arrouasse-david"],
+  "enfantIds": ["arrouasse-messaoud-1885"],
+  "branche": "alliee",
+  "vivant": false,
+  "notes": null,
+  "statut": "prouve",
+  "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+}

@@ -32,15 +32,25 @@
       "intitule": "Chaisier",
       "periode": null,
       "sourceIds": ["anom-etat-civil-tlemcen-messaoud-arrouasse-1885"]
+    },
+    {
+      "intitule": "Donateur d'une société de bienfaisance de Tlemcen (5 F)",
+      "periode": "1933",
+      "sourceIds": ["courrier-tlemcen-1933-01-03"]
+    },
+    {
+      "intitule": "Entrepreneur du bâtiment à Tlemcen",
+      "periode": "1947-1949",
+      "sourceIds": ["guide-batiment-tp-1947-1949"]
     }
   ],
-  "pereId": null,
-  "mereId": null,
-  "conjointIds": null,
+  "pereId": "arrouasse-david",
+  "mereId": "sakoun-meriem",
+  "conjointIds": ["boumendil-djohar-1891"],
   "enfantIds": null,
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Rattachement à la ligne directe (Jean Arrouasse) non démontré — voir question ouverte n°4 : quel lien exact entre notre ligne et le noyau David → Messaoud de Tlemcen ?",
+  "notes": "Rattachement à la ligne directe (Jean Arrouasse) non démontré — voir question ouverte n°4 : quel lien exact entre notre ligne et le noyau David → Messaoud de Tlemcen ? Les mentions de 1933 et 1947-1949 sont rattachées à ce Messaoud (né en 1885) par cohérence de nom, de lieu et de génération, non formellement recoupées entre elles ni avec l'acte de naissance.",
   "statut": "prouve",
   "sourceIds": ["anom-etat-civil-tlemcen-messaoud-arrouasse-1885"]
 }

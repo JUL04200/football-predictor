@@ -8,12 +8,12 @@
   "sexe": "F",
   "naissance": {
     "type": "naissance",
-    "date": null,
+    "date": "1940-04-16",
     "dateTexte": null,
     "lieuId": "alger",
-    "notes": "Date de naissance non retrouvée à ce jour.",
-    "statut": "inconnu",
-    "sourceIds": []
+    "notes": "Date transmise oralement par la famille, non recoupée avec un acte d'état civil.",
+    "statut": "temoignage",
+    "sourceIds": ["temoignage-famille-laurent-arrouasse"]
   },
   "mariages": [
     {

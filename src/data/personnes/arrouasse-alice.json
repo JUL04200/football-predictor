@@ -1,0 +1,40 @@
+{
+  "id": "arrouasse-alice",
+  "nom": "ARROUASSE",
+  "prenoms": ["Alice"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance inconnus.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": "1937",
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Épouse le fils d'Ichoua Bénichou.",
+      "statut": "prouve",
+      "sourceIds": ["echo-alger-1937-04-24"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Présentée par la presse comme fille de « Messaoud », sans élément permettant de l'identifier avec certitude parmi les porteurs de ce prénom à Tlemcen. Aucun lien pereId n'est posé tant que cette identification n'est pas établie.",
+  "statut": "prouve",
+  "sourceIds": ["echo-alger-1937-04-24"]
+}

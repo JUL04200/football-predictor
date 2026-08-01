@@ -1,0 +1,51 @@
+{
+  "id": "arrouasse-laurent-1963",
+  "nom": "ARROUASSE",
+  "prenoms": ["Laurent"],
+  "prenomUsuel": "Laurent",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": "1963-11-19",
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Lieu de naissance non renseigné.",
+    "statut": "temoignage",
+    "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Mariage avec Florence Dukan. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": [
+    {
+      "intitule": "Expert-comptable",
+      "periode": null,
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "pereId": "arrouasse-jean",
+  "mereId": "amsellem-josette",
+  "conjointIds": ["dukan-florence"],
+  "enfantIds": [
+    "arrouasse-jules-2014",
+    "arrouasse-tehen",
+    "arrouasse-yaelle",
+    "arrouasse-thalia"
+  ],
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": null,
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

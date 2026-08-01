@@ -1,0 +1,88 @@
+---
+import Base from "../layouts/Base.astro";
+import StatutBadge from "../components/StatutBadge.astro";
+import { toutesLesPersonnes, toutesLesEvenementsHistoriques, personneAffichee, nomAffiche, getLieu } from "../lib/data";
+
+type EntreeChrono = {
+  date: string;
+  titre: string;
+  description?: string;
+  type: "famille" | "histoire";
+  lien?: string;
+  statut?: "prouve" | "temoignage" | "hypothese" | "inconnu";
+};
+
+const entrees: EntreeChrono[] = [];
+
+for (const p of toutesLesPersonnes()) {
+  const affichee = personneAffichee(p);
+  if (affichee.masquee) continue;
+  const nom = nomAffiche(p);
+  if (p.naissance?.date) {
+    entrees.push({
+      date: p.naissance.date,
+      titre: `Naissance de ${nom}`,
+      description: getLieu(p.naissance.lieuId)?.nom,
+      type: "famille",
+      lien: `/personnes/${p.id}/`,
+      statut: p.naissance.statut,
+    });
+  }
+  for (const m of p.mariages ?? []) {
+    if (m.date) {
+      entrees.push({
+        date: m.date,
+        titre: `Mariage de ${nom}`,
+        description: getLieu(m.lieuId)?.nom,
+        type: "famille",
+        lien: `/personnes/${p.id}/`,
+        statut: m.statut,
+      });
+    }
+  }
+  if (p.deces?.date) {
+    entrees.push({
+      date: p.deces.date,
+      titre: `Décès de ${nom}`,
+      description: getLieu(p.deces.lieuId)?.nom,
+      type: "famille",
+      lien: `/personnes/${p.id}/`,
+      statut: p.deces.statut,
+    });
+  }
+}
+
+for (const e of toutesLesEvenementsHistoriques()) {
+  entrees.push({ date: e.date, titre: e.titre, description: e.description, type: "histoire" });
+}
+
+entrees.sort((a, b) => a.date.localeCompare(b.date));
+---
+
+<Base titre="Chronologie" description="Chronologie croisant les événements familiaux et le contexte historique de l'Algérie française et de l'indépendance.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Chronologie</h1>
+  <p class="mb-8 max-w-2xl text-pierre/70">
+    Les événements familiaux (en <span class="text-laiton">laiton</span>) et le contexte
+    historique (en <span class="text-vert">vert</span>) sur la même ligne de temps.
+  </p>
+
+  <ol class="relative border-l border-pierre/20 pl-6">
+    {entrees.map((e) => (
+      <li class="mb-8 last:mb-0">
+        <span
+          class:list={[
+            "absolute -left-[7px] mt-1.5 h-3 w-3 rounded-full border-2 border-nuit",
+            e.type === "histoire" ? "bg-vert" : "bg-laiton",
+          ]}
+          aria-hidden="true"
+        />
+        <p class="donnee text-sm text-pierre/50">{e.date}</p>
+        <h2 class="mt-1 text-lg text-pierre">
+          {e.lien ? <a href={e.lien} class="hover:text-laiton">{e.titre}</a> : e.titre}
+          {e.statut && <StatutBadge statut={e.statut} class="ml-2 align-middle" />}
+        </h2>
+        {e.description && <p class="mt-1 max-w-2xl text-sm text-pierre/70">{e.description}</p>}
+      </li>
+    ))}
+  </ol>
+</Base>

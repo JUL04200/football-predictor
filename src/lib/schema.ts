@@ -120,6 +120,7 @@ export const SourceTypeSchema = z.enum([
   "recensement",
   "insee_deces",
   "institution",
+  "bibliographie",
   "temoignage_oral",
   "autre",
 ]);

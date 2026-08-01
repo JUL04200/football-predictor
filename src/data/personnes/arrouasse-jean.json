@@ -8,12 +8,12 @@
   "sexe": "M",
   "naissance": {
     "type": "naissance",
-    "date": null,
+    "date": "1938-03-14",
     "dateTexte": null,
     "lieuId": "tlemcen",
-    "notes": "Date de naissance non retrouvée à ce jour. Question ouverte n°1.",
-    "statut": "inconnu",
-    "sourceIds": []
+    "notes": "Date transmise oralement par la famille, non recoupée avec un acte d'état civil. Lieu de naissance (Tlemcen) supposé mais non confirmé par acte — voir question ouverte n°1.",
+    "statut": "temoignage",
+    "sourceIds": ["temoignage-famille-laurent-arrouasse"]
   },
   "mariages": [
     {

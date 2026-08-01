@@ -1,0 +1,196 @@
+---
+import Base from "../../layouts/Base.astro";
+import StatutBadge from "../../components/StatutBadge.astro";
+import SourcesListe from "../../components/SourcesListe.astro";
+import EvenementBloc from "../../components/Evenement.astro";
+import { toutesLesPersonnes, getPersonne, nomAffiche, personneAffichee } from "../../lib/data";
+import type { Personne } from "../../lib/schema";
+
+export function getStaticPaths() {
+  return toutesLesPersonnes().map((p) => ({ params: { id: p.id } }));
+}
+
+const { id } = Astro.params;
+const personne = getPersonne(id as string) as Personne;
+const affichee = personneAffichee(personne);
+
+const toutes = toutesLesPersonnes();
+const pere = personne.pereId ? getPersonne(personne.pereId) : undefined;
+const mere = personne.mereId ? getPersonne(personne.mereId) : undefined;
+const conjoints = (personne.conjointIds ?? []).map((cid) => getPersonne(cid)).filter(Boolean) as Personne[];
+const enfants = (personne.enfantIds ?? []).map((eid) => getPersonne(eid)).filter(Boolean) as Personne[];
+const fratrie = toutes.filter(
+  (p) =>
+    p.id !== personne.id &&
+    ((personne.pereId && p.pereId === personne.pereId) || (personne.mereId && p.mereId === personne.mereId))
+);
+
+const toutesSourceIds = Array.from(
+  new Set([
+    ...personne.sourceIds,
+    ...(personne.professions ?? []).flatMap((p) => p.sourceIds),
+    ...[personne.naissance, personne.deces, ...(personne.mariages ?? [])]
+      .filter((e): e is NonNullable<typeof e> => Boolean(e))
+      .flatMap((e) => e.sourceIds),
+  ])
+);
+
+const trous: string[] = [];
+if (!personne.naissance || !personne.naissance.date) trous.push("date de naissance");
+if (!personne.naissance?.lieuId) trous.push("lieu de naissance");
+if (!personne.pereId) trous.push("père");
+if (!personne.mereId) trous.push("mère");
+if (!personne.deces && !personne.vivant) trous.push("date et lieu de décès");
+if (!personne.professions || personne.professions.length === 0) trous.push("profession(s)");
+if (!personne.mariages || personne.mariages.length === 0) trous.push("mariage(s)");
+
+const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
+---
+
+<Base titre={titrePage}>
+  {
+    affichee.masquee ? (
+      <section class="carte-fiche max-w-xl">
+        <StatutBadge statut="inconnu" />
+        <h1 class="mt-3 text-2xl font-semibold tracking-tight">Personne vivante</h1>
+        <p class="mt-3 text-sm text-pierre/70">
+          Par principe, ce site ne publie ni le nom, ni les dates, ni le détail des personnes
+          vivantes. Cette fiche n'affiche que sa position dans l'arbre (branche : {" "}
+          <span class="donnee">{affichee.branche}</span>).
+        </p>
+      </section>
+    ) : (
+      <>
+        <header class="mb-8">
+          <div class="mb-2 flex flex-wrap items-center gap-3">
+            <StatutBadge statut={personne.statut} />
+            <span class="donnee text-xs uppercase text-pierre/50">branche {personne.branche}</span>
+          </div>
+          <h1 class="text-3xl font-semibold tracking-tight">
+            {personne.prenoms.join(" ")} {personne.nom}
+          </h1>
+          {(personne.prenomUsuel || personne.prenomHebraique || (personne.variantesGraphiques && personne.variantesGraphiques.length > 0)) && (
+            <p class="mt-2 text-sm text-pierre/70">
+              {personne.prenomUsuel && <>dit <span class="donnee">{personne.prenomUsuel}</span> </>}
+              {personne.prenomHebraique && <>· prénom hébraïque <span class="donnee">{personne.prenomHebraique}</span> </>}
+              {personne.variantesGraphiques && personne.variantesGraphiques.length > 0 && (
+                <>· variantes : <span class="donnee">{personne.variantesGraphiques.join(", ")}</span></>
+              )}
+            </p>
+          )}
+        </header>
+
+        <section class="mb-10 grid gap-4 sm:grid-cols-2">
+          {personne.naissance && <EvenementBloc evenement={personne.naissance} libelle="Naissance" />}
+          {personne.deces && <EvenementBloc evenement={personne.deces} libelle="Décès" />}
+          {(personne.mariages ?? []).map((m, i) => (
+            <EvenementBloc evenement={m} libelle={`Mariage${(personne.mariages?.length ?? 0) > 1 ? ` ${i + 1}` : ""}`} />
+          ))}
+        </section>
+
+        {personne.professions && personne.professions.length > 0 && (
+          <section class="mb-10">
+            <h2 class="mb-3 text-xl font-semibold tracking-tight">Professions</h2>
+            <ul class="space-y-3">
+              {personne.professions.map((prof) => (
+                <li class="carte-fiche">
+                  <p class="text-pierre">{prof.intitule}</p>
+                  {prof.periode && <p class="donnee text-xs text-pierre/50">{prof.periode}</p>}
+                  <div class="mt-2">
+                    <SourcesListe sourceIds={prof.sourceIds} />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section class="mb-10 grid gap-6 sm:grid-cols-2">
+          <div>
+            <h2 class="mb-3 text-xl font-semibold tracking-tight">Famille</h2>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-pierre/50">Père</dt>
+                <dd>{pere ? <a class="text-laiton hover:underline" href={`/personnes/${pere.id}/`}>{nomAffiche(pere)}</a> : <span class="text-pierre/40">inconnu</span>}</dd>
+              </div>
+              <div>
+                <dt class="text-pierre/50">Mère</dt>
+                <dd>{mere ? <a class="text-laiton hover:underline" href={`/personnes/${mere.id}/`}>{nomAffiche(mere)}</a> : <span class="text-pierre/40">inconnue</span>}</dd>
+              </div>
+              <div>
+                <dt class="text-pierre/50">Fratrie</dt>
+                <dd>
+                  {fratrie.length > 0 ? (
+                    <ul>
+                      {fratrie.map((f) => (
+                        <li><a class="text-laiton hover:underline" href={`/personnes/${f.id}/`}>{nomAffiche(f)}</a></li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span class="text-pierre/40">aucune connue</span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </div>
+          <div>
+            <h2 class="mb-3 text-xl font-semibold tracking-tight">Conjoint(s) et enfants</h2>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-pierre/50">Conjoint(s)</dt>
+                <dd>
+                  {conjoints.length > 0 ? (
+                    <ul>
+                      {conjoints.map((c) => (
+                        <li><a class="text-laiton hover:underline" href={`/personnes/${c.id}/`}>{nomAffiche(c)}</a></li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span class="text-pierre/40">aucun connu</span>
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt class="text-pierre/50">Enfants</dt>
+                <dd>
+                  {enfants.length > 0 ? (
+                    <ul>
+                      {enfants.map((e) => (
+                        <li><a class="text-laiton hover:underline" href={`/personnes/${e.id}/`}>{nomAffiche(e)}</a></li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span class="text-pierre/40">aucun connu</span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        {personne.notes && (
+          <section class="mb-10">
+            <h2 class="mb-3 text-xl font-semibold tracking-tight">Notes</h2>
+            <p class="carte-fiche text-sm text-pierre/80">{personne.notes}</p>
+          </section>
+        )}
+
+        <section class="mb-10">
+          <h2 class="mb-3 text-xl font-semibold tracking-tight">Toutes les sources</h2>
+          <SourcesListe sourceIds={toutesSourceIds} class="carte-fiche" />
+        </section>
+
+        <section class="mb-10 border border-dashed border-pierre/30 bg-transparent p-4 sm:p-5">
+          <h2 class="mb-3 text-xl font-semibold tracking-tight text-pierre/80">Ce qu'on ne sait pas encore</h2>
+          {trous.length > 0 ? (
+            <ul class="list-inside list-disc space-y-1 text-sm text-pierre/60">
+              {trous.map((t) => <li>{t}</li>)}
+            </ul>
+          ) : (
+            <p class="text-sm text-pierre/60">Aucun champ structurel n'est vide sur cette fiche.</p>
+          )}
+        </section>
+      </>
+    )
+  }
+</Base>

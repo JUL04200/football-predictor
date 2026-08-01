@@ -1,0 +1,281 @@
+---
+import Base from "../layouts/Base.astro";
+import StatutBadge from "../components/StatutBadge.astro";
+import { calculerComposantes, LARGEUR_BOITE_ARBRE } from "../lib/arbre";
+
+const composantes = calculerComposantes();
+const MARGE = 30;
+
+const STYLE_STATUT: Record<string, string> = {
+  prouve: "#2E7268",
+  temoignage: "#C89B4A",
+  hypothese: "#EBE6DC",
+  inconnu: "#4a5a6b",
+};
+
+const BRANCHES = ["arrouasse", "amsellem", "benchetrit", "alliee"] as const;
+const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
+---
+
+<Base titre="Arbre interactif" description="Arbre généalogique interactif, avec zoom, filtres par branche et par statut.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Arbre interactif</h1>
+  <p class="mb-6 max-w-2xl text-pierre/70">
+    L'arbre n'est pas un seul bloc connecté : il apparaît ici tel qu'il est établi par les
+    données, en {composantes.length} groupes distincts. Les personnes non reliées entre
+    elles ne sont <em>pas</em> assemblées par supposition — voir les questions ouvertes pour
+    savoir pourquoi.
+  </p>
+
+  <div class="no-print mb-6 flex flex-wrap items-center gap-6 border border-pierre/15 bg-zellige/40 p-4 text-sm">
+    <fieldset>
+      <legend class="mb-1 text-xs uppercase text-pierre/50">Branche</legend>
+      <div class="flex flex-wrap gap-3" id="filtres-branche">
+        {BRANCHES.map((b) => (
+          <label class="flex items-center gap-1.5">
+            <input type="checkbox" value={b} checked class="accent-laiton" />
+            <span class="capitalize">{b}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend class="mb-1 text-xs uppercase text-pierre/50">Statut</legend>
+      <div class="flex flex-wrap gap-3" id="filtres-statut">
+        {STATUTS.map((s) => (
+          <label class="flex items-center gap-1.5">
+            <input type="checkbox" value={s} checked class="accent-laiton" />
+            <StatutBadge statut={s} />
+          </label>
+        ))}
+      </div>
+    </fieldset>
+    <div class="ml-auto flex gap-2">
+      <button type="button" data-zoom="in" class="border border-pierre/30 px-2 py-1 hover:border-laiton hover:text-laiton" aria-label="Zoomer">+</button>
+      <button type="button" data-zoom="out" class="border border-pierre/30 px-2 py-1 hover:border-laiton hover:text-laiton" aria-label="Dézoomer">−</button>
+      <button type="button" data-zoom="reset" class="border border-pierre/30 px-2 py-1 hover:border-laiton hover:text-laiton">Réinitialiser</button>
+    </div>
+  </div>
+
+  <!-- Vue SVG : dès 640px -->
+  <div class="hidden sm:block space-y-12">
+    {composantes.map((comp, i) => (
+      <div>
+        <h2 class="mb-2 text-sm uppercase tracking-wide text-pierre/50">
+          Groupe {i + 1} ({comp.noeuds.length} personne{comp.noeuds.length > 1 ? "s" : ""})
+        </h2>
+        <div class="arbre-conteneur overflow-hidden border border-pierre/15 bg-nuit" style="height: 480px;">
+          <svg
+            class="arbre-svg h-full w-full cursor-grab touch-none"
+            viewBox={`${-MARGE} ${-MARGE} ${comp.largeur + MARGE * 2} ${comp.hauteur + MARGE * 2}`}
+            role="img"
+            aria-label={`Arbre du groupe ${i + 1}`}
+          >
+            {comp.liens.map((lien) => {
+              const nDe = comp.noeuds.find((n) => n.id === lien.de)!;
+              const nA = comp.noeuds.find((n) => n.id === lien.a)!;
+              const cxDe = nDe.x + LARGEUR_BOITE_ARBRE / 2;
+              const cxA = nA.x + LARGEUR_BOITE_ARBRE / 2;
+              if (lien.type === "union") {
+                const y = nDe.y + 30;
+                const milieu = (cxDe + cxA) / 2;
+                return (
+                  <g class="lien" data-de={lien.de} data-a={lien.a}>
+                    <line x1={cxDe} y1={y} x2={cxA} y2={y} stroke="#C89B4A" stroke-width="1.5" />
+                    <g transform={`translate(${milieu - 7}, ${y - 7})`}>
+                      <path
+                        fill="none"
+                        stroke="#C89B4A"
+                        stroke-width="1.5"
+                        stroke-linejoin="round"
+                        d="M7 0.6 L8.6 4.5 L13 3.7 L9.9 6.9 L13 10.4 L8.6 9.6 L7 13.4 L5.4 9.6 L1 10.4 L4.1 6.9 L1 3.7 L5.4 4.5 Z"
+                      />
+                    </g>
+                  </g>
+                );
+              }
+              const yDe = nDe.y + 60;
+              const yA = nA.y;
+              return (
+                <path
+                  class="lien"
+                  data-de={lien.de}
+                  data-a={lien.a}
+                  d={`M ${cxDe} ${yDe} V ${(yDe + yA) / 2} H ${cxA} V ${yA}`}
+                  fill="none"
+                  stroke="#4a5a6b"
+                  stroke-width="1.5"
+                />
+              );
+            })}
+            {comp.noeuds.map((n) => (
+              <a
+                class="noeud"
+                data-branche={n.branche}
+                data-statut={n.statut}
+                data-id={n.id}
+                href={`/personnes/${n.id}/`}
+                aria-label={n.nom}
+              >
+                <g transform={`translate(${n.x}, ${n.y})`} class="cursor-pointer">
+                  <rect
+                    width={LARGEUR_BOITE_ARBRE}
+                    height="60"
+                    fill="#17324B"
+                    stroke={STYLE_STATUT[n.statut]}
+                    stroke-width="2"
+                    rx="2"
+                  />
+                  <text x={LARGEUR_BOITE_ARBRE / 2} y="26" text-anchor="middle" fill="#EBE6DC" font-size="14" font-family="Inter, sans-serif">
+                    {n.nom.length > 22 ? n.nom.slice(0, 21) + "…" : n.nom}
+                  </text>
+                  <text x={LARGEUR_BOITE_ARBRE / 2} y="44" text-anchor="middle" fill="#EBE6DC" fill-opacity="0.5" font-size="10" font-family="JetBrains Mono, monospace">
+                    {n.branche}
+                  </text>
+                </g>
+              </a>
+            ))}
+          </svg>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Vue colonne : sous 640px -->
+  <div class="space-y-10 sm:hidden">
+    {composantes.map((comp, i) => (
+      <div>
+        <h2 class="mb-2 text-sm uppercase tracking-wide text-pierre/50">Groupe {i + 1}</h2>
+        <ol class="space-y-2 border-l border-pierre/20 pl-4">
+          {comp.noeuds
+            .slice()
+            .sort((a, b) => a.generation - b.generation || a.x - b.x)
+            .map((n) => (
+              <li
+                class="noeud-colonne carte-fiche"
+                data-branche={n.branche}
+                data-statut={n.statut}
+                style={`margin-left: ${n.generation * 12}px; border-left: 3px solid ${STYLE_STATUT[n.statut]};`}
+              >
+                <a href={`/personnes/${n.id}/`} class="text-pierre hover:text-laiton">{n.nom}</a>
+                <span class="donnee ml-2 text-xs text-pierre/40">{n.branche}</span>
+              </li>
+            ))}
+        </ol>
+      </div>
+    ))}
+  </div>
+
+  <script>
+    const noeuds = document.querySelectorAll<HTMLElement>(".noeud, .noeud-colonne");
+    const liens = document.querySelectorAll<SVGElement>(".lien");
+    const casesbranche = document.querySelectorAll<HTMLInputElement>("#filtres-branche input");
+    const casesStatut = document.querySelectorAll<HTMLInputElement>("#filtres-statut input");
+
+    function branchesActives() {
+      return new Set([...casesbranche].filter((c) => c.checked).map((c) => c.value));
+    }
+    function statutsActifs() {
+      return new Set([...casesStatut].filter((c) => c.checked).map((c) => c.value));
+    }
+
+    function appliquerFiltres() {
+      const b = branchesActives();
+      const s = statutsActifs();
+      const visibles = new Set<string>();
+      noeuds.forEach((n) => {
+        const branche = n.dataset.branche!;
+        const statut = n.dataset.statut!;
+        const visible = b.has(branche) && s.has(statut);
+        n.style.opacity = visible ? "1" : "0.12";
+        n.style.pointerEvents = visible ? "auto" : "none";
+        const id = n.dataset.id ?? n.querySelector("a")?.getAttribute("href")?.split("/")[2];
+        if (visible && id) visibles.add(id);
+      });
+      liens.forEach((l) => {
+        const de = l.getAttribute("data-de");
+        const a = l.getAttribute("data-a");
+        const visible = de && a && visibles.has(de) && visibles.has(a);
+        (l as SVGElement).style.opacity = visible ? "1" : "0.08";
+      });
+    }
+
+    [...casesbranche, ...casesStatut].forEach((c) => c.addEventListener("change", appliquerFiltres));
+
+    // Zoom / pan par viewBox sur chaque SVG.
+    document.querySelectorAll<SVGSVGElement>(".arbre-svg").forEach((svg) => {
+      const viewBoxInitial = svg.getAttribute("viewBox")!.split(" ").map(Number);
+      let [x, y, w, h] = viewBoxInitial;
+      let enTrain = false;
+      let dernierX = 0;
+      let dernierY = 0;
+
+      function majViewBox() {
+        svg.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
+      }
+
+      svg.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        const facteur = evt.deltaY > 0 ? 1.1 : 0.9;
+        const [vx, vy, vw, vh] = svg.getAttribute("viewBox")!.split(" ").map(Number);
+        const nvw = vw * facteur;
+        const nvh = vh * facteur;
+        x = vx - (nvw - vw) / 2;
+        y = vy - (nvh - vh) / 2;
+        w = nvw;
+        h = nvh;
+        majViewBox();
+      }, { passive: false });
+
+      svg.addEventListener("pointerdown", (evt) => {
+        enTrain = true;
+        dernierX = evt.clientX;
+        dernierY = evt.clientY;
+        svg.style.cursor = "grabbing";
+      });
+      window.addEventListener("pointerup", () => {
+        enTrain = false;
+        svg.style.cursor = "grab";
+      });
+      window.addEventListener("pointermove", (evt) => {
+        if (!enTrain) return;
+        const [vx, vy, vw, vh] = svg.getAttribute("viewBox")!.split(" ").map(Number);
+        const echelle = vw / svg.clientWidth;
+        x = vx - (evt.clientX - dernierX) * echelle;
+        y = vy - (evt.clientY - dernierY) * echelle;
+        w = vw;
+        h = vh;
+        dernierX = evt.clientX;
+        dernierY = evt.clientY;
+        majViewBox();
+      });
+
+      const conteneur = svg.closest(".arbre-conteneur");
+      conteneur?.querySelectorAll("[data-zoom]").forEach(() => {});
+    });
+
+    document.querySelectorAll<HTMLButtonElement>("[data-zoom]").forEach((bouton) => {
+      bouton.addEventListener("click", () => {
+        document.querySelectorAll<SVGSVGElement>(".arbre-svg").forEach((svg) => {
+          const [vx, vy, vw, vh] = svg.getAttribute("viewBox")!.split(" ").map(Number);
+          let facteur = 1;
+          if (bouton.dataset.zoom === "in") facteur = 0.8;
+          if (bouton.dataset.zoom === "out") facteur = 1.25;
+          if (bouton.dataset.zoom === "reset") {
+            svg.setAttribute("viewBox", svg.dataset.viewboxInitial ?? svg.getAttribute("viewBox")!);
+            return;
+          }
+          const nvw = vw * facteur;
+          const nvh = vh * facteur;
+          svg.setAttribute(
+            "viewBox",
+            `${vx + (vw - nvw) / 2} ${vy + (vh - nvh) / 2} ${nvw} ${nvh}`
+          );
+        });
+      });
+    });
+
+    document.querySelectorAll<SVGSVGElement>(".arbre-svg").forEach((svg) => {
+      svg.dataset.viewboxInitial = svg.getAttribute("viewBox") ?? "";
+    });
+  </script>
+</Base>

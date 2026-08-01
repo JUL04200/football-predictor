@@ -1,0 +1,93 @@
+---
+import Base from "../layouts/Base.astro";
+import Khatem from "../components/Khatem.astro";
+import { compteurs, toutesLesPersonnes } from "../lib/data";
+import { QUESTIONS_OUVERTES, LIBELLES_STATUT_QUESTION } from "../lib/questions-ouvertes";
+
+const { total, prouvees } = compteurs();
+const personnes = toutesLesPersonnes();
+const questionsAffichees = QUESTIONS_OUVERTES.slice(0, 3);
+---
+
+<Base titre="Accueil">
+  <section class="fond-zellige -mx-4 mb-12 border-y border-laiton/20 px-4 py-14 sm:-mx-6 sm:px-6">
+    <div class="mx-auto max-w-3xl text-center">
+      <Khatem taille={40} class="mx-auto mb-4 text-laiton" titre="Khatem" />
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+        Arrouasse (Tlemcen) &middot; Amsellem–Benchetrit (Alger)
+      </h1>
+      <p class="mt-4 text-pierre/80">
+        Une ligne paternelle de familles juives séfarades pieds-noirs d'Algérie, arrivées en
+        France en 1962. Ce site documente ce qui est prouvé, ce qui est transmis, ce qui est
+        supposé — et ce qu'on ignore encore.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a
+          href="/arbre/"
+          class="border border-laiton bg-laiton/10 px-5 py-2.5 text-sm font-medium text-laiton no-underline hover:bg-laiton/20"
+        >
+          Voir l'arbre interactif
+        </a>
+        <a
+          href="/questions-ouvertes/"
+          class="border border-pierre/30 px-5 py-2.5 text-sm font-medium text-pierre no-underline hover:border-laiton hover:text-laiton"
+        >
+          Les questions ouvertes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12 grid gap-4 sm:grid-cols-2">
+    <div class="carte-fiche">
+      <p class="donnee text-4xl text-pierre">{total}</p>
+      <p class="mt-1 text-sm text-pierre/70">personnes dans l'arbre</p>
+    </div>
+    <div class="carte-fiche">
+      <p class="donnee text-4xl text-vert">{prouvees}</p>
+      <p class="mt-1 text-sm text-pierre/70">
+        dont {prouvees} prouvées par acte, presse ou registre — les autres reposent sur un
+        témoignage, une hypothèse, ou restent inconnues. Aucun chiffre n'est arrondi à
+        l'optimisme.
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <div class="mb-4 flex items-center justify-between">
+      <h2 class="text-xl font-semibold tracking-tight">Questions ouvertes du moment</h2>
+      <a href="/questions-ouvertes/" class="text-sm text-laiton hover:underline">Toutes les questions →</a>
+    </div>
+    <ul class="grid gap-4 sm:grid-cols-3">
+      {questionsAffichees.map((q) => (
+        <li class="carte-fiche">
+          <span class="donnee text-[0.7rem] uppercase text-laiton">
+            {LIBELLES_STATUT_QUESTION[q.statut]}
+          </span>
+          <p class="mt-2 text-sm text-pierre">{q.question}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="mb-4 text-xl font-semibold tracking-tight">Explorer</h2>
+    <ul class="grid gap-4 sm:grid-cols-3">
+      <li class="carte-fiche">
+        <h3 class="mb-1 font-medium text-pierre">Les branches</h3>
+        <p class="text-sm text-pierre/70">Arrouasse, Amsellem, Benchetrit : histoire, géographie, métiers.</p>
+        <a href="/branches/arrouasse/" class="mt-3 inline-block text-sm text-laiton hover:underline">Découvrir →</a>
+      </li>
+      <li class="carte-fiche">
+        <h3 class="mb-1 font-medium text-pierre">Chronologie</h3>
+        <p class="text-sm text-pierre/70">Du décret Crémieux (1870) au départ de 1962.</p>
+        <a href="/chronologie/" class="mt-3 inline-block text-sm text-laiton hover:underline">Découvrir →</a>
+      </li>
+      <li class="carte-fiche">
+        <h3 class="mb-1 font-medium text-pierre">Le registre des sources</h3>
+        <p class="text-sm text-pierre/70">{personnes.length} personnes, chacune avec ses sources citées.</p>
+        <a href="/sources/" class="mt-3 inline-block text-sm text-laiton hover:underline">Découvrir →</a>
+      </li>
+    </ul>
+  </section>
+</Base>

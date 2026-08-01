@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-nuit text-pierre font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-laiton/40 text-pierre;
+  }
+
+  a {
+    @apply underline-offset-2;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.laiton");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .donnee {
+    @apply font-mono tracking-tight;
+  }
+}
+
+@layer components {
+  .fond-zellige {
+    background-color: theme("colors.zellige");
+    background-image:
+      linear-gradient(30deg, rgba(200, 155, 74, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(200, 155, 74, 0.06) 87.5%, rgba(200, 155, 74, 0.06)),
+      linear-gradient(150deg, rgba(200, 155, 74, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(200, 155, 74, 0.06) 87.5%, rgba(200, 155, 74, 0.06)),
+      linear-gradient(30deg, rgba(200, 155, 74, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(200, 155, 74, 0.06) 87.5%, rgba(200, 155, 74, 0.06)),
+      linear-gradient(150deg, rgba(200, 155, 74, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(200, 155, 74, 0.06) 87.5%, rgba(200, 155, 74, 0.06));
+    background-size: 52px 90px;
+    background-position: 0 0, 0 0, 26px 45px, 26px 45px;
+  }
+
+  .carte-fiche {
+    @apply border border-laiton/25 bg-zellige/60 p-4 sm:p-5;
+  }
+}
+
+@media print {
+  @page {
+    size: A3 landscape;
+    margin: 12mm;
+  }
+
+  nav, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  .donnee {
+    font-family: "Courier New", monospace !important;
+  }
+
+  .arbre-conteneur {
+    height: auto !important;
+    overflow: visible !important;
+    border-color: #999 !important;
+    break-inside: avoid;
+  }
+  .arbre-svg {
+    height: auto !important;
+    max-height: none !important;
+  }
+  .hidden.sm\:block {
+    display: block !important;
+  }
+  .sm\:hidden {
+    display: none !important;
+  }
+}
