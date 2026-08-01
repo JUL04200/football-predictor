@@ -45,7 +45,7 @@ export const QUESTIONS_OUVERTES: QuestionOuverte[] = [
     question:
       "Qui étaient les parents d'Amram Arrouasse, et le relient-ils au noyau David → Messaoud de Tlemcen ?",
     contexte:
-      "La ligne directe remonte désormais à Amram Arrouasse et Camille Arues, parents de Jean. Mais les parents d'Amram restent inconnus : c'est là que la ligne s'arrête. Tant que son acte de naissance à Tlemcen n'est pas retrouvé, rien ne permet de le rattacher à David Arrouasse × Meriem Sakoun, à leur fils Messaoud (né en 1885), ni à aucun des autres Arrouasse documentés à Tlemcen. C'est la recherche la plus prometteuse du site : l'acte d'Amram nommerait ses parents et trancherait d'un coup. À noter pour cette recherche : le prénom Amram se retrouve chez Roger Amram Arrouasse, né à Tlemcen en 1925, sans qu'aucun lien soit établi entre les deux hommes à ce jour.",
+      "La ligne directe remonte désormais à Amram Arrouasse, né en 1904 à Tlemcen, et à Camille Arues, née en 1913. Mais les parents d'Amram restent inconnus : c'est là que la ligne s'arrête. Sa date de naissance permet une première élimination formelle : né en 1904, il ne peut pas être un enfant de Messaoud Arrouasse et Djohar Boumendil, mariés en 1911. Elle laisse en revanche ouverte l'hypothèse qu'il soit un fils tardif de David Arrouasse et Meriem Sakoun, donc un frère cadet de Messaoud — compatible avec les dates, mais nullement démontré. Retrouver son acte de naissance à Tlemcen autour de 1904 nommerait ses parents et trancherait d'un coup : c'est la recherche la plus prometteuse du site. Voir le journal de recherche pour le détail du raisonnement.",
     statut: "en_cours",
     personnesLiees: [
       "arrouasse-amram",

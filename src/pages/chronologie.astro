@@ -12,6 +12,11 @@ type EntreeChrono = {
   statut?: "prouve" | "temoignage" | "hypothese" | "inconnu";
 };
 
+/** « Naissance de Jean » mais « Naissance d'Amram » : élision devant voyelle. */
+function de(nom: string): string {
+  return /^[aeiouyàâéèêëîïôöùûüh]/i.test(nom) ? `d'${nom}` : `de ${nom}`;
+}
+
 const entrees: EntreeChrono[] = [];
 
 for (const p of toutesLesPersonnes()) {
@@ -21,7 +26,7 @@ for (const p of toutesLesPersonnes()) {
   if (p.naissance?.date) {
     entrees.push({
       date: p.naissance.date,
-      titre: `Naissance de ${nom}`,
+      titre: `Naissance ${de(nom)}`,
       description: getLieu(p.naissance.lieuId)?.nom,
       type: "famille",
       lien: `/personnes/${p.id}/`,
@@ -32,7 +37,7 @@ for (const p of toutesLesPersonnes()) {
     if (m.date) {
       entrees.push({
         date: m.date,
-        titre: `Mariage de ${nom}`,
+        titre: `Mariage ${de(nom)}`,
         description: getLieu(m.lieuId)?.nom,
         type: "famille",
         lien: `/personnes/${p.id}/`,
@@ -43,7 +48,7 @@ for (const p of toutesLesPersonnes()) {
   if (p.deces?.date) {
     entrees.push({
       date: p.deces.date,
-      titre: `Décès de ${nom}`,
+      titre: `Décès ${de(nom)}`,
       description: getLieu(p.deces.lieuId)?.nom,
       type: "famille",
       lien: `/personnes/${p.id}/`,

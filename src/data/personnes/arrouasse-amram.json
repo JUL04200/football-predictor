@@ -1,19 +1,25 @@
 {
   "id": "arrouasse-amram",
   "nom": "ARROUASSE",
-  "prenoms": ["Amram"],
+  "prenoms": [
+    "Amram"
+  ],
   "prenomUsuel": "Amram",
   "prenomHebraique": "Amram",
-  "variantesGraphiques": ["Abraham"],
+  "variantesGraphiques": [
+    "Abraham"
+  ],
   "sexe": "M",
   "naissance": {
     "type": "naissance",
-    "date": null,
+    "date": "1904",
     "dateTexte": null,
     "lieuId": "tlemcen",
-    "notes": "Dates de naissance et de décès inconnues. Retrouver son acte de naissance à Tlemcen donnerait le nom de ses propres parents, et permettrait peut-être de raccrocher la ligne au noyau David → Messaoud.",
-    "statut": "inconnu",
-    "sourceIds": []
+    "notes": "Année de naissance transmise oralement par la famille, non recoupée avec un acte. Le jour et le mois restent inconnus. Cette année cadre la recherche de son acte de naissance dans les registres de Tlemcen, et avec lui le nom de ses parents.",
+    "statut": "temoignage",
+    "sourceIds": [
+      "temoignage-famille-laurent-arrouasse"
+    ]
   },
   "mariages": [
     {
@@ -23,18 +29,26 @@
       "lieuId": null,
       "notes": "Épouse Camille Arues. Date et lieu non renseignés.",
       "statut": "temoignage",
-      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
     }
   ],
   "deces": null,
   "professions": null,
   "pereId": null,
   "mereId": null,
-  "conjointIds": ["arues-camille"],
-  "enfantIds": ["arrouasse-jean"],
+  "conjointIds": [
+    "arues-camille"
+  ],
+  "enfantIds": [
+    "arrouasse-jean"
+  ],
   "branche": "arrouasse",
   "vivant": false,
   "notes": "Père de Jean Arrouasse, d'après le témoignage familial. Son prénom avait d'abord été transmis sous la forme « Abraham » avant d'être corrigé en « Amram » : les deux graphies sont conservées comme variantes, car une recherche d'archives doit tester l'une et l'autre. Ses propres parents restent inconnus : c'est aujourd'hui le point le plus haut de la ligne directe côté Arrouasse, et le verrou de la question ouverte n°4.",
   "statut": "temoignage",
-  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
 }

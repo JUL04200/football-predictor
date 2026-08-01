@@ -10,12 +10,14 @@
   "sexe": "F",
   "naissance": {
     "type": "naissance",
-    "date": null,
+    "date": "1913",
     "dateTexte": null,
     "lieuId": null,
-    "notes": "Date et lieu de naissance inconnus.",
-    "statut": "inconnu",
-    "sourceIds": []
+    "notes": "Année de naissance transmise oralement par la famille, non recoupée avec un acte. Le jour, le mois et le lieu restent inconnus.",
+    "statut": "temoignage",
+    "sourceIds": [
+      "temoignage-famille-laurent-arrouasse"
+    ]
   },
   "mariages": [
     {
