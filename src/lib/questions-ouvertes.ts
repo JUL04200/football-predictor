@@ -25,12 +25,12 @@ export const QUESTIONS_OUVERTES: QuestionOuverte[] = [
     personnesLiees: ["arrouasse-jean"],
   },
   {
-    id: "abraham-generation",
-    question: "Abraham Arrouasse est-il le père ou le grand-père de Jean ?",
+    id: "amram-generation",
+    question: "Amram Arrouasse est-il le père ou le grand-père de Jean ?",
     contexte:
-      "Résolue par le témoignage familial : Abraham Arrouasse est le père de Jean, et son épouse Camille Arues en est la mère. Le lien est désormais posé dans les données. Il reste à le confirmer par un acte, et l'orthographe du nom Arues est à vérifier.",
+      "Résolue par le témoignage familial : Amram Arrouasse est le père de Jean, et son épouse Camille Arues en est la mère. Le lien est désormais posé dans les données. Son prénom avait d'abord été transmis sous la forme « Abraham » : les deux graphies sont conservées, une recherche d'archives devant tester l'une et l'autre. Il reste à confirmer la filiation par un acte.",
     statut: "resolue",
-    personnesLiees: ["arrouasse-abraham", "arues-camille", "arrouasse-jean"],
+    personnesLiees: ["arrouasse-amram", "arues-camille", "arrouasse-jean"],
   },
   {
     id: "lea-origine",
@@ -43,12 +43,13 @@ export const QUESTIONS_OUVERTES: QuestionOuverte[] = [
   {
     id: "lien-noyau-tlemcen",
     question:
-      "Qui étaient les parents d'Abraham Arrouasse, et le relient-ils au noyau David → Messaoud de Tlemcen ?",
+      "Qui étaient les parents d'Amram Arrouasse, et le relient-ils au noyau David → Messaoud de Tlemcen ?",
     contexte:
-      "La ligne directe remonte désormais à Abraham Arrouasse et Camille Arues, parents de Jean. Mais les parents d'Abraham restent inconnus : c'est là que la ligne s'arrête. Tant que son acte de naissance à Tlemcen n'est pas retrouvé, rien ne permet de le rattacher à David Arrouasse × Meriem Sakoun, à leur fils Messaoud (né en 1885), ni à aucun des autres Arrouasse documentés à Tlemcen. C'est la recherche la plus prometteuse du site : l'acte d'Abraham nommerait ses parents et trancherait d'un coup.",
+      "La ligne directe remonte désormais à Amram Arrouasse et Camille Arues, parents de Jean. Mais les parents d'Amram restent inconnus : c'est là que la ligne s'arrête. Tant que son acte de naissance à Tlemcen n'est pas retrouvé, rien ne permet de le rattacher à David Arrouasse × Meriem Sakoun, à leur fils Messaoud (né en 1885), ni à aucun des autres Arrouasse documentés à Tlemcen. C'est la recherche la plus prometteuse du site : l'acte d'Amram nommerait ses parents et trancherait d'un coup. À noter pour cette recherche : le prénom Amram se retrouve chez Roger Amram Arrouasse, né à Tlemcen en 1925, sans qu'aucun lien soit établi entre les deux hommes à ce jour.",
     statut: "en_cours",
     personnesLiees: [
-      "arrouasse-abraham",
+      "arrouasse-amram",
+      "arrouasse-roger-amram-1925",
       "arrouasse-david",
       "arrouasse-messaoud-1885",
       "arrouasse-jean",

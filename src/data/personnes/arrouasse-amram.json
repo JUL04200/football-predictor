@@ -1,10 +1,10 @@
 {
-  "id": "arrouasse-abraham",
+  "id": "arrouasse-amram",
   "nom": "ARROUASSE",
-  "prenoms": ["Abraham"],
-  "prenomUsuel": "Abraham",
-  "prenomHebraique": null,
-  "variantesGraphiques": null,
+  "prenoms": ["Amram"],
+  "prenomUsuel": "Amram",
+  "prenomHebraique": "Amram",
+  "variantesGraphiques": ["Abraham"],
   "sexe": "M",
   "naissance": {
     "type": "naissance",
@@ -34,7 +34,7 @@
   "enfantIds": ["arrouasse-jean"],
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Père de Jean Arrouasse, d'après le témoignage familial. Ses propres parents restent inconnus : c'est aujourd'hui le point le plus haut de la ligne directe côté Arrouasse, et le verrou de la question ouverte n°4.",
+  "notes": "Père de Jean Arrouasse, d'après le témoignage familial. Son prénom avait d'abord été transmis sous la forme « Abraham » avant d'être corrigé en « Amram » : les deux graphies sont conservées comme variantes, car une recherche d'archives doit tester l'une et l'autre. Ses propres parents restent inconnus : c'est aujourd'hui le point le plus haut de la ligne directe côté Arrouasse, et le verrou de la question ouverte n°4.",
   "statut": "temoignage",
   "sourceIds": ["temoignage-famille-laurent-arrouasse"]
 }
