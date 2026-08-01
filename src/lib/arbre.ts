@@ -9,6 +9,8 @@ export interface NoeudArbre {
   nom: string;
   annees: string | null;
   statut: Personne["statut"];
+  /** Statut du rattachement de cette personne à ses parents. */
+  statutFiliation: Personne["statut"];
   branche: Personne["branche"];
   masquee: boolean;
 }
@@ -261,28 +263,50 @@ export function calculerComposantes(): ComposanteArbre[] {
       return u.x + u.ids.indexOf(id) * (LARGEUR_BOITE + ESPACE_COUPLE);
     }
 
-    // Repositionnement des seconds couples de grands-parents : au-dessus de
-    // leur propre enfant, puis décalés vers la droite tant qu'ils
-    // chevaucheraient un couple déjà posé sur la même ligne.
-    const posees: Unite[] = [...uniteParCle.values()].filter((u) => !aRecentrer.includes(u));
-    for (const u of aRecentrer) {
-      const centresEnfants = u.enfants
+    /**
+     * Recentre une unité au-dessus de l'ensemble de ses enfants, puis la
+     * décale vers la droite tant qu'elle chevaucherait une unité déjà posée
+     * sur la même ligne.
+     */
+    function recentrerSurEnfants(u: Unite, dejaPosees: Unite[]): boolean {
+      const centres = u.enfants
         .filter((id) => uniteParPersonne.has(id))
         .map((id) => xPersonne(id) + LARGEUR_BOITE / 2);
-      if (centresEnfants.length === 0) continue;
+      if (centres.length === 0) return false;
 
-      const cible = (Math.min(...centresEnfants) + Math.max(...centresEnfants)) / 2;
+      const cible = (Math.min(...centres) + Math.max(...centres)) / 2;
       let x = cible - largeurUnite(u) / 2;
-      const voisinesDeLigne = posees
-        .filter((autre) => autre.generation === u.generation)
+      const voisinesDeLigne = dejaPosees
+        .filter((autre) => autre !== u && autre.generation === u.generation)
         .sort((a, b) => a.x - b.x);
       for (const autre of voisinesDeLigne) {
         const finAutre = autre.x + largeurUnite(autre);
-        const chevauche = x < finAutre + ESPACE_FRATRIE && x + largeurUnite(u) + ESPACE_FRATRIE > autre.x;
+        const chevauche =
+          x < finAutre + ESPACE_FRATRIE && x + largeurUnite(u) + ESPACE_FRATRIE > autre.x;
         if (chevauche) x = finAutre + ESPACE_FRATRIE;
       }
       u.x = x;
-      posees.push(u);
+      return true;
+    }
+
+    // Repositionnement des seconds couples de grands-parents, dont l'enfant
+    // avait déjà été posé sous l'autre couple : on les ramène au-dessus de lui.
+    const posees: Unite[] = [...uniteParCle.values()].filter((u) => !aRecentrer.includes(u));
+    for (const u of aRecentrer) {
+      if (recentrerSurEnfants(u, posees)) posees.push(u);
+    }
+
+    // Un couple dont l'un des enfants vient d'être déplacé se retrouve décalé
+    // par rapport à sa descendance : on le recentre à son tour sur l'ensemble
+    // de ses enfants, pour qu'il les chapeaute tous et non les seuls derniers
+    // posés.
+    const clesDeplacees = new Set(aRecentrer.map((u) => u.cle));
+    for (const u of uniteParCle.values()) {
+      if (clesDeplacees.has(u.cle)) continue;
+      const aUnEnfantDeplace = u.enfants.some((id) =>
+        clesDeplacees.has(uniteParPersonne.get(id)?.cle ?? "")
+      );
+      if (aUnEnfantDeplace) recentrerSurEnfants(u, posees);
     }
 
     // 5. Conversion des unités en noeuds affichables.
@@ -299,6 +323,7 @@ export function calculerComposantes(): ComposanteArbre[] {
           nom: nomAffiche(p),
           annees: affichee.masquee ? null : anneesDe(p),
           statut: p.statut,
+          statutFiliation: p.statutFiliation ?? p.statut,
           branche: p.branche,
           masquee: affichee.masquee,
         });

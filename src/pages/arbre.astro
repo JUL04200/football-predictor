@@ -40,18 +40,31 @@ const LEGENDE = [
   </p>
 
   <!-- Légende -->
-  <div class="no-print mb-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-pierre/10 py-3 text-sm">
-    <span class="text-pierre/40">La couleur du cadre indique ce qu'on sait :</span>
-    {LEGENDE.map((l) => (
+  <div class="no-print mb-10 space-y-2 border-y border-pierre/10 py-3 text-sm">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <span class="text-pierre/40">La couleur du cadre indique ce qu'on sait :</span>
+      {LEGENDE.map((l) => (
+        <span class="flex items-center gap-1.5">
+          <span
+            class="inline-block h-2.5 w-4 rounded-sm border-2"
+            style={`border-color:${STYLE_STATUT[l.statut]};`}
+            aria-hidden="true"
+          />
+          <span class="text-pierre/70">{l.libelle}</span>
+        </span>
+      ))}
+    </div>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <span class="text-pierre/40">Le trait de filiation aussi :</span>
       <span class="flex items-center gap-1.5">
-        <span
-          class="inline-block h-2.5 w-4 rounded-sm border-2"
-          style={`border-color:${STYLE_STATUT[l.statut]};`}
-          aria-hidden="true"
-        />
-        <span class="text-pierre/70">{l.libelle}</span>
+        <svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#4d6b85" stroke-width="2" /></svg>
+        <span class="text-pierre/70">Filiation établie par un acte</span>
       </span>
-    ))}
+      <span class="flex items-center gap-1.5">
+        <svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#41556b" stroke-width="2" stroke-dasharray="5 4" /></svg>
+        <span class="text-pierre/70">Filiation d'après le témoignage, pas encore prouvée</span>
+      </span>
+    </div>
   </div>
 
   <section class="mb-16">

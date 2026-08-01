@@ -45,6 +45,7 @@ const traitsFiliation = [...parentsParEnfant.entries()].flatMap(([enfantId, pare
     {
       enfantId,
       parentIds,
+      prouve: enfant.statutFiliation === "prouve",
       d: `M ${departX} ${departY} V ${yPalier} H ${arriveeX} V ${arriveeY}`,
     },
   ];
@@ -92,9 +93,16 @@ const noeudsTries = composante.noeuds
             data-a={trait.enfantId}
             d={trait.d}
             fill="none"
-            stroke="#41556b"
+            stroke={trait.prouve ? "#4d6b85" : "#41556b"}
             stroke-width="1.5"
-          />
+            stroke-dasharray={trait.prouve ? undefined : "5 4"}
+          >
+            <title>
+              {trait.prouve
+                ? "Filiation établie par un acte"
+                : "Filiation d'après le témoignage familial, pas encore confirmée par un acte"}
+            </title>
+          </path>
         ))}
 
         {unions.map((union) => {

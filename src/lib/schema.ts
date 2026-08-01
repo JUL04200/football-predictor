@@ -90,6 +90,12 @@ export const PersonneSchema = z
     professions: z.array(ProfessionSchema).nullable().optional().default(null),
     pereId: idKebabCase.nullable().optional().default(null),
     mereId: idKebabCase.nullable().optional().default(null),
+    // Statut du lien de filiation lui-même, distinct de celui de la personne :
+    // on peut connaître quelqu'un par un acte tout en ne tenant son
+    // rattachement que d'un témoignage. Absent, il reprend le statut de la
+    // personne. L'arbre trace en trait plein les filiations prouvées, en
+    // pointillé les autres.
+    statutFiliation: StatutSchema.nullable().optional().default(null),
     conjointIds: z.array(idKebabCase).nullable().optional().default(null),
     enfantIds: z.array(idKebabCase).nullable().optional().default(null),
     branche: BrancheSchema,

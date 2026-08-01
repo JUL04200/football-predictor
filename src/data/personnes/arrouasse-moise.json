@@ -1,0 +1,35 @@
+{
+  "id": "arrouasse-moise",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Moïse"
+  ],
+  "prenomUsuel": "Moïse",
+  "prenomHebraique": "Moché",
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Date de naissance inconnue. Postérieure à 1906 si sa mère est bien une seconde épouse de David Arrouasse, Meriem Sakoun étant morte cette année-là — mais rien ne l'établit.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-david",
+  "mereId": null,
+  "statutFiliation": "hypothese",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Demi-frère d'Amram Arrouasse, d'après le témoignage familial. Le témoignage ne dit pas quel parent est commun : le rattachement à David Arrouasse comme père repose sur le nom porté et sur l'usage, et reste une hypothèse. Sa mère est inconnue. Si David s'est remarié après la mort de Meriem Sakoun en 1906, elle serait sa seconde épouse — piste à vérifier dans les registres de Tlemcen.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

@@ -1,7 +1,9 @@
 {
   "id": "arrouasse-david",
   "nom": "ARROUASSE",
-  "prenoms": ["David"],
+  "prenoms": [
+    "David"
+  ],
   "prenomUsuel": null,
   "prenomHebraique": null,
   "variantesGraphiques": null,
@@ -23,7 +25,9 @@
       "lieuId": "tlemcen",
       "notes": "Épouse Meriem Sakoun.",
       "statut": "prouve",
-      "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+      "sourceIds": [
+        "anom-acte-mariage-david-arrouasse-meriem-sakoun"
+      ]
     }
   ],
   "deces": null,
@@ -31,16 +35,27 @@
     {
       "intitule": "Colporteur",
       "periode": null,
-      "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+      "sourceIds": [
+        "anom-acte-mariage-david-arrouasse-meriem-sakoun"
+      ]
     }
   ],
   "pereId": null,
   "mereId": null,
-  "conjointIds": ["sakoun-meriem"],
-  "enfantIds": ["arrouasse-messaoud-1885"],
+  "conjointIds": [
+    "sakoun-meriem"
+  ],
+  "enfantIds": [
+    "arrouasse-messaoud-1885",
+    "arrouasse-amram",
+    "arrouasse-joseph",
+    "arrouasse-moise"
+  ],
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Rattachement à la ligne directe (Jean Arrouasse) non démontré — voir question ouverte n°4.",
+  "notes": "Père de Messaoud (né en 1885), lien prouvé par l'acte de naissance de ce dernier. Le témoignage familial lui rattache également Amram et Joseph, frères de Messaoud, ainsi que Moïse, demi-frère — ces trois filiations reposent sur le témoignage et non sur un acte. C'est par lui que la ligne directe rejoint le noyau documenté de Tlemcen.",
   "statut": "prouve",
-  "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+  "sourceIds": [
+    "anom-acte-mariage-david-arrouasse-meriem-sakoun"
+  ]
 }

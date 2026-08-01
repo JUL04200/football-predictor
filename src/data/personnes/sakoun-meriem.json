@@ -1,7 +1,9 @@
 {
   "id": "sakoun-meriem",
   "nom": "SAKOUN",
-  "prenoms": ["Meriem"],
+  "prenoms": [
+    "Meriem"
+  ],
   "prenomUsuel": null,
   "prenomHebraique": null,
   "variantesGraphiques": null,
@@ -23,7 +25,9 @@
       "lieuId": "tlemcen",
       "notes": "Épouse David Arrouasse.",
       "statut": "prouve",
-      "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+      "sourceIds": [
+        "anom-acte-mariage-david-arrouasse-meriem-sakoun"
+      ]
     }
   ],
   "deces": {
@@ -33,16 +37,26 @@
     "lieuId": "tlemcen",
     "notes": "Date de décès connue par une mention associée à l'acte de mariage.",
     "statut": "prouve",
-    "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+    "sourceIds": [
+      "anom-acte-mariage-david-arrouasse-meriem-sakoun"
+    ]
   },
   "professions": null,
   "pereId": null,
   "mereId": null,
-  "conjointIds": ["arrouasse-david"],
-  "enfantIds": ["arrouasse-messaoud-1885"],
+  "conjointIds": [
+    "arrouasse-david"
+  ],
+  "enfantIds": [
+    "arrouasse-messaoud-1885",
+    "arrouasse-amram",
+    "arrouasse-joseph"
+  ],
   "branche": "alliee",
   "vivant": false,
-  "notes": null,
+  "notes": "Mère de Messaoud (né en 1885), lien prouvé par l'acte de naissance de ce dernier. Le témoignage familial lui rattache aussi Amram et Joseph. Morte en 1906, elle ne peut pas être la mère de Moïse si celui-ci est bien un demi-frère par le père.",
   "statut": "prouve",
-  "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+  "sourceIds": [
+    "anom-acte-mariage-david-arrouasse-meriem-sakoun"
+  ]
 }

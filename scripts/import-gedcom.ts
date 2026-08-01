@@ -137,6 +137,10 @@ for (const rec of records.filter((r) => r.tag === "INDI" && r.xref)) {
     professions: professions.length > 0 ? professions : null,
     pereId: null,
     mereId: null,
+    // Un GEDCOM externe ne distingue pas la certitude du lien de filiation de
+    // celle de la personne : on laisse le champ vide, il retombera sur le
+    // statut de la personne à l'affichage.
+    statutFiliation: null,
     conjointIds: null,
     enfantIds: null,
     branche,

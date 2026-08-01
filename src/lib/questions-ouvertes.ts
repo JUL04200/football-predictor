@@ -43,9 +43,9 @@ export const QUESTIONS_OUVERTES: QuestionOuverte[] = [
   {
     id: "lien-noyau-tlemcen",
     question:
-      "Qui étaient les parents d'Amram Arrouasse, et le relient-ils au noyau David → Messaoud de Tlemcen ?",
+      "Peut-on prouver par un acte que les parents d'Amram sont bien David Arrouasse et Meriem Sakoun ?",
     contexte:
-      "La ligne directe remonte désormais à Amram Arrouasse, né en 1904 à Tlemcen, et à Camille Arues, née en 1913. Mais les parents d'Amram restent inconnus : c'est là que la ligne s'arrête. Sa date de naissance permet une première élimination formelle : né en 1904, il ne peut pas être un enfant de Messaoud Arrouasse et Djohar Boumendil, mariés en 1911. Elle laisse en revanche ouverte l'hypothèse qu'il soit un fils tardif de David Arrouasse et Meriem Sakoun, donc un frère cadet de Messaoud — compatible avec les dates, mais nullement démontré. Le témoignage familial ajoute que Roger Amram Arrouasse (1925-2009), médecin, était cousin de Jean du côté d'Amram : cela converge avec le calcul sur les dates, sans le démontrer. La recherche la plus accessible passe donc désormais par l'acte de naissance de Roger, daté au jour près du 11 juin 1925 à Tlemcen, qui nommera son père. Voir le journal de recherche pour le détail du raisonnement.",
+      "Le témoignage familial donne pour frères d'Amram Joseph et Messaoud, et pour demi-frère Moïse. L'acte de naissance de Messaoud (1885) nommant David Arrouasse et Meriem Sakoun, ces derniers sont par déduction les parents d'Amram : la ligne directe rejoint donc le noyau documenté de Tlemcen. Trois recoupements le soutiennent — Amram né en 1904 entre dans la fenêtre de naissance des enfants de Meriem, morte en 1906 ; le cousinage rapporté entre Jean et Roger Amram Arrouasse s'explique exactement par cette structure ; un demi-frère par le père cadre avec un remariage de David après 1906. Rien de tout cela n'est un acte : dans l'arbre, ces filiations sont tracées en pointillé. Retrouver l'acte de naissance d'Amram, vers 1904 à Tlemcen, les transformerait en traits pleins.",
     statut: "en_cours",
     personnesLiees: [
       "arrouasse-amram",

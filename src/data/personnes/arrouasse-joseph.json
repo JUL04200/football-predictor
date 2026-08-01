@@ -1,0 +1,35 @@
+{
+  "id": "arrouasse-joseph",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Joseph"
+  ],
+  "prenomUsuel": "Joseph",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Date de naissance inconnue. Né vraisemblablement à Tlemcen, comme ses frères.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-david",
+  "mereId": "sakoun-meriem",
+  "statutFiliation": "temoignage",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Frère d'Amram Arrouasse et de Messaoud, d'après le témoignage familial. Sa filiation à David Arrouasse et Meriem Sakoun découle de ce témoignage combiné à l'acte de naissance de Messaoud, qui nomme ces deux parents : elle n'est pas prouvée pour Joseph lui-même. Aucun document ne le mentionne à ce jour.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

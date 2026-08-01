@@ -36,8 +36,8 @@
   ],
   "deces": null,
   "professions": null,
-  "pereId": null,
-  "mereId": null,
+  "pereId": "arrouasse-david",
+  "mereId": "sakoun-meriem",
   "conjointIds": [
     "arues-camille"
   ],
@@ -46,9 +46,10 @@
   ],
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Père de Jean Arrouasse, d'après le témoignage familial. Son prénom avait d'abord été transmis sous la forme « Abraham » avant d'être corrigé en « Amram » : les deux graphies sont conservées comme variantes, car une recherche d'archives doit tester l'une et l'autre. Ses propres parents restent inconnus : c'est aujourd'hui le point le plus haut de la ligne directe côté Arrouasse, et le verrou de la question ouverte n°4. Le témoignage familial situe par ailleurs Roger Amram Arrouasse (1925-2009) comme cousin de Jean « du côté d'Amram », ce qui implique un ancêtre commun de ce côté sans dire lequel.",
+  "notes": "Père de Jean Arrouasse. Son prénom avait d'abord été transmis sous la forme « Abraham » avant d'être corrigé en « Amram » : les deux graphies sont conservées, une recherche d'archives devant tester l'une et l'autre. Le témoignage familial donne pour frères Joseph et Messaoud, et pour demi-frère Moïse. L'acte de naissance de Messaoud (1885) nommant David Arrouasse et Meriem Sakoun, ce couple devient par déduction ses parents — par témoignage et non par acte : son propre acte de naissance, vers 1904 à Tlemcen, reste à retrouver pour l'établir.",
   "statut": "temoignage",
   "sourceIds": [
     "temoignage-famille-laurent-arrouasse"
-  ]
+  ],
+  "statutFiliation": "temoignage"
 }
