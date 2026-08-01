@@ -42,7 +42,7 @@
   "pereId": "amsellem-mardiche",
   "mereId": "benchetrit-lea",
   "conjointIds": ["arrouasse-jean"],
-  "enfantIds": ["arrouasse-laurent-1963"],
+  "enfantIds": ["arrouasse-laurent-1963", "arrouasse-karen", "arrouasse-stephanie"],
   "branche": "amsellem",
   "vivant": true,
   "notes": null,

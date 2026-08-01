@@ -59,7 +59,14 @@ const STYLE_STATUT: Record<string, string> = {
   inconnu: "#4a5a6b",
 };
 
-const hauteurAffichee = compact ? 300 : Math.min(560, Math.max(260, composante.hauteur + 90));
+// Dimensions du viewBox : le conteneur adopte exactement ce rapport pour
+// qu'aucun espace mort n'apparaisse au-dessus ou en dessous de l'arbre.
+const vbLargeur = composante.largeur + MARGE * 2;
+const vbHauteur = composante.hauteur + MARGE + MARGE_BASSE;
+// On ne grossit jamais un petit arbre au-delà de sa taille naturelle, et on
+// plafonne les grands pour qu'ils restent lisibles sur un très large écran.
+const largeurMax = Math.min(1600, Math.round(vbLargeur));
+
 const noeudsTries = composante.noeuds
   .slice()
   .sort((a, b) => a.generation - b.generation || a.x - b.x);
@@ -67,14 +74,14 @@ const noeudsTries = composante.noeuds
 
 <div>
   <!-- Vue arbre : à partir de 640 px -->
-  <div class="hidden sm:block">
+  <div class="hidden pleine-largeur px-4 sm:block sm:px-6">
     <div
-      class="arbre-conteneur relative overflow-hidden rounded-lg border border-pierre/10 bg-nuit/60"
-      style={`height:${hauteurAffichee}px;`}
+      class="arbre-conteneur relative mx-auto overflow-hidden rounded-lg border border-pierre/10 bg-nuit/60"
+      style={`max-width:${largeurMax}px; aspect-ratio:${vbLargeur} / ${vbHauteur}; max-height:${compact ? 320 : 620}px;`}
     >
       <svg
         class="arbre-svg h-full w-full cursor-grab touch-none"
-        viewBox={`${composante.minX - MARGE} ${composante.minY - MARGE} ${composante.largeur + MARGE * 2} ${composante.hauteur + MARGE + MARGE_BASSE}`}
+        viewBox={`${composante.minX - MARGE} ${composante.minY - MARGE} ${vbLargeur} ${vbHauteur}`}
         role="img"
         aria-label={titre}
       >

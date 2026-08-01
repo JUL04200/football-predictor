@@ -1,0 +1,34 @@
+{
+  "id": "rackind-mia",
+  "nom": "RACKIND",
+  "prenoms": [
+    "Mia"
+  ],
+  "prenomUsuel": "Mia",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": "arrouasse-stephanie",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Enfant de Stéphanie Arrouasse, donc petit-enfant de Jean Arrouasse et Josette Amsellem. Le prénom du père n'a pas été transmis : aucune fiche n'est créée pour lui et le champ pereId reste vide.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

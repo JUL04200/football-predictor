@@ -122,6 +122,14 @@
     transform: translateY(-1px);
   }
 
+  /* Sort de la colonne de lecture pour occuper toute la largeur de la
+     fenêtre : un arbre large a besoin de place, contrairement au texte. */
+  .pleine-largeur {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
   .halo-laiton {
     background: radial-gradient(closest-side, rgba(200, 155, 74, 0.28), transparent 70%);
   }
