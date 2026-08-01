@@ -4,7 +4,16 @@ import StatutBadge from "../components/StatutBadge.astro";
 import { calculerComposantes, LARGEUR_BOITE_ARBRE } from "../lib/arbre";
 
 const composantes = calculerComposantes();
+const groupes = composantes.filter((c) => c.noeuds.length > 1);
+const isoles = composantes
+  .filter((c) => c.noeuds.length === 1)
+  .map((c) => c.noeuds[0])
+  .sort((a, b) => a.nom.localeCompare(b.nom));
 const MARGE = 30;
+
+function hauteurConteneur(hauteurComposante: number): number {
+  return Math.round(Math.min(480, Math.max(220, hauteurComposante * 0.75 + 100)));
+}
 
 const STYLE_STATUT: Record<string, string> = {
   prouve: "#2E7268",
@@ -21,12 +30,11 @@ const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
   <h1 class="mb-2 text-3xl font-semibold tracking-tight">Arbre interactif</h1>
   <p class="mb-6 max-w-2xl text-pierre/70">
     L'arbre n'est pas un seul bloc connecté : il apparaît ici tel qu'il est établi par les
-    données, en {composantes.length} groupes distincts. Les personnes non reliées entre
-    elles ne sont <em>pas</em> assemblées par supposition — voir les questions ouvertes pour
-    savoir pourquoi.
+    données, en {groupes.length} groupes et {isoles.length} personnes non reliées. Rien n'est
+    assemblé par supposition — voir les <a href="/questions-ouvertes/" class="lien-discret">questions ouvertes</a> pour savoir pourquoi.
   </p>
 
-  <div class="no-print mb-6 flex flex-wrap items-center gap-6 border border-pierre/15 bg-zellige/40 p-4 text-sm">
+  <div class="no-print mb-6 flex flex-wrap items-center gap-6 rounded-md border border-pierre/10 bg-zellige/40 p-4 text-sm">
     <fieldset>
       <legend class="mb-1 text-xs uppercase text-pierre/50">Branche</legend>
       <div class="flex flex-wrap gap-3" id="filtres-branche">
@@ -57,13 +65,16 @@ const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
   </div>
 
   <!-- Vue SVG : dès 640px -->
-  <div class="hidden sm:block space-y-12">
-    {composantes.map((comp, i) => (
+  <div class="hidden sm:block space-y-10">
+    {groupes.map((comp, i) => (
       <div>
         <h2 class="mb-2 text-sm uppercase tracking-wide text-pierre/50">
-          Groupe {i + 1} ({comp.noeuds.length} personne{comp.noeuds.length > 1 ? "s" : ""})
+          Groupe {i + 1} · {comp.noeuds.length} personnes
         </h2>
-        <div class="arbre-conteneur overflow-hidden border border-pierre/15 bg-nuit" style="height: 480px;">
+        <div
+          class="arbre-conteneur overflow-hidden rounded-md border border-pierre/10 bg-nuit"
+          style={`height: ${hauteurConteneur(comp.hauteur)}px;`}
+        >
           <svg
             class="arbre-svg h-full w-full cursor-grab touch-none"
             viewBox={`${-MARGE} ${-MARGE} ${comp.largeur + MARGE * 2} ${comp.hauteur + MARGE * 2}`}
@@ -142,7 +153,7 @@ const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
 
   <!-- Vue colonne : sous 640px -->
   <div class="space-y-10 sm:hidden">
-    {composantes.map((comp, i) => (
+    {groupes.map((comp, i) => (
       <div>
         <h2 class="mb-2 text-sm uppercase tracking-wide text-pierre/50">Groupe {i + 1}</h2>
         <ol class="space-y-2 border-l border-pierre/20 pl-4">
@@ -164,6 +175,26 @@ const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
       </div>
     ))}
   </div>
+
+  {isoles.length > 0 && (
+    <div class="mt-10">
+      <h2 class="mb-1 text-sm uppercase tracking-wide text-pierre/50">Personnes non reliées</h2>
+      <p class="mb-3 text-xs text-pierre/40">Aucun lien connu vers les groupes ci-dessus.</p>
+      <ul class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+        {isoles.map((n) => (
+          <li
+            class="noeud noeud-colonne flex items-center justify-between gap-2 rounded-md border border-pierre/10 bg-zellige/40 px-3 py-2 text-sm"
+            data-branche={n.branche}
+            data-statut={n.statut}
+            style={`border-left: 3px solid ${STYLE_STATUT[n.statut]};`}
+          >
+            <a href={`/personnes/${n.id}/`} class="text-pierre hover:text-laiton">{n.nom}</a>
+            <span class="donnee text-[0.65rem] text-pierre/35">{n.branche}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
 
   <script>
     const noeuds = document.querySelectorAll<HTMLElement>(".noeud, .noeud-colonne");

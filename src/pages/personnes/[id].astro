@@ -91,12 +91,12 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
         {personne.professions && personne.professions.length > 0 && (
           <section class="mb-10">
             <h2 class="mb-3 text-xl font-semibold tracking-tight">Professions</h2>
-            <ul class="space-y-3">
+            <ul class="divide-y divide-pierre/10 border-y border-pierre/10">
               {personne.professions.map((prof) => (
-                <li class="carte-fiche">
+                <li class="py-3">
                   <p class="text-pierre">{prof.intitule}</p>
                   {prof.periode && <p class="donnee text-xs text-pierre/50">{prof.periode}</p>}
-                  <div class="mt-2">
+                  <div class="mt-1.5">
                     <SourcesListe sourceIds={prof.sourceIds} />
                   </div>
                 </li>
@@ -169,19 +169,19 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
         </section>
 
         {personne.notes && (
-          <section class="mb-10">
-            <h2 class="mb-3 text-xl font-semibold tracking-tight">Notes</h2>
-            <p class="carte-fiche text-sm text-pierre/80">{personne.notes}</p>
+          <section class="mb-10 border-l-2 border-pierre/15 pl-4">
+            <h2 class="mb-2 text-xl font-semibold tracking-tight">Notes</h2>
+            <p class="text-sm text-pierre/75">{personne.notes}</p>
           </section>
         )}
 
         <section class="mb-10">
           <h2 class="mb-3 text-xl font-semibold tracking-tight">Toutes les sources</h2>
-          <SourcesListe sourceIds={toutesSourceIds} class="carte-fiche" />
+          <SourcesListe sourceIds={toutesSourceIds} />
         </section>
 
-        <section class="mb-10 border border-dashed border-pierre/30 bg-transparent p-4 sm:p-5">
-          <h2 class="mb-3 text-xl font-semibold tracking-tight text-pierre/80">Ce qu'on ne sait pas encore</h2>
+        <section class="mb-10 border-l-2 border-laiton/30 pl-4">
+          <h2 class="mb-2 text-xl font-semibold tracking-tight text-pierre/80">Ce qu'on ne sait pas encore</h2>
           {trous.length > 0 ? (
             <ul class="list-inside list-disc space-y-1 text-sm text-pierre/60">
               {trous.map((t) => <li>{t}</li>)}

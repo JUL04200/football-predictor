@@ -60,7 +60,11 @@
   }
 
   .carte-fiche {
-    @apply border border-laiton/25 bg-zellige/60 p-4 sm:p-5;
+    @apply rounded-md border border-pierre/10 bg-zellige/40 p-4 transition-colors sm:p-5;
+  }
+
+  .lien-discret {
+    @apply text-laiton/90 no-underline hover:text-laiton hover:underline;
   }
 }
 

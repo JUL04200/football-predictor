@@ -15,11 +15,11 @@ const LIBELLES: Record<Statut, string> = {
   inconnu: "Inconnu",
 };
 
-const STYLES: Record<Statut, string> = {
-  prouve: "border-vert text-vert bg-vert/10",
-  temoignage: "border-laiton text-laiton bg-laiton/10",
-  hypothese: "border-pierre/50 text-pierre/80 bg-pierre/5 border-dashed",
-  inconnu: "border-pierre/25 text-pierre/40 bg-transparent border-dotted",
+const COULEURS: Record<Statut, string> = {
+  prouve: "text-vert",
+  temoignage: "text-laiton",
+  hypothese: "text-pierre/70",
+  inconnu: "text-pierre/35",
 };
 
 const SYMBOLES: Record<Statut, string> = {
@@ -31,11 +31,7 @@ const SYMBOLES: Record<Statut, string> = {
 ---
 
 <span
-  class:list={[
-    "donnee inline-flex items-center gap-1 rounded-sm border px-1.5 py-0.5 text-[0.7rem] uppercase leading-none",
-    STYLES[statut],
-    className,
-  ]}
+  class:list={["donnee inline-flex items-center gap-1 text-[0.7rem] leading-none", COULEURS[statut], className]}
   title={`Statut : ${LIBELLES[statut]}`}
 >
   <span aria-hidden="true">{SYMBOLES[statut]}</span>
