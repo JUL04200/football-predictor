@@ -1,0 +1,175 @@
+---
+import Khatem from "../components/Khatem.astro";
+import "../styles/global.css";
+
+interface Props {
+  titre: string;
+  description?: string;
+  large?: boolean;
+}
+
+const {
+  titre,
+  description = "Généalogie de la ligne paternelle Arrouasse (Tlemcen) et Amsellem–Benchetrit (Alger), juifs séfarades pieds-noirs d'Algérie.",
+  large = false,
+} = Astro.props;
+
+const LIENS_PRINCIPAUX = [
+  { href: "/", label: "Accueil" },
+  { href: "/arbre/", label: "Arbre" },
+  { href: "/branches/arrouasse/", label: "Branches" },
+  { href: "/chronologie/", label: "Chronologie" },
+  { href: "/carte/", label: "Carte" },
+  { href: "/sources/", label: "Sources" },
+];
+
+const LIENS_SECONDAIRES = [
+  { href: "/journal/", label: "Journal de recherche" },
+  { href: "/questions-ouvertes/", label: "Questions ouvertes" },
+  { href: "/faq/", label: "FAQ" },
+  { href: "/contribuer/", label: "Contribuer" },
+  { href: "/perimetre/", label: "Le périmètre de ce site" },
+];
+
+const chemin = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{titre} — Arrouasse · Amsellem</title>
+    <meta name="description" content={description} />
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a
+      href="#contenu"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-laiton focus:px-3 focus:py-2 focus:text-nuit"
+    >
+      Aller au contenu
+    </a>
+
+    <header class="sticky top-0 z-40 border-b border-pierre/10 bg-nuit/95 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
+        <a href="/" class="flex items-center gap-2 text-pierre no-underline">
+          <Khatem taille={22} class="text-laiton" titre="Khatem, étoile à huit branches" />
+          <span class="text-base font-semibold tracking-tight">Arrouasse · Amsellem</span>
+        </a>
+
+        <nav aria-label="Navigation principale" class="hidden md:block">
+          <ul class="flex gap-x-6 text-sm">
+            {LIENS_PRINCIPAUX.map((lien) => (
+              <li>
+                <a
+                  href={lien.href}
+                  aria-current={chemin === lien.href ? "page" : undefined}
+                  class:list={[
+                    "relative py-1 no-underline after:absolute after:-bottom-[1px] after:left-0 after:h-px after:bg-laiton after:transition-all after:duration-300",
+                    chemin === lien.href
+                      ? "text-laiton after:w-full"
+                      : "text-pierre/70 after:w-0 hover:text-laiton hover:after:w-full",
+                  ]}
+                >
+                  {lien.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <button
+          type="button"
+          id="bouton-menu"
+          class="no-print flex items-center gap-1.5 rounded-full border border-pierre/15 px-3 py-1.5 text-sm text-pierre/80 hover:border-laiton hover:text-laiton md:hidden"
+          aria-expanded="false"
+          aria-controls="menu-mobile"
+        >
+          Menu
+        </button>
+      </div>
+
+      <nav id="menu-mobile" aria-label="Navigation" class="hidden border-t border-pierre/10 px-4 py-3 md:hidden">
+        <ul class="flex flex-col gap-2 text-sm">
+          {[...LIENS_PRINCIPAUX, ...LIENS_SECONDAIRES].map((lien) => (
+            <li>
+              <a
+                href={lien.href}
+                aria-current={chemin === lien.href ? "page" : undefined}
+                class:list={["no-underline hover:text-laiton", chemin === lien.href ? "text-laiton" : "text-pierre/75"]}
+              >
+                {lien.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main id="contenu" class:list={["mx-auto px-4 py-14 sm:px-6", large ? "max-w-5xl" : "max-w-2xl"]}>
+      <slot />
+    </main>
+
+    <footer class="no-print mt-16 border-t border-pierre/10 py-10 text-sm text-pierre/50">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6">
+        <nav aria-label="Liens secondaires" class="mb-6 flex flex-wrap gap-x-5 gap-y-2">
+          {LIENS_SECONDAIRES.map((lien) => (
+            <a href={lien.href} class="text-pierre/60 hover:text-laiton">{lien.label}</a>
+          ))}
+        </nav>
+        <p class="max-w-2xl">
+          Site de généalogie familiale — ligne paternelle Arrouasse (Tlemcen) et Amsellem–Benchetrit
+          (Alger). La branche maternelle Dukan est hors périmètre de ce site.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const bouton = document.getElementById("bouton-menu");
+      const menu = document.getElementById("menu-mobile");
+      bouton?.addEventListener("click", () => {
+        const ouvert = menu?.classList.toggle("hidden") === false;
+        bouton.setAttribute("aria-expanded", String(ouvert));
+      });
+
+      // Les <details> repliés (FAQ, sources) doivent sortir ouverts à
+      // l'impression : la fermeture visuelle est un confort d'écran, pas
+      // une donnée à masquer sur papier.
+      let detailsAFermerApresImpression: HTMLDetailsElement[] = [];
+      window.addEventListener("beforeprint", () => {
+        detailsAFermerApresImpression = [...document.querySelectorAll("details:not([open])")] as HTMLDetailsElement[];
+        detailsAFermerApresImpression.forEach((d) => (d.open = true));
+      });
+      window.addEventListener("afterprint", () => {
+        detailsAFermerApresImpression.forEach((d) => (d.open = false));
+        detailsAFermerApresImpression = [];
+      });
+
+      // Apparition douce des blocs principaux au défilement (dégradation
+      // silencieuse : sans IntersectionObserver, tout reste visible).
+      if ("IntersectionObserver" in window) {
+        const blocs = document.querySelectorAll("#contenu > *");
+        const observateur = new IntersectionObserver(
+          (entrees) => {
+            for (const entree of entrees) {
+              if (entree.isIntersecting) {
+                entree.target.classList.add("visible");
+                observateur.unobserve(entree.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px 200px 0px", threshold: 0.01 }
+        );
+        blocs.forEach((bloc, i) => {
+          bloc.classList.add("au-scroll");
+          (bloc as HTMLElement).style.transitionDelay = `${Math.min(i, 4) * 60}ms`;
+          observateur.observe(bloc);
+        });
+      }
+    </script>
+  </body>
+</html>

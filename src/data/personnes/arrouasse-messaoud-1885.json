@@ -1,0 +1,56 @@
+{
+  "id": "arrouasse-messaoud-1885",
+  "nom": "ARROUASSE",
+  "prenoms": ["Messaoud"],
+  "prenomUsuel": "Messaoud",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": "1885-01-04",
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Fils de David Arrouasse, colporteur, et de Meriem Sakoun.",
+    "statut": "prouve",
+    "sourceIds": ["anom-etat-civil-tlemcen-messaoud-arrouasse-1885"]
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": "1911-05-24",
+      "dateTexte": null,
+      "lieuId": "tlemcen",
+      "notes": "Épouse Djohar Boumendil (née en 1891). Témoins : Abraham Ben Ghouzi, Joseph Sakoun, Moïse Benhamou, Nathan Labbouz.",
+      "statut": "prouve",
+      "sourceIds": ["anom-acte-mariage-messaoud-arrouasse-djohar-boumendil-1911"]
+    }
+  ],
+  "deces": null,
+  "professions": [
+    {
+      "intitule": "Chaisier",
+      "periode": null,
+      "sourceIds": ["anom-etat-civil-tlemcen-messaoud-arrouasse-1885"]
+    },
+    {
+      "intitule": "Donateur d'une société de bienfaisance de Tlemcen (5 F)",
+      "periode": "1933",
+      "sourceIds": ["courrier-tlemcen-1933-01-03"]
+    },
+    {
+      "intitule": "Entrepreneur du bâtiment à Tlemcen",
+      "periode": "1947-1949",
+      "sourceIds": ["guide-batiment-tp-1947-1949"]
+    }
+  ],
+  "pereId": "arrouasse-david",
+  "mereId": "sakoun-meriem",
+  "conjointIds": ["boumendil-djohar-1891"],
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Rattachement à la ligne directe (Jean Arrouasse) non démontré — voir question ouverte n°4 : quel lien exact entre notre ligne et le noyau David → Messaoud de Tlemcen ? Les mentions de 1933 et 1947-1949 sont rattachées à ce Messaoud (né en 1885) par cohérence de nom, de lieu et de génération, non formellement recoupées entre elles ni avec l'acte de naissance.",
+  "statut": "prouve",
+  "sourceIds": ["anom-etat-civil-tlemcen-messaoud-arrouasse-1885"]
+}

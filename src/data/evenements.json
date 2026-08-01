@@ -1,0 +1,50 @@
+[
+  {
+    "id": "decret-cremieux-1870",
+    "date": "1870-10-24",
+    "titre": "Décret Crémieux",
+    "description": "Le décret du 24 octobre 1870, porté par Adolphe Crémieux, accorde collectivement la citoyenneté française aux Juifs d'Algérie (à l'exception des territoires du Sud, sous régime militaire). Ils cessent d'être soumis au statut personnel israélite et deviennent citoyens français à part entière, ce qui les distingue radicalement de la population musulmane d'Algérie, maintenue sous statut de sujet.",
+    "lieuId": "alger",
+    "sourceIds": []
+  },
+  {
+    "id": "statut-des-juifs-1940",
+    "date": "1940-10-03",
+    "titre": "Premier statut des Juifs (régime de Vichy)",
+    "description": "La loi du 3 octobre 1940 exclut les Juifs de la fonction publique, de l'armée, de la magistrature, de l'enseignement et de nombreuses professions. Applicable en Algérie comme en métropole.",
+    "lieuId": null,
+    "sourceIds": []
+  },
+  {
+    "id": "abrogation-decret-cremieux-1940",
+    "date": "1940-10-07",
+    "titre": "Abrogation du décret Crémieux",
+    "description": "La loi du 7 octobre 1940 abroge le décret Crémieux : les Juifs d'Algérie perdent la citoyenneté française et redeviennent des sujets français de statut local, sans les droits civiques associés à la citoyenneté.",
+    "lieuId": "alger",
+    "sourceIds": []
+  },
+  {
+    "id": "retablissement-decret-cremieux-1943",
+    "date": "1943-03-14",
+    "titre": "Rétablissement du décret Crémieux",
+    "description": "Après plusieurs mois d'hésitation du Comité français de Libération nationale suite au débarquement allié de novembre 1942, l'ordonnance du 14 mars 1943 rétablit le décret Crémieux et restitue la citoyenneté française aux Juifs d'Algérie.",
+    "lieuId": "alger",
+    "sourceIds": []
+  },
+  {
+    "id": "independance-algerie-1962",
+    "date": "1962-07-05",
+    "titre": "Indépendance de l'Algérie",
+    "description": "L'Algérie devient indépendante le 5 juillet 1962, à l'issue des accords d'Évian. Dans les mois qui suivent, la quasi-totalité de la population juive d'Algérie — plusieurs dizaines de milliers de personnes — quitte le pays, comme la grande majorité des Européens d'Algérie.",
+    "lieuId": null,
+    "sourceIds": []
+  },
+  {
+    "id": "exode-ete-1962",
+    "date": "1962",
+    "titre": "Exode d'été 1962",
+    "description": "Départ massif par bateau depuis les ports algériens (Alger, Oran) vers Marseille durant l'été 1962. C'est dans ce mouvement que la famille quitte l'Algérie.",
+    "lieuId": "marseille",
+    "sourceIds": []
+  }
+]

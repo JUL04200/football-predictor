@@ -1,0 +1,24 @@
+---
+import SourceLink from "./SourceLink.astro";
+
+interface Props {
+  sourceIds: string[];
+  class?: string;
+}
+
+const { sourceIds, class: className } = Astro.props;
+---
+
+{
+  sourceIds.length > 0 ? (
+    <ul class:list={["flex flex-wrap gap-x-2 gap-y-1", className]}>
+      {sourceIds.map((id) => (
+        <li>
+          <SourceLink sourceId={id} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="donnee text-[0.8rem] text-pierre/40">aucune source citée</p>
+  )
+}

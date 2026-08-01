@@ -1,0 +1,107 @@
+---
+import Base from "../layouts/Base.astro";
+import { FAQ } from "../lib/faq";
+---
+
+<Base titre="FAQ" description="Questions fréquentes sur la famille, l'histoire, la méthode, les archives et la vie privée.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Foire aux questions</h1>
+  <p class="mb-6 max-w-2xl text-pierre/70">
+    Chaque question a une ancre partageable : clique sur « copier le lien » pour pointer
+    directement vers une réponse.
+  </p>
+
+  <div class="no-print sticky top-0 z-10 mb-8 bg-nuit/95 py-3 backdrop-blur">
+    <label class="block">
+      <span class="sr-only">Rechercher dans la FAQ</span>
+      <input
+        id="recherche-faq"
+        type="search"
+        placeholder="Rechercher une question ou un mot-clé…"
+        class="w-full max-w-md border border-pierre/25 bg-zellige/60 px-3 py-2 text-pierre placeholder:text-pierre/40 focus:border-laiton"
+      />
+    </label>
+    <p id="resultat-recherche" class="mt-2 text-xs text-pierre/50" aria-live="polite"></p>
+  </div>
+
+  <div id="contenu-faq" class="space-y-12">
+    {FAQ.map((categorie) => (
+      <section data-categorie={categorie.id}>
+        <h2 class="mb-4 border-b border-laiton/20 pb-2 text-xl font-semibold tracking-tight text-laiton">
+          {categorie.titre}
+        </h2>
+        <div class="space-y-6">
+          {categorie.questions.map((q) => (
+            <details id={q.id} class="faq-item scroll-mt-24" data-texte={(q.question + " " + q.reponse.join(" ")).toLowerCase()}>
+              <summary class="flex cursor-pointer list-none items-start gap-3 text-pierre">
+                <span class="flex-1 text-lg">{q.question}</span>
+                <button
+                  type="button"
+                  class="bouton-copier no-print shrink-0 text-xs text-pierre/40 hover:text-laiton"
+                  data-id={q.id}
+                  aria-label={`Copier le lien vers : ${q.question}`}
+                >
+                  # lien
+                </button>
+              </summary>
+              <div class="mt-3 space-y-3 text-pierre/75">
+                {q.reponse.map((p) => <p>{p}</p>)}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <script>
+    const champ = document.getElementById("recherche-faq") as HTMLInputElement;
+    const sections = document.querySelectorAll<HTMLElement>("#contenu-faq section");
+    const resultat = document.getElementById("resultat-recherche")!;
+
+    function filtrer() {
+      const q = champ.value.trim().toLowerCase();
+      let total = 0;
+      sections.forEach((section) => {
+        let visiblesDansSection = 0;
+        section.querySelectorAll<HTMLDetailsElement>(".faq-item").forEach((item) => {
+          const visible = q === "" || item.dataset.texte!.includes(q);
+          item.style.display = visible ? "" : "none";
+          item.open = q !== "" && visible;
+          if (visible) {
+            visiblesDansSection++;
+            total++;
+          }
+        });
+        section.style.display = visiblesDansSection > 0 ? "" : "none";
+      });
+      resultat.textContent = q === "" ? "" : `${total} question(s) trouvée(s).`;
+    }
+
+    champ.addEventListener("input", filtrer);
+
+    if (location.hash) {
+      const cible = document.querySelector<HTMLDetailsElement>(location.hash);
+      if (cible) {
+        cible.open = true;
+        cible.scrollIntoView();
+      }
+    }
+
+    document.querySelectorAll<HTMLButtonElement>(".bouton-copier").forEach((bouton) => {
+      bouton.addEventListener("click", async (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        const url = `${location.origin}${location.pathname}#${bouton.dataset.id}`;
+        history.replaceState(null, "", `#${bouton.dataset.id}`);
+        try {
+          await navigator.clipboard.writeText(url);
+          const texteInitial = bouton.textContent;
+          bouton.textContent = "# lien copié";
+          setTimeout(() => (bouton.textContent = texteInitial), 1500);
+        } catch {
+          // Presse-papiers indisponible : l'URL est déjà dans la barre d'adresse.
+        }
+      });
+    });
+  </script>
+</Base>

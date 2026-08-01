@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import { QUESTIONS_OUVERTES, LIBELLES_STATUT_QUESTION } from "../lib/questions-ouvertes";
+import { getPersonne, nomAffiche } from "../lib/data";
+
+const STYLE_STATUT: Record<string, string> = {
+  ouverte: "text-laiton",
+  en_cours: "text-vert",
+  resolue: "text-pierre/50",
+};
+---
+
+<Base titre="Questions ouvertes" description="Les six questions généalogiques non résolues de cette recherche, traitées comme des tickets.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Questions ouvertes</h1>
+  <p class="mb-8 max-w-2xl text-pierre/70">
+    Traitées comme des tickets : une question, un contexte, un statut. Rien n'est
+    comblé par une supposition tant que la réponse n'est pas trouvée.
+  </p>
+
+  <ol class="divide-y divide-pierre/10">
+    {QUESTIONS_OUVERTES.map((q, i) => (
+      <li class="py-6 first:pt-0">
+        <div class="mb-2 flex flex-wrap items-center gap-3">
+          <span class="donnee text-xs text-pierre/40">n°{i + 1}</span>
+          <span class:list={["donnee text-[0.7rem] uppercase", STYLE_STATUT[q.statut]]}>
+            {LIBELLES_STATUT_QUESTION[q.statut]}
+          </span>
+        </div>
+        <h2 class="text-lg text-pierre">{q.question}</h2>
+        <p class="mt-2 text-sm text-pierre/70">{q.contexte}</p>
+        {q.personnesLiees.length > 0 && (
+          <p class="mt-3 text-sm">
+            Personnes liées :{" "}
+            {q.personnesLiees.map((id, idx) => {
+              const p = getPersonne(id);
+              return p ? (
+                <>
+                  <a href={`/personnes/${p.id}/`} class="text-laiton hover:underline">{nomAffiche(p)}</a>
+                  {idx < q.personnesLiees.length - 1 ? ", " : ""}
+                </>
+              ) : null;
+            })}
+          </p>
+        )}
+      </li>
+    ))}
+  </ol>
+
+  <p class="mt-10 max-w-2xl text-sm text-pierre/60">
+    Un élément de réponse à l'une de ces questions ? Voir la page{" "}
+    <a href="/contribuer/" class="text-laiton hover:underline">Contribuer</a>.
+  </p>
+</Base>

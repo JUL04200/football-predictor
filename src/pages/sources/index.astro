@@ -1,0 +1,67 @@
+---
+import Base from "../../layouts/Base.astro";
+import { toutesLesSources, personnesDocumenteesPar, nomAffiche } from "../../lib/data";
+
+const sources = toutesLesSources();
+
+const LIBELLES_TYPE: Record<string, string> = {
+  acte_naissance: "Acte de naissance",
+  acte_mariage: "Acte de mariage",
+  acte_deces: "Acte de décès",
+  etat_civil: "État civil",
+  presse: "Presse",
+  annuaire: "Annuaire",
+  recensement: "Recensement",
+  insee_deces: "INSEE — fichier des décès",
+  institution: "Institution",
+  bibliographie: "Bibliographie",
+  temoignage_oral: "Témoignage oral",
+  autre: "Autre",
+};
+---
+
+<Base titre="Les sources" description="Registre complet des sources citées sur ce site.">
+  <h1 class="mb-2 text-3xl font-semibold tracking-tight">Les sources</h1>
+  <p class="mb-8 max-w-2xl text-pierre/70">
+    {sources.length} sources. Chaque donnée « Prouvé » du site pointe vers l'une d'elles.
+  </p>
+
+  <ul class="divide-y divide-pierre/10">
+    {sources.map((s) => {
+      const personnes = personnesDocumenteesPar(s.id);
+      return (
+        <li id={s.id} class="scroll-mt-24 py-6">
+          <div class="mb-1 flex flex-wrap items-center gap-2">
+            <span class="donnee text-[0.65rem] uppercase text-pierre/45">
+              {LIBELLES_TYPE[s.type] ?? s.type}
+            </span>
+            {s.date && <span class="donnee text-xs text-pierre/40">· {s.date}</span>}
+          </div>
+          <h2 class="text-lg text-pierre">
+            <a href={`/sources/${s.id}/`} class="hover:text-laiton">{s.titre}</a>
+          </h2>
+          {s.depot && <p class="mt-1 text-sm text-pierre/55">{s.depot}{s.cote ? ` — ${s.cote}` : ""}</p>}
+          {(s.notes || personnes.length > 0) && (
+            <details class="mt-2">
+              <summary class="cursor-pointer text-sm text-pierre/45 hover:text-laiton">Détails</summary>
+              <div class="mt-2">
+                {s.notes && <p class="text-pierre/70">{s.notes}</p>}
+                {personnes.length > 0 && (
+                  <p class="mt-2 text-sm text-pierre/55">
+                    Documente :{" "}
+                    {personnes.map((p, i) => (
+                      <>
+                        <a class="lien-discret" href={`/personnes/${p.id}/`}>{nomAffiche(p)}</a>
+                        {i < personnes.length - 1 ? ", " : ""}
+                      </>
+                    ))}
+                  </p>
+                )}
+              </div>
+            </details>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</Base>

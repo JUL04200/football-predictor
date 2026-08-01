@@ -1,0 +1,40 @@
+{
+  "id": "benchetrit-lea",
+  "nom": "BENCHETRIT",
+  "prenoms": ["Léa"],
+  "prenomUsuel": "Léa",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Lieu et date de naissance inconnus. Question ouverte prioritaire n°3 : où Léa Benchetrit est-elle née, et d'où venaient ses parents ?",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Mariage avec Mordechaï (Mardiche) Amsellem. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["amsellem-mardiche"],
+  "enfantIds": ["amsellem-josette"],
+  "branche": "benchetrit",
+  "vivant": false,
+  "notes": "Origine des parents de Léa inconnue. Le nom Benchetrit (de l'arabe \"shâtir\", le brave) a pour berceau le Tafilalet marocain — voir la page « Branche Benchetrit ».",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

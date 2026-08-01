@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+import { BRANCHES, getBranche } from "../../lib/branches";
+import { toutesLesPersonnes, nomAffiche } from "../../lib/data";
+import StatutBadge from "../../components/StatutBadge.astro";
+
+export function getStaticPaths() {
+  return BRANCHES.map((b) => ({ params: { slug: b.slug } }));
+}
+
+const { slug } = Astro.params;
+const branche = getBranche(slug as string)!;
+const personnes = toutesLesPersonnes().filter((p) => p.branche === branche.slug);
+---
+
+<Base titre={`Branche ${branche.nom}`}>
+  <p class="mb-4 text-sm">
+    {BRANCHES.map((b, i) => (
+      <>
+        <a href={`/branches/${b.slug}/`} class:list={["hover:text-laiton", b.slug === slug ? "text-laiton" : "text-pierre/60"]}>
+          {b.nom}
+        </a>
+        {i < BRANCHES.length - 1 ? <span class="mx-2 text-pierre/30">·</span> : null}
+      </>
+    ))}
+  </p>
+
+  <h1 class="mb-1 text-3xl font-semibold tracking-tight">{branche.nom}</h1>
+  <p class="donnee mb-8 text-pierre/60">{branche.ville}</p>
+
+  <section class="mb-10 max-w-2xl space-y-4">
+    {branche.histoire.map((p) => <p class="text-pierre/80">{p}</p>)}
+  </section>
+
+  <section class="mb-10 max-w-2xl border-l-2 border-pierre/15 pl-4">
+    <h2 class="mb-2 text-xl font-semibold tracking-tight">Le nom</h2>
+    <p class="text-sm text-pierre/75">{branche.onomastique}</p>
+  </section>
+
+  {branche.metiers.length > 0 && (
+    <section class="mb-10 max-w-2xl">
+      <h2 class="mb-2 text-xl font-semibold tracking-tight">Métiers</h2>
+      <p class="donnee text-sm text-pierre/65">{branche.metiers.join(" · ")}</p>
+    </section>
+  )}
+
+  {branche.famillesAlliees.length > 0 && (
+    <section class="mb-10 max-w-2xl">
+      <h2 class="mb-2 text-xl font-semibold tracking-tight">Familles alliées</h2>
+      <p class="text-sm text-vert">{branche.famillesAlliees.join(" · ")}</p>
+    </section>
+  )}
+
+  <section>
+    <h2 class="mb-2 text-xl font-semibold tracking-tight">Personnes de cette branche ({personnes.length})</h2>
+    <ul class="divide-y divide-pierre/10">
+      {personnes.map((p) => (
+        <li class="flex items-center justify-between py-3">
+          <a href={`/personnes/${p.id}/`} class="text-pierre hover:text-laiton">{nomAffiche(p)}</a>
+          <StatutBadge statut={p.statut} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

@@ -1,0 +1,39 @@
+---
+import type { Statut } from "../lib/schema";
+
+interface Props {
+  statut: Statut;
+  class?: string;
+}
+
+const { statut, class: className } = Astro.props;
+
+const LIBELLES: Record<Statut, string> = {
+  prouve: "Prouvé",
+  temoignage: "Témoignage",
+  hypothese: "Hypothèse",
+  inconnu: "Inconnu",
+};
+
+const COULEURS: Record<Statut, string> = {
+  prouve: "text-vert",
+  temoignage: "text-laiton",
+  hypothese: "text-pierre/70",
+  inconnu: "text-pierre/35",
+};
+
+const SYMBOLES: Record<Statut, string> = {
+  prouve: "●",
+  temoignage: "◐",
+  hypothese: "◇",
+  inconnu: "○",
+};
+---
+
+<span
+  class:list={["donnee inline-flex items-center gap-1 text-[0.7rem] leading-none", COULEURS[statut], className]}
+  title={`Statut : ${LIBELLES[statut]}`}
+>
+  <span aria-hidden="true">{SYMBOLES[statut]}</span>
+  {LIBELLES[statut]}
+</span>

@@ -1,0 +1,34 @@
+{
+  "id": "ajzenberg-dov",
+  "nom": "AJZENBERG",
+  "prenoms": [
+    "Dov"
+  ],
+  "prenomUsuel": "Dov",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "ajzenberg-ludovic",
+  "mereId": "arrouasse-karen",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Enfant de Ludovic Ajzenberg et de Karen Arrouasse, donc petit-enfant de Jean Arrouasse et Josette Amsellem.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

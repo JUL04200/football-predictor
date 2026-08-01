@@ -1,0 +1,30 @@
+{
+  "id": "arrouasse-sadia",
+  "nom": "ARROUASSE",
+  "prenoms": ["Sadia"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Dates de naissance et de décès inconnues ; seule une citation à Tlemcen en 1884 est attestée.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Cité à Tlemcen en 1884. Rattachement à la ligne directe et aux autres Arrouasse de Tlemcen non établi.",
+  "statut": "prouve",
+  "sourceIds": ["la-tafna-1884-04-02"]
+}

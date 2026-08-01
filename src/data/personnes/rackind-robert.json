@@ -1,0 +1,40 @@
+{
+  "id": "rackind-robert",
+  "nom": "RACKIND",
+  "prenoms": ["Robert"],
+  "prenomUsuel": "Robert",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Époux de Stéphanie Arrouasse. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["arrouasse-stephanie"],
+  "enfantIds": ["rackind-carla", "rackind-mia", "rackind-samuel"],
+  "branche": "alliee",
+  "vivant": true,
+  "notes": "Époux de Stéphanie Arrouasse. Son ascendance est hors du périmètre de ce site, consacré à la ligne paternelle Arrouasse et Amsellem–Benchetrit.",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

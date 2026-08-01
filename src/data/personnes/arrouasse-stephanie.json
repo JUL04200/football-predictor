@@ -1,0 +1,52 @@
+{
+  "id": "arrouasse-stephanie",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Stéphanie"
+  ],
+  "prenomUsuel": "Stéphanie",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Épouse Robert Rackind. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-jean",
+  "mereId": "amsellem-josette",
+  "conjointIds": [
+    "rackind-robert"
+  ],
+  "enfantIds": [
+    "rackind-carla",
+    "rackind-mia",
+    "rackind-samuel"
+  ],
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Sœur de Laurent Arrouasse. Porte le nom Rackind par son mariage ; le nom de naissance ARROUASSE est retenu ici, comme pour toutes les fiches du site.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "arrouasse-serge",
+  "nom": "ARROUASSE",
+  "prenoms": ["Serge"],
+  "prenomUsuel": "Serge",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date de naissance non renseignée.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-maurice-1932",
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Cousin vivant potentiellement en mesure d'éclairer le rattachement à la ligne directe — voir question ouverte n°5. Fiche volontairement minimale : personne vivante, voir la page « Personne vivante ».",
+  "statut": "prouve",
+  "sourceIds": ["iemj-maurice-arrouasse"]
+}

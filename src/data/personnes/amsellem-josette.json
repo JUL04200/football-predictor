@@ -1,0 +1,51 @@
+{
+  "id": "amsellem-josette",
+  "nom": "AMSELLEM",
+  "prenoms": ["Josette"],
+  "prenomUsuel": "Josette",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": "1940-04-16",
+    "dateTexte": null,
+    "lieuId": "alger",
+    "notes": "Date transmise oralement par la famille, non recoupée avec un acte d'état civil.",
+    "statut": "temoignage",
+    "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Mariage avec Jean Arrouasse. Date et lieu non retrouvés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": [
+    {
+      "intitule": "Professeure",
+      "periode": null,
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    },
+    {
+      "intitule": "Commerçante en vêtements",
+      "periode": null,
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "pereId": "amsellem-mardiche",
+  "mereId": "benchetrit-lea",
+  "conjointIds": ["arrouasse-jean"],
+  "enfantIds": ["arrouasse-laurent-1963", "arrouasse-karen", "arrouasse-stephanie"],
+  "branche": "amsellem",
+  "vivant": true,
+  "notes": null,
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

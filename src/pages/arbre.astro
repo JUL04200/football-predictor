@@ -1,0 +1,106 @@
+---
+import Base from "../layouts/Base.astro";
+import ArbreSvg from "../components/ArbreSvg.astro";
+import { calculerComposantes } from "../lib/arbre";
+
+const composantes = calculerComposantes();
+const principale = composantes.find((c) => c.principale) ?? composantes[0];
+const secondaires = composantes.filter((c) => c !== principale && c.noeuds.length > 1);
+const isoles = composantes
+  .filter((c) => c !== principale && c.noeuds.length === 1)
+  .map((c) => c.noeuds[0])
+  .sort((a, b) => a.nom.localeCompare(b.nom));
+
+const nbNonRattaches =
+  secondaires.reduce((total, c) => total + c.noeuds.length, 0) + isoles.length;
+
+const STYLE_STATUT: Record<string, string> = {
+  prouve: "#2E7268",
+  temoignage: "#C89B4A",
+  hypothese: "#EBE6DC",
+  inconnu: "#4a5a6b",
+};
+
+const LEGENDE = [
+  { statut: "prouve", libelle: "Prouvé par un acte" },
+  { statut: "temoignage", libelle: "Témoignage familial" },
+  { statut: "hypothese", libelle: "Hypothèse" },
+  { statut: "inconnu", libelle: "Inconnu" },
+];
+---
+
+<Base titre="L'arbre" description="L'arbre généalogique de la ligne paternelle Arrouasse et Amsellem–Benchetrit." large>
+  <h1 class="mb-3 text-3xl font-semibold tracking-tight">L'arbre</h1>
+  <p class="mb-8 max-w-2xl text-pierre/70">
+    Les générations descendent du haut vers le bas. Deux personnes reliées par une étoile
+    <span class="text-laiton">✦</span> forment un couple ; le trait qui en descend mène à
+    leurs enfants. Chaque nom est cliquable et mène à sa fiche. Pour lire de plus près,
+    utilisez les boutons <span class="donnee">+</span> et <span class="donnee">−</span>, la
+    molette, ou faites glisser l'arbre à la souris.
+  </p>
+
+  <!-- Légende -->
+  <div class="no-print mb-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-pierre/10 py-3 text-sm">
+    <span class="text-pierre/40">La couleur du cadre indique ce qu'on sait :</span>
+    {LEGENDE.map((l) => (
+      <span class="flex items-center gap-1.5">
+        <span
+          class="inline-block h-2.5 w-4 rounded-sm border-2"
+          style={`border-color:${STYLE_STATUT[l.statut]};`}
+          aria-hidden="true"
+        />
+        <span class="text-pierre/70">{l.libelle}</span>
+      </span>
+    ))}
+  </div>
+
+  <section class="mb-16">
+    <h2 class="mb-1 text-xl font-semibold tracking-tight">Notre ligne directe</h2>
+    <p class="mb-5 max-w-2xl text-sm text-pierre/60">
+      Des grands-parents Amsellem–Benchetrit à Alger jusqu'aux enfants d'aujourd'hui.
+    </p>
+    <ArbreSvg composante={principale} titre="Arbre de la ligne directe" />
+  </section>
+
+  {(secondaires.length > 0 || isoles.length > 0) && (
+    <section class="border-t border-pierre/10 pt-10">
+      <h2 class="mb-1 text-xl font-semibold tracking-tight">
+        Les Arrouasse de Tlemcen, pas encore rattachés
+      </h2>
+      <p class="mb-6 max-w-2xl text-sm text-pierre/60">
+        {nbNonRattaches} personnes portant le nom Arrouasse sont solidement documentées à
+        Tlemcen par des actes et des articles de presse — mais aucun document ne prouve
+        aujourd'hui comment elles se raccordent à la ligne ci-dessus. Elles sont donc
+        affichées à part plutôt que rattachées au jugé. C'est précisément l'objet de la{" "}
+        <a href="/questions-ouvertes/#lien-noyau-tlemcen" class="lien-discret">question ouverte n°4</a>.
+      </p>
+
+      <div class="space-y-8">
+        {secondaires.map((comp) => (
+          <ArbreSvg composante={comp} titre="Groupe de personnes reliées entre elles" compact />
+        ))}
+      </div>
+
+      {isoles.length > 0 && (
+        <div class="mt-8">
+          <h3 class="mb-3 text-sm uppercase tracking-wide text-pierre/45">
+            Personnes documentées seules
+          </h3>
+          <ul class="flex flex-wrap gap-x-6 gap-y-2">
+            {isoles.map((n) => (
+              <li class="flex items-center gap-2 text-sm">
+                <span
+                  class="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={`background:${STYLE_STATUT[n.statut]};`}
+                  aria-hidden="true"
+                />
+                <a href={`/personnes/${n.id}/`} class="text-pierre/85 hover:text-laiton">{n.nom}</a>
+                {n.annees && <span class="donnee text-xs text-pierre/40">{n.annees}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )}
+</Base>

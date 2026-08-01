@@ -1,0 +1,38 @@
+{
+  "id": "arrouasse-roger-amram-1925",
+  "nom": "ARROUASSE",
+  "prenoms": ["Roger", "Amram"],
+  "prenomUsuel": "Roger",
+  "prenomHebraique": "Amram",
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": "1925-06-11",
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": null,
+    "statut": "prouve",
+    "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
+  },
+  "mariages": null,
+  "deces": {
+    "type": "deces",
+    "date": "2009-04-04",
+    "dateTexte": null,
+    "lieuId": "creteil",
+    "notes": null,
+    "statut": "prouve",
+    "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
+  },
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Rattachement à la ligne directe et aux autres Arrouasse de Tlemcen non établi — voir question ouverte n°4.",
+  "statut": "prouve",
+  "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
+}

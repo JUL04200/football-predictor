@@ -1,0 +1,59 @@
+{
+  "id": "arrouasse-maurice-1932",
+  "nom": "ARROUASSE",
+  "prenoms": ["Maurice"],
+  "prenomUsuel": "Maurice",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": "1932-07-31",
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "L'un de dix enfants.",
+    "statut": "prouve",
+    "sourceIds": ["iemj-maurice-arrouasse"]
+  },
+  "mariages": null,
+  "deces": {
+    "type": "deces",
+    "date": "2017",
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": null,
+    "statut": "prouve",
+    "sourceIds": ["iemj-maurice-arrouasse"]
+  },
+  "professions": [
+    {
+      "intitule": "Ouvrier chez Saint-Gobain",
+      "periode": "après 1962",
+      "sourceIds": ["iemj-maurice-arrouasse"]
+    },
+    {
+      "intitule": "Exploitant d'une laverie",
+      "periode": null,
+      "sourceIds": ["iemj-maurice-arrouasse"]
+    },
+    {
+      "intitule": "Traiteur cachère",
+      "periode": null,
+      "sourceIds": ["iemj-maurice-arrouasse"]
+    },
+    {
+      "intitule": "Animateur de l'émission Orientissimo sur Radio Shalom",
+      "periode": null,
+      "sourceIds": ["iemj-maurice-arrouasse"]
+    }
+  ],
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": ["arrouasse-serge"],
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Départ d'Oran en 1962 sur le Ville d'Oran. Rattachement à la ligne directe et aux autres Arrouasse de Tlemcen non établi — voir question ouverte n°4. Son fils Serge est l'un des cousins vivants pouvant éclairer ce rattachement — voir question ouverte n°5.",
+  "statut": "prouve",
+  "sourceIds": ["iemj-maurice-arrouasse"]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "arrouasse-jean",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Jean"
+  ],
+  "prenomUsuel": "Jean",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": "1938-03-14",
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Date transmise oralement par la famille, non recoupée avec un acte d'état civil. Lieu de naissance (Tlemcen) supposé mais non confirmé par acte — voir question ouverte n°1.",
+    "statut": "temoignage",
+    "sourceIds": [
+      "temoignage-famille-laurent-arrouasse"
+    ]
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Mariage avec Josette Amsellem. Date et lieu non retrouvés.",
+      "statut": "temoignage",
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
+    }
+  ],
+  "deces": null,
+  "professions": [
+    {
+      "intitule": "Professeur",
+      "periode": null,
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
+    },
+    {
+      "intitule": "Propriétaire de la boulangerie Le Pain de la Cité, Lyon",
+      "periode": null,
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
+    }
+  ],
+  "pereId": "arrouasse-amram",
+  "mereId": "arues-camille",
+  "conjointIds": [
+    "amsellem-josette"
+  ],
+  "enfantIds": [
+    "arrouasse-laurent-1963",
+    "arrouasse-karen",
+    "arrouasse-stephanie"
+  ],
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Fils d'Amram Arrouasse et de Camille Arues, d'après le témoignage familial : cela tranche la question longtemps ouverte de savoir si Amram était son père ou son grand-père. Trace à Lyon (registre du commerce, annuaires, dossier de rapatriement ANIFOM) non recherchée — voir question ouverte n°6.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

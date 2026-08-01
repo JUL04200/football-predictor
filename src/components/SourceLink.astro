@@ -1,0 +1,23 @@
+---
+import { getSource } from "../lib/data";
+
+interface Props {
+  sourceId: string;
+}
+
+const { sourceId } = Astro.props;
+const source = getSource(sourceId);
+---
+
+{
+  source ? (
+    <a
+      href={`/sources/${source.id}/`}
+      class="donnee text-[0.8rem] text-laiton underline decoration-laiton/40 underline-offset-2 hover:decoration-laiton"
+    >
+      {source.titre}
+    </a>
+  ) : (
+    <span class="donnee text-[0.8rem] text-red-400">source inconnue : {sourceId}</span>
+  )
+}

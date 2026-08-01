@@ -1,0 +1,30 @@
+{
+  "id": "arrouasse-josiane",
+  "nom": "ARROUASSE",
+  "prenoms": ["Josiane"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Dates de naissance et de décès inconnues ; élève à Tlemcen en 1930.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Figure aux palmarès scolaires de Tlemcen en 1930 (avec Fortunée Arrouasse). Filiation non établie.",
+  "statut": "prouve",
+  "sourceIds": ["echo-tlemcen-1930-06-17", "echo-tlemcen-1930-11-11"]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "amsellem-mardiche",
+  "nom": "AMSELLEM",
+  "prenoms": ["Mordechaï"],
+  "prenomUsuel": "Mardiche",
+  "prenomHebraique": "Mordechaï",
+  "variantesGraphiques": ["Mardochée", "Mardoché", "Maurice"],
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "alger",
+    "notes": "Date de naissance inconnue.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Mariage avec Léa Benchetrit. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["benchetrit-lea"],
+  "enfantIds": ["amsellem-josette"],
+  "branche": "amsellem",
+  "vivant": false,
+  "notes": "Le même homme apparaît sous plusieurs prénoms selon les documents et les usages familiaux : Mordechaï (hébraïque), Mardiche (usuel), Mardochée / Mardoché (variantes francisées), Maurice (prénom d'usage en France). Voir la FAQ.",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

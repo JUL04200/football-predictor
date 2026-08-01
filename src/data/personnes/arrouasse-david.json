@@ -1,0 +1,46 @@
+{
+  "id": "arrouasse-david",
+  "nom": "ARROUASSE",
+  "prenoms": ["David"],
+  "prenomUsuel": null,
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Domicilié à Tlemcen. Date de naissance non retrouvée.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": "tlemcen",
+      "notes": "Épouse Meriem Sakoun.",
+      "statut": "prouve",
+      "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+    }
+  ],
+  "deces": null,
+  "professions": [
+    {
+      "intitule": "Colporteur",
+      "periode": null,
+      "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+    }
+  ],
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["sakoun-meriem"],
+  "enfantIds": ["arrouasse-messaoud-1885"],
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Rattachement à la ligne directe (Jean Arrouasse) non démontré — voir question ouverte n°4.",
+  "statut": "prouve",
+  "sourceIds": ["anom-acte-mariage-david-arrouasse-meriem-sakoun"]
+}

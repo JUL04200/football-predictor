@@ -1,0 +1,52 @@
+{
+  "id": "arrouasse-karen",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Karen"
+  ],
+  "prenomUsuel": "Karen",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Épouse Ludovic Ajzenberg. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-jean",
+  "mereId": "amsellem-josette",
+  "conjointIds": [
+    "ajzenberg-ludovic"
+  ],
+  "enfantIds": [
+    "ajzenberg-noa",
+    "ajzenberg-dov",
+    "ajzenberg-aaron"
+  ],
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Sœur de Laurent Arrouasse. Porte le nom Ajzenberg par son mariage ; le nom de naissance ARROUASSE est retenu ici, comme pour toutes les fiches du site.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}
