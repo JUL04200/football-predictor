@@ -140,20 +140,40 @@ git commit -m "Ajout de Pierre Arrouasse"
 git push
 ```
 
-## Voir le site en local, avec toutes les personnes vivantes visibles
+## Les personnes vivantes
 
-Le site public masque les personnes vivantes. Pour un usage familial hors
-ligne où vous voulez tout voir (utile pour relire une fiche avant de la
-publier) :
+Par défaut, **ce site affiche toute la famille, personnes vivantes
+comprises**, avec leurs prénoms et leurs dates de naissance. C'est un choix
+délibéré : sans cela, les générations récentes n'apparaîtraient que sous la
+mention « Personne vivante » et l'arbre serait illisible.
+
+Conséquence à connaître : ces informations (y compris celles des enfants
+mineurs) sont visibles par toute personne qui a l'adresse du site, et les
+moteurs de recherche peuvent les indexer.
+
+### Revenir à un site anonymisé
+
+Si vous changez d'avis, une seule option suffit — aucune donnée n'est
+perdue, les fiches restent intactes, seul l'affichage change :
+
+```
+PRIVATE_MODE=true npm run build
+```
+
+Toute personne `vivant: true` devient alors une fiche « Personne vivante »
+sans nom ni date. Pour que ce soit permanent sur le site en ligne, il faut
+ajouter cette variable d'environnement dans les réglages de Netlify ou de
+Vercel (section « Environment variables »).
+
+### Voir le site sur votre ordinateur
 
 ```
 npm install
-PRIVATE_MODE=false npm run dev
+npm run dev
 ```
 
 Puis ouvrez l'adresse affichée dans le terminal (en général
-`http://localhost:4321`). Ne publiez jamais un site construit avec
-`PRIVATE_MODE=false` : cette option est réservée à l'usage local.
+`http://localhost:4321`).
 
 ## Autres commandes utiles
 
@@ -187,10 +207,11 @@ Puis ouvrez l'adresse affichée dans le terminal (en général
 - **Données** : `src/data/personnes/*.json`, `src/data/sources/*.json`,
   `src/data/lieux.json`, `src/data/evenements.json` (contexte historique).
   Aucune base de données ; tout est versionné dans Git.
-- **PRIVATE_MODE** : par défaut (`true`), toute personne `vivant: true` est
-  réduite à une fiche « Personne vivante » sans nom ni date. Mettre
-  `PRIVATE_MODE=false` (uniquement en local) affiche tout, pour l'usage
-  familial hors ligne.
+- **PRIVATE_MODE** : par défaut, le site affiche toute la famille, personnes
+  vivantes comprises (choix explicite du propriétaire du site).
+  `PRIVATE_MODE=true` réduit toute personne `vivant: true` à une fiche
+  « Personne vivante » sans nom ni date. Le drapeau n'agit qu'au rendu : les
+  fiches JSON restent inchangées.
 - **GEDCOM** : `scripts/export-gedcom.ts` / `scripts/import-gedcom.ts`,
   logique commune dans `scripts/gedcom-lib.ts`. Le format GEDCOM ne connaît
   pas nativement nos quatre statuts : ils sont encodés via le champ `QUAY`

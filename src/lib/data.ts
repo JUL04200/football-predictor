@@ -26,10 +26,12 @@ const fichiersSources = import.meta.glob("../data/sources/*.json", {
   import: "default",
 });
 
-// PRIVATE_MODE : par défaut (déploiement public), les personnes vivantes
-// sont réduites à une fiche minimale. En local, `PRIVATE_MODE=false npm run
-// build` (ou `dev`) affiche tout, pour l'usage familial hors ligne.
-export const MODE_PRIVE = process.env.PRIVATE_MODE !== "false";
+// PRIVATE_MODE : le propriétaire du site a explicitement demandé que toute
+// la famille, vivants compris, soit visible — c'est donc le comportement par
+// défaut. Pour revenir à un site public anonymisé (les personnes vivantes
+// réduites à une fiche « Personne vivante », sans nom ni date), construire
+// avec `PRIVATE_MODE=true npm run build`.
+export const MODE_PRIVE = process.env.PRIVATE_MODE === "true";
 
 function idDepuisChemin(chemin: string): string {
   const nom = chemin.split("/").pop() ?? "";

@@ -179,10 +179,11 @@ export const FAQ: CategorieFaq[] = [
     questions: [
       {
         id: "personnes-vivantes",
-        question: "Pourquoi les personnes vivantes n'apparaissent-elles pas ?",
+        question: "Les personnes vivantes apparaissent-elles sur ce site ?",
         reponse: [
-          "Par principe : personne ne devrait voir son nom complet, ses dates ou les détails de sa vie publiés en ligne sans son consentement explicite, a fortiori pour des enfants mineurs. Ce site réduit donc automatiquement toute personne marquée comme vivante à une fiche minimale (« Personne vivante »), sans nom, ni date, ni détail — seule sa position dans l'arbre (branche) reste visible.",
-          "Les données complètes existent dans le jeu de données pour l'usage généalogique familial, et peuvent être affichées intégralement en local via l'option de build réservée à cet usage hors ligne — jamais sur le site public.",
+          "Oui. Ce site a été conçu comme un arbre familial complet, et le choix a été fait d'y faire figurer toute la famille, personnes vivantes comprises, avec leurs prénoms et leurs dates. Sans cela, les générations récentes n'apparaîtraient que sous la mention « Personne vivante » et l'arbre perdrait sa lisibilité.",
+          "Ce choix a une conséquence à connaître : ces informations sont accessibles à toute personne disposant de l'adresse du site, et les moteurs de recherche peuvent les indexer. Le site conserve la possibilité technique de masquer automatiquement toutes les personnes vivantes (elles deviennent alors de simples fiches « Personne vivante », sans nom ni date) : il suffit de le reconstruire avec l'option prévue à cet effet, décrite dans le README.",
+          "Toute personne figurant sur ce site peut demander à en être retirée ou anonymisée — voir la question suivante.",
         ],
       },
       {
