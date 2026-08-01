@@ -25,14 +25,20 @@
     "statut": "prouve",
     "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
   },
-  "professions": null,
+  "professions": [
+    {
+      "intitule": "Médecin",
+      "periode": null,
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
   "pereId": null,
   "mereId": null,
   "conjointIds": null,
   "enfantIds": null,
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Rattachement à la ligne directe et aux autres Arrouasse de Tlemcen non établi — voir question ouverte n°4.",
+  "notes": "Cousin de Jean Arrouasse du côté d'Amram, d'après le témoignage familial. Aucun acte ne dit encore par quel couple passe ce cousinage : le lien n'est donc pas tracé dans l'arbre. Son acte de naissance du 11 juin 1925 à Tlemcen, dont la date est connue au jour près, nommerait ses parents et constitue à ce titre la piste la plus accessible du site — voir question ouverte n°4 et le journal de recherche.",
   "statut": "prouve",
   "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
 }
