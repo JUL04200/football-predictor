@@ -1,0 +1,51 @@
+{
+  "id": "arrouasse-jean",
+  "nom": "ARROUASSE",
+  "prenoms": ["Jean"],
+  "prenomUsuel": "Jean",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": "tlemcen",
+    "notes": "Date de naissance non retrouvée à ce jour. Question ouverte n°1.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Mariage avec Josette Amsellem. Date et lieu non retrouvés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": [
+    {
+      "intitule": "Professeur",
+      "periode": null,
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    },
+    {
+      "intitule": "Propriétaire de la boulangerie Le Pain de la Cité, Lyon",
+      "periode": null,
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["amsellem-josette"],
+  "enfantIds": ["arrouasse-laurent-1963"],
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Lien exact avec Abraham Arrouasse (père ou grand-père ?) non établi — voir question ouverte n°2. Trace à Lyon (registre du commerce, annuaires, dossier de rapatriement ANIFOM) non recherchée — voir question ouverte n°6.",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}
