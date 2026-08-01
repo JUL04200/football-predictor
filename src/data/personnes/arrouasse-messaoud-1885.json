@@ -61,10 +61,12 @@
   "conjointIds": [
     "boumendil-djohar-1891"
   ],
-  "enfantIds": null,
+  "enfantIds": [
+    "arrouasse-roger-amram-1925"
+  ],
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Frère d'Amram Arrouasse et de Joseph, d'après le témoignage familial, ce qui fait de lui l'oncle de Jean Arrouasse et raccorde la ligne directe au noyau documenté de Tlemcen. Les mentions de 1933 et 1947-1949 sont rattachées à ce Messaoud (né en 1885) par cohérence de nom, de lieu et de génération, non formellement recoupées entre elles ni avec l'acte de naissance.",
+  "notes": "Frère d'Amram Arrouasse et de Joseph, d'après le témoignage familial, ce qui fait de lui l'oncle de Jean Arrouasse et raccorde la ligne directe au noyau documenté de Tlemcen. La famille lui donne pour fils Roger Amram Arrouasse (1925-2009), médecin. Les mentions de 1933 et 1947-1949 sont rattachées à ce Messaoud par cohérence de nom, de lieu et de génération, non formellement recoupées entre elles ni avec l'acte de naissance.",
   "statut": "prouve",
   "sourceIds": [
     "anom-etat-civil-tlemcen-messaoud-arrouasse-1885"

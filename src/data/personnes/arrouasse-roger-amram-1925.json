@@ -1,7 +1,10 @@
 {
   "id": "arrouasse-roger-amram-1925",
   "nom": "ARROUASSE",
-  "prenoms": ["Roger", "Amram"],
+  "prenoms": [
+    "Roger",
+    "Amram"
+  ],
   "prenomUsuel": "Roger",
   "prenomHebraique": "Amram",
   "variantesGraphiques": null,
@@ -13,7 +16,9 @@
     "lieuId": "tlemcen",
     "notes": null,
     "statut": "prouve",
-    "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
+    "sourceIds": [
+      "insee-fichier-deces-roger-amram-arrouasse"
+    ]
   },
   "mariages": null,
   "deces": {
@@ -23,22 +28,29 @@
     "lieuId": "creteil",
     "notes": null,
     "statut": "prouve",
-    "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
+    "sourceIds": [
+      "insee-fichier-deces-roger-amram-arrouasse"
+    ]
   },
   "professions": [
     {
       "intitule": "Médecin",
       "periode": null,
-      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+      "sourceIds": [
+        "temoignage-famille-laurent-arrouasse"
+      ]
     }
   ],
-  "pereId": null,
+  "pereId": "arrouasse-messaoud-1885",
   "mereId": null,
   "conjointIds": null,
   "enfantIds": null,
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Cousin de Jean Arrouasse du côté d'Amram, d'après le témoignage familial. Aucun acte ne dit encore par quel couple passe ce cousinage : le lien n'est donc pas tracé dans l'arbre. Son acte de naissance du 11 juin 1925 à Tlemcen, dont la date est connue au jour près, nommerait ses parents et constitue à ce titre la piste la plus accessible du site — voir question ouverte n°4 et le journal de recherche.",
+  "notes": "Fils de Messaoud Arrouasse, d'après le témoignage familial — ce qui fait de lui le cousin germain de Jean Arrouasse, comme la famille le rapportait par ailleurs. Sa mère n'est pas nommée par le témoignage : Djohar Boumendil, épouse de Messaoud depuis 1911, en est l'hypothèse la plus simple mais rien ne l'établit, et le champ reste donc vide. Son acte de naissance du 11 juin 1925 à Tlemcen, dont la date est connue au jour près, nommerait ses deux parents et confirmerait la filiation.",
   "statut": "prouve",
-  "sourceIds": ["insee-fichier-deces-roger-amram-arrouasse"]
+  "sourceIds": [
+    "insee-fichier-deces-roger-amram-arrouasse"
+  ],
+  "statutFiliation": "temoignage"
 }

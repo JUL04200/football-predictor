@@ -171,6 +171,27 @@ export function calculerComposantes(): ComposanteArbre[] {
       for (const id of ids) uniteParPersonne.set(id, unite);
     }
 
+    // 3 bis. Un couple doit se tenir sur la rangée immédiatement au-dessus de
+    // ses enfants. Sans cela, des grands-parents dont l'enfant a épousé
+    // quelqu'un d'une génération plus basse restent deux rangées trop haut, et
+    // leur trait de filiation traverse la rangée intermédiaire — donnant à lire
+    // un lien de parenté qui n'existe pas.
+    for (let passe = 0; passe < uniteParCle.size + 2; passe++) {
+      let change = false;
+      for (const u of uniteParCle.values()) {
+        const generationsEnfants = u.enfants
+          .map((id) => uniteParPersonne.get(id)?.generation)
+          .filter((g): g is number => g !== undefined);
+        if (generationsEnfants.length === 0) continue;
+        const voulue = Math.min(...generationsEnfants) - 1;
+        if (voulue > u.generation) {
+          u.generation = voulue;
+          change = true;
+        }
+      }
+      if (!change) break;
+    }
+
     // 4. Placement horizontal : chaque parent est centré au-dessus de ses
     // enfants, les fratries se suivent de gauche à droite. C'est ce qui
     // donne la silhouette attendue d'un arbre généalogique.
