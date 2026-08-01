@@ -42,7 +42,10 @@
     "arues-camille"
   ],
   "enfantIds": [
-    "arrouasse-jean"
+    "arrouasse-jean",
+    "arrouasse-gerard",
+    "arrouasse-daniel",
+    "arrouasse-claude"
   ],
   "branche": "arrouasse",
   "vivant": false,

@@ -1,0 +1,45 @@
+{
+  "id": "arrouasse-claude",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Claude"
+  ],
+  "prenomUsuel": "Claude",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": {
+    "type": "deces",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Décès rapporté par la famille, sans date ni lieu.",
+    "statut": "temoignage",
+    "sourceIds": [
+      "temoignage-famille-laurent-arrouasse"
+    ]
+  },
+  "professions": null,
+  "pereId": "arrouasse-amram",
+  "mereId": "arues-camille",
+  "statutFiliation": "temoignage",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": false,
+  "notes": "Frère de Jean Arrouasse, d'après le témoignage familial. Décédé ; ni la date ni le lieu du décès n'ont été transmis.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

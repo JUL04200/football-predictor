@@ -1,0 +1,35 @@
+{
+  "id": "arrouasse-gerard",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Gérard"
+  ],
+  "prenomUsuel": "Gérard",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-amram",
+  "mereId": "arues-camille",
+  "statutFiliation": "temoignage",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Frère de Jean Arrouasse, d'après le témoignage familial. Il figurait auparavant parmi les « cousins » à contacter de la question ouverte n°5 : il est en réalité un frère de Jean, donc l'oncle de Laurent.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

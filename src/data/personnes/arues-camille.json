@@ -40,7 +40,10 @@
     "arrouasse-amram"
   ],
   "enfantIds": [
-    "arrouasse-jean"
+    "arrouasse-jean",
+    "arrouasse-gerard",
+    "arrouasse-daniel",
+    "arrouasse-claude"
   ],
   "branche": "alliee",
   "vivant": false,

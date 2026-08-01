@@ -265,7 +265,26 @@ export function calculerComposantes(): ComposanteArbre[] {
         return !aPere && !aMere;
       })
     );
-    const departs = racines.length > 0 ? racines : [[...uniteParCle.values()][0]];
+    /** Nombre d'unités atteignables en descendant depuis une unité donnée. */
+    function tailleDescendance(u: Unite, vues = new Set<string>()): number {
+      if (vues.has(u.cle)) return 0;
+      vues.add(u.cle);
+      let total = 1;
+      for (const enfantId of u.enfants) {
+        const ue = uniteParPersonne.get(enfantId);
+        if (ue) total += tailleDescendance(ue, vues);
+      }
+      return total;
+    }
+
+    // La racine la plus féconde est parcourue en premier : elle pose ainsi
+    // l'ossature de l'arbre, et ses enfants sont placés côte à côte. Commencer
+    // par une petite racine reviendrait à placer une partie de la fratrie
+    // ailleurs, séparant des frères et sœurs qui devraient se suivre.
+    const departs =
+      racines.length > 0
+        ? racines.slice().sort((a, b) => tailleDescendance(b) - tailleDescendance(a))
+        : [[...uniteParCle.values()][0]];
 
     let curseurRacines = 0;
     for (const racine of departs) {

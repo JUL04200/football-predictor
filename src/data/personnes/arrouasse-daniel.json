@@ -1,0 +1,37 @@
+{
+  "id": "arrouasse-daniel",
+  "nom": "ARROUASSE",
+  "prenoms": [
+    "Daniel"
+  ],
+  "prenomUsuel": "Daniel",
+  "prenomHebraique": null,
+  "variantesGraphiques": [
+    "ACHACHE"
+  ],
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": null,
+  "deces": null,
+  "professions": null,
+  "pereId": "arrouasse-amram",
+  "mereId": "arues-camille",
+  "statutFiliation": "temoignage",
+  "conjointIds": null,
+  "enfantIds": null,
+  "branche": "arrouasse",
+  "vivant": true,
+  "notes": "Frère de Jean Arrouasse, d'après le témoignage familial. Il porte ensuite le nom ACHACHE ; la raison et la date de ce changement de nom ne sont pas connues, et restent à documenter. Le nom de naissance ARROUASSE est retenu ici, comme pour toutes les fiches du site, et ACHACHE est enregistré en variante afin qu'une recherche sur l'un ou l'autre le retrouve.",
+  "statut": "temoignage",
+  "sourceIds": [
+    "temoignage-famille-laurent-arrouasse"
+  ]
+}

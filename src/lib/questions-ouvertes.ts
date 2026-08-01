@@ -58,11 +58,16 @@ export const QUESTIONS_OUVERTES: QuestionOuverte[] = [
   {
     id: "cousins-vivants",
     question:
-      "Que peuvent nous apprendre les cousins vivants — Serge Arrouasse, Gérard Arrouasse, la descendance Bénichou ?",
+      "Que peuvent nous apprendre les proches vivants — les frères de Jean, Serge Arrouasse, la descendance Bénichou ?",
     contexte:
-      "Serge Arrouasse (fils de Maurice Arrouasse, 1932-2017) est identifié dans les données. Gérard Arrouasse et la descendance Bénichou (par le mariage d'Alice Arrouasse en 1937) sont mentionnés mais aucune fiche n'a pu être créée faute de données suffisantes.",
+      "Gérard Arrouasse et Daniel Arrouasse, devenu Achache, sont les frères vivants de Jean : ce sont eux qui ont connu Amram et Camille de leur vivant, et donc les mieux placés pour donner les dates, les lieux et les noms qui manquent encore en haut de l'arbre. Serge Arrouasse, fils de Maurice (1932-2017), reste le seul contact possible du côté de la branche non rattachée. La descendance Bénichou, issue du mariage d'Alice Arrouasse en 1937, n'est documentée par aucune fiche faute d'éléments.",
     statut: "ouverte",
-    personnesLiees: ["arrouasse-serge", "arrouasse-maurice-1932"],
+    personnesLiees: [
+      "arrouasse-gerard",
+      "arrouasse-daniel",
+      "arrouasse-serge",
+      "arrouasse-maurice-1932",
+    ],
   },
   {
     id: "jean-lyon",
