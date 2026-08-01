@@ -1,0 +1,40 @@
+{
+  "id": "arues-camille",
+  "nom": "ARUES",
+  "prenoms": ["Camille"],
+  "prenomUsuel": "Camille",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "F",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance inconnus.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Épouse Abraham Arrouasse. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["arrouasse-abraham"],
+  "enfantIds": ["arrouasse-jean"],
+  "branche": "alliee",
+  "vivant": false,
+  "notes": "Mère de Jean Arrouasse, d'après le témoignage familial. L'orthographe du nom ARUES reste à confirmer par un acte : elle est proche des variantes AROUAS / ARWAS / ROUAS relevées autour du nom ARROUASSE (voir la page de la branche Arrouasse). Tant qu'aucun acte ne le confirme, rien ne permet d'affirmer qu'il s'agit du même nom.",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

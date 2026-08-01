@@ -2,7 +2,7 @@
   "id": "arrouasse-abraham",
   "nom": "ARROUASSE",
   "prenoms": ["Abraham"],
-  "prenomUsuel": null,
+  "prenomUsuel": "Abraham",
   "prenomHebraique": null,
   "variantesGraphiques": null,
   "sexe": "M",
@@ -11,20 +11,30 @@
     "date": null,
     "dateTexte": null,
     "lieuId": "tlemcen",
-    "notes": "Dates de naissance et de décès inconnues.",
+    "notes": "Dates de naissance et de décès inconnues. Retrouver son acte de naissance à Tlemcen donnerait le nom de ses propres parents, et permettrait peut-être de raccrocher la ligne au noyau David → Messaoud.",
     "statut": "inconnu",
     "sourceIds": []
   },
-  "mariages": null,
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Épouse Camille Arues. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
   "deces": null,
   "professions": null,
   "pereId": null,
   "mereId": null,
-  "conjointIds": null,
-  "enfantIds": null,
+  "conjointIds": ["arues-camille"],
+  "enfantIds": ["arrouasse-jean"],
   "branche": "arrouasse",
   "vivant": false,
-  "notes": "Lien exact avec Jean Arrouasse non établi : père ou grand-père ? Voir question ouverte n°2. Aucun lien structurel (pereId/enfantIds) n'est posé dans les données tant que la génération n'est pas confirmée.",
+  "notes": "Père de Jean Arrouasse, d'après le témoignage familial. Ses propres parents restent inconnus : c'est aujourd'hui le point le plus haut de la ligne directe côté Arrouasse, et le verrou de la question ouverte n°4.",
   "statut": "temoignage",
   "sourceIds": ["temoignage-famille-laurent-arrouasse"]
 }

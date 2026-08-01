@@ -1,0 +1,40 @@
+{
+  "id": "ajzenberg-ludovic",
+  "nom": "AJZENBERG",
+  "prenoms": ["Ludovic"],
+  "prenomUsuel": "Ludovic",
+  "prenomHebraique": null,
+  "variantesGraphiques": null,
+  "sexe": "M",
+  "naissance": {
+    "type": "naissance",
+    "date": null,
+    "dateTexte": null,
+    "lieuId": null,
+    "notes": "Date et lieu de naissance non renseignés.",
+    "statut": "inconnu",
+    "sourceIds": []
+  },
+  "mariages": [
+    {
+      "type": "mariage",
+      "date": null,
+      "dateTexte": null,
+      "lieuId": null,
+      "notes": "Époux de Karen Arrouasse. Date et lieu non renseignés.",
+      "statut": "temoignage",
+      "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+    }
+  ],
+  "deces": null,
+  "professions": null,
+  "pereId": null,
+  "mereId": null,
+  "conjointIds": ["arrouasse-karen"],
+  "enfantIds": ["ajzenberg-noa", "ajzenberg-dov", "ajzenberg-aaron"],
+  "branche": "alliee",
+  "vivant": true,
+  "notes": "Époux de Karen Arrouasse. Son ascendance est hors du périmètre de ce site, consacré à la ligne paternelle Arrouasse et Amsellem–Benchetrit.",
+  "statut": "temoignage",
+  "sourceIds": ["temoignage-famille-laurent-arrouasse"]
+}

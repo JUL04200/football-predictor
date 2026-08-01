@@ -20,13 +20,13 @@
   "mariages": null,
   "deces": null,
   "professions": null,
-  "pereId": null,
+  "pereId": "ajzenberg-ludovic",
   "mereId": "arrouasse-karen",
   "conjointIds": null,
   "enfantIds": null,
   "branche": "arrouasse",
   "vivant": true,
-  "notes": "Enfant de Karen Arrouasse, donc petit-enfant de Jean Arrouasse et Josette Amsellem. Le prénom du père n'a pas été transmis : aucune fiche n'est créée pour lui et le champ pereId reste vide.",
+  "notes": "Enfant de Ludovic Ajzenberg et de Karen Arrouasse, donc petit-enfant de Jean Arrouasse et Josette Amsellem.",
   "statut": "temoignage",
   "sourceIds": [
     "temoignage-famille-laurent-arrouasse"

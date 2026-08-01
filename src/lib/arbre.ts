@@ -196,6 +196,12 @@ export function calculerComposantes(): ComposanteArbre[] {
       }
     }
 
+    // Second couple de grands-parents : quand on l'atteint, son enfant a déjà
+    // été posé sous l'autre couple. Le placer à la suite l'enverrait à
+    // l'extrémité droite de l'arbre ; on le repositionne donc après coup,
+    // au-dessus de son propre enfant.
+    const aRecentrer: Unite[] = [];
+
     /** Place l'unité et sa descendance à partir de xDebut ; renvoie la place occupée. */
     function placer(u: Unite, xDebut: number): number {
       placees.add(u.cle);
@@ -203,6 +209,12 @@ export function calculerComposantes(): ComposanteArbre[] {
       const lu = largeurUnite(u);
 
       if (enfants.length === 0) {
+        const aDesEnfantsDejaPoses = u.enfants.some((id) => uniteParPersonne.has(id));
+        if (aDesEnfantsDejaPoses) {
+          aRecentrer.push(u);
+          u.x = xDebut;
+          return 0;
+        }
         u.x = xDebut;
         return lu + ESPACE_FRATRIE;
       }
@@ -241,6 +253,36 @@ export function calculerComposantes(): ComposanteArbre[] {
     // ajoutée à droite plutôt que superposée à l'origine.
     for (const u of uniteParCle.values()) {
       if (!placees.has(u.cle)) curseurRacines += placer(u, curseurRacines);
+    }
+
+    /** Abscisse de la boîte d'une personne, déduite de son unité. */
+    function xPersonne(id: string): number {
+      const u = uniteParPersonne.get(id)!;
+      return u.x + u.ids.indexOf(id) * (LARGEUR_BOITE + ESPACE_COUPLE);
+    }
+
+    // Repositionnement des seconds couples de grands-parents : au-dessus de
+    // leur propre enfant, puis décalés vers la droite tant qu'ils
+    // chevaucheraient un couple déjà posé sur la même ligne.
+    const posees: Unite[] = [...uniteParCle.values()].filter((u) => !aRecentrer.includes(u));
+    for (const u of aRecentrer) {
+      const centresEnfants = u.enfants
+        .filter((id) => uniteParPersonne.has(id))
+        .map((id) => xPersonne(id) + LARGEUR_BOITE / 2);
+      if (centresEnfants.length === 0) continue;
+
+      const cible = (Math.min(...centresEnfants) + Math.max(...centresEnfants)) / 2;
+      let x = cible - largeurUnite(u) / 2;
+      const voisinesDeLigne = posees
+        .filter((autre) => autre.generation === u.generation)
+        .sort((a, b) => a.x - b.x);
+      for (const autre of voisinesDeLigne) {
+        const finAutre = autre.x + largeurUnite(autre);
+        const chevauche = x < finAutre + ESPACE_FRATRIE && x + largeurUnite(u) + ESPACE_FRATRIE > autre.x;
+        if (chevauche) x = finAutre + ESPACE_FRATRIE;
+      }
+      u.x = x;
+      posees.push(u);
     }
 
     // 5. Conversion des unités en noeuds affichables.

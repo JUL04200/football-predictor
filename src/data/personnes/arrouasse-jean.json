@@ -39,13 +39,13 @@
       "sourceIds": ["temoignage-famille-laurent-arrouasse"]
     }
   ],
-  "pereId": null,
-  "mereId": null,
+  "pereId": "arrouasse-abraham",
+  "mereId": "arues-camille",
   "conjointIds": ["amsellem-josette"],
   "enfantIds": ["arrouasse-laurent-1963", "arrouasse-karen", "arrouasse-stephanie"],
   "branche": "arrouasse",
   "vivant": true,
-  "notes": "Lien exact avec Abraham Arrouasse (père ou grand-père ?) non établi — voir question ouverte n°2. Trace à Lyon (registre du commerce, annuaires, dossier de rapatriement ANIFOM) non recherchée — voir question ouverte n°6.",
+  "notes": "Fils d'Abraham Arrouasse et de Camille Arues, d'après le témoignage familial : cela tranche la question longtemps ouverte de savoir si Abraham était son père ou son grand-père. Trace à Lyon (registre du commerce, annuaires, dossier de rapatriement ANIFOM) non recherchée — voir question ouverte n°6.",
   "statut": "temoignage",
   "sourceIds": ["temoignage-famille-laurent-arrouasse"]
 }
