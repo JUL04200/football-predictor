@@ -42,6 +42,9 @@ const chemin = Astro.url.pathname;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{titre} — Arrouasse · Amsellem</title>
     <meta name="description" content={description} />
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body>
     <a
@@ -66,8 +69,10 @@ const chemin = Astro.url.pathname;
                   href={lien.href}
                   aria-current={chemin === lien.href ? "page" : undefined}
                   class:list={[
-                    "no-underline hover:text-laiton",
-                    chemin === lien.href ? "text-laiton" : "text-pierre/70",
+                    "relative py-1 no-underline after:absolute after:-bottom-[1px] after:left-0 after:h-px after:bg-laiton after:transition-all after:duration-300",
+                    chemin === lien.href
+                      ? "text-laiton after:w-full"
+                      : "text-pierre/70 after:w-0 hover:text-laiton hover:after:w-full",
                   ]}
                 >
                   {lien.label}
@@ -80,7 +85,7 @@ const chemin = Astro.url.pathname;
         <button
           type="button"
           id="bouton-menu"
-          class="no-print flex items-center gap-1.5 border border-pierre/15 px-2.5 py-1.5 text-sm text-pierre/80 hover:border-laiton hover:text-laiton md:hidden"
+          class="no-print flex items-center gap-1.5 rounded-full border border-pierre/15 px-3 py-1.5 text-sm text-pierre/80 hover:border-laiton hover:text-laiton md:hidden"
           aria-expanded="false"
           aria-controls="menu-mobile"
         >
@@ -130,6 +135,41 @@ const chemin = Astro.url.pathname;
         const ouvert = menu?.classList.toggle("hidden") === false;
         bouton.setAttribute("aria-expanded", String(ouvert));
       });
+
+      // Les <details> repliés (FAQ, sources) doivent sortir ouverts à
+      // l'impression : la fermeture visuelle est un confort d'écran, pas
+      // une donnée à masquer sur papier.
+      let detailsAFermerApresImpression: HTMLDetailsElement[] = [];
+      window.addEventListener("beforeprint", () => {
+        detailsAFermerApresImpression = [...document.querySelectorAll("details:not([open])")] as HTMLDetailsElement[];
+        detailsAFermerApresImpression.forEach((d) => (d.open = true));
+      });
+      window.addEventListener("afterprint", () => {
+        detailsAFermerApresImpression.forEach((d) => (d.open = false));
+        detailsAFermerApresImpression = [];
+      });
+
+      // Apparition douce des blocs principaux au défilement (dégradation
+      // silencieuse : sans IntersectionObserver, tout reste visible).
+      if ("IntersectionObserver" in window) {
+        const blocs = document.querySelectorAll("#contenu > *");
+        const observateur = new IntersectionObserver(
+          (entrees) => {
+            for (const entree of entrees) {
+              if (entree.isIntersecting) {
+                entree.target.classList.add("visible");
+                observateur.unobserve(entree.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px 200px 0px", threshold: 0.01 }
+        );
+        blocs.forEach((bloc, i) => {
+          bloc.classList.add("au-scroll");
+          (bloc as HTMLElement).style.transitionDelay = `${Math.min(i, 4) * 60}ms`;
+          observateur.observe(bloc);
+        });
+      }
     </script>
   </body>
 </html>

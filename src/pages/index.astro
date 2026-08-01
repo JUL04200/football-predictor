@@ -9,9 +9,11 @@ const questionsAffichees = QUESTIONS_OUVERTES.slice(0, 3);
 ---
 
 <Base titre="Accueil">
-  <section class="fond-zellige -mx-4 mb-20 border-b border-laiton/10 px-4 py-16 sm:-mx-6 sm:px-6">
+  <section class="fond-zellige -mx-4 mb-20 border-b border-laiton/10 px-4 py-20 sm:-mx-6 sm:px-6">
     <div class="mx-auto max-w-xl text-center">
-      <Khatem taille={36} class="mx-auto mb-6 text-laiton" titre="Khatem" />
+      <div class="halo-laiton mx-auto mb-2 flex h-20 w-20 items-center justify-center">
+        <Khatem taille={40} class="text-laiton" titre="Khatem" />
+      </div>
       <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">
         Arrouasse (Tlemcen) &middot; Amsellem–Benchetrit (Alger)
       </h1>
@@ -20,9 +22,9 @@ const questionsAffichees = QUESTIONS_OUVERTES.slice(0, 3);
         France en 1962. Ce site documente ce qui est prouvé, ce qui est transmis, ce qui est
         supposé — et ce qu'on ignore encore.
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
-        <a href="/arbre/" class="lien-discret">Voir l'arbre interactif →</a>
-        <a href="/questions-ouvertes/" class="lien-discret">Les questions ouvertes →</a>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a href="/arbre/" class="bouton-plein">Voir l'arbre interactif</a>
+        <a href="/questions-ouvertes/" class="bouton-fantome">Les questions ouvertes</a>
       </div>
     </div>
   </section>

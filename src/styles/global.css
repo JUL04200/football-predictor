@@ -1,3 +1,7 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -42,6 +46,10 @@
 
   a {
     @apply underline-offset-2;
+  }
+
+  a, button, summary, input {
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, opacity 180ms ease, transform 180ms ease;
   }
 
   :focus-visible {
@@ -92,6 +100,52 @@
   details[open] > summary::before {
     content: "−";
   }
+  details > summary + * {
+    animation: apparition 260ms ease both;
+  }
+
+  .bouton-plein {
+    @apply rounded-full border border-laiton bg-laiton px-5 py-2.5 text-sm font-medium text-nuit no-underline;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+  .bouton-plein:hover {
+    @apply bg-laiton/90;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(200, 155, 74, 0.5);
+  }
+  .bouton-fantome {
+    @apply rounded-full border border-pierre/25 px-5 py-2.5 text-sm font-medium text-pierre no-underline;
+    transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  .bouton-fantome:hover {
+    @apply border-laiton text-laiton;
+    transform: translateY(-1px);
+  }
+
+  .halo-laiton {
+    background: radial-gradient(closest-side, rgba(200, 155, 74, 0.28), transparent 70%);
+  }
+
+  html.js .au-scroll {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 420ms ease, transform 420ms ease;
+  }
+  html.js .au-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.js .au-scroll {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@keyframes apparition {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media print {
@@ -102,6 +156,17 @@
 
   nav, footer, .no-print {
     display: none !important;
+  }
+  .au-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  details > summary::before {
+    content: none !important;
+  }
+  details > summary + * {
+    animation: none !important;
   }
   body {
     background: white !important;
