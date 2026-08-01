@@ -32,38 +32,30 @@ const personnes = toutesLesPersonnes().filter((p) => p.branche === branche.slug)
     {branche.histoire.map((p) => <p class="text-pierre/80">{p}</p>)}
   </section>
 
-  <section class="mb-10 max-w-2xl">
+  <section class="mb-10 max-w-2xl border-l-2 border-pierre/15 pl-4">
     <h2 class="mb-2 text-xl font-semibold tracking-tight">Le nom</h2>
-    <p class="carte-fiche text-sm text-pierre/80">{branche.onomastique}</p>
+    <p class="text-sm text-pierre/75">{branche.onomastique}</p>
   </section>
 
   {branche.metiers.length > 0 && (
-    <section class="mb-10">
-      <h2 class="mb-3 text-xl font-semibold tracking-tight">Métiers</h2>
-      <ul class="flex flex-wrap gap-2">
-        {branche.metiers.map((m) => (
-          <li class="donnee border border-pierre/20 px-2 py-1 text-xs text-pierre/70">{m}</li>
-        ))}
-      </ul>
+    <section class="mb-10 max-w-2xl">
+      <h2 class="mb-2 text-xl font-semibold tracking-tight">Métiers</h2>
+      <p class="donnee text-sm text-pierre/65">{branche.metiers.join(" · ")}</p>
     </section>
   )}
 
   {branche.famillesAlliees.length > 0 && (
-    <section class="mb-10">
-      <h2 class="mb-3 text-xl font-semibold tracking-tight">Familles alliées</h2>
-      <ul class="flex flex-wrap gap-2">
-        {branche.famillesAlliees.map((f) => (
-          <li class="border border-vert/30 bg-vert/5 px-2 py-1 text-xs text-vert">{f}</li>
-        ))}
-      </ul>
+    <section class="mb-10 max-w-2xl">
+      <h2 class="mb-2 text-xl font-semibold tracking-tight">Familles alliées</h2>
+      <p class="text-sm text-vert">{branche.famillesAlliees.join(" · ")}</p>
     </section>
   )}
 
   <section>
-    <h2 class="mb-3 text-xl font-semibold tracking-tight">Personnes de cette branche ({personnes.length})</h2>
-    <ul class="grid gap-2 sm:grid-cols-2">
+    <h2 class="mb-2 text-xl font-semibold tracking-tight">Personnes de cette branche ({personnes.length})</h2>
+    <ul class="divide-y divide-pierre/10">
       {personnes.map((p) => (
-        <li class="carte-fiche flex items-center justify-between">
+        <li class="flex items-center justify-between py-3">
           <a href={`/personnes/${p.id}/`} class="text-pierre hover:text-laiton">{nomAffiche(p)}</a>
           <StatutBadge statut={p.statut} />
         </li>

@@ -50,7 +50,7 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
 <Base titre={titrePage}>
   {
     affichee.masquee ? (
-      <section class="carte-fiche max-w-xl">
+      <section class="max-w-xl border-l-2 border-pierre/15 pl-4">
         <StatutBadge statut="inconnu" />
         <h1 class="mt-3 text-2xl font-semibold tracking-tight">Personne vivante</h1>
         <p class="mt-3 text-sm text-pierre/70">
@@ -80,7 +80,8 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
           )}
         </header>
 
-        <section class="mb-10 grid gap-4 sm:grid-cols-2">
+        <div class="divide-y divide-pierre/10 [&>section]:py-8 first:[&>section]:pt-0">
+        <section class="grid gap-x-10 gap-y-6 sm:grid-cols-2">
           {personne.naissance && <EvenementBloc evenement={personne.naissance} libelle="Naissance" />}
           {personne.deces && <EvenementBloc evenement={personne.deces} libelle="Décès" />}
           {(personne.mariages ?? []).map((m, i) => (
@@ -89,11 +90,11 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
         </section>
 
         {personne.professions && personne.professions.length > 0 && (
-          <section class="mb-10">
+          <section>
             <h2 class="mb-3 text-xl font-semibold tracking-tight">Professions</h2>
-            <ul class="divide-y divide-pierre/10 border-y border-pierre/10">
+            <ul class="divide-y divide-pierre/10">
               {personne.professions.map((prof) => (
-                <li class="py-3">
+                <li class="py-3 first:pt-0">
                   <p class="text-pierre">{prof.intitule}</p>
                   {prof.periode && <p class="donnee text-xs text-pierre/50">{prof.periode}</p>}
                   <div class="mt-1.5">
@@ -105,7 +106,7 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
           </section>
         )}
 
-        <section class="mb-10 grid gap-6 sm:grid-cols-2">
+        <section class="grid gap-6 sm:grid-cols-2 sm:gap-x-10 sm:divide-x sm:divide-pierre/10">
           <div>
             <h2 class="mb-3 text-xl font-semibold tracking-tight">Famille</h2>
             <dl class="space-y-3 text-sm">
@@ -169,18 +170,19 @@ const titrePage = affichee.masquee ? "Personne vivante" : nomAffiche(personne);
         </section>
 
         {personne.notes && (
-          <section class="mb-10 border-l-2 border-pierre/15 pl-4">
+          <section>
             <h2 class="mb-2 text-xl font-semibold tracking-tight">Notes</h2>
             <p class="text-sm text-pierre/75">{personne.notes}</p>
           </section>
         )}
 
-        <section class="mb-10">
+        <section>
           <h2 class="mb-3 text-xl font-semibold tracking-tight">Toutes les sources</h2>
           <SourcesListe sourceIds={toutesSourceIds} />
         </section>
+        </div>
 
-        <section class="mb-10 border-l-2 border-laiton/30 pl-4">
+        <section class="mt-8 border-l-2 border-laiton/30 pl-4">
           <h2 class="mb-2 text-xl font-semibold tracking-tight text-pierre/80">Ce qu'on ne sait pas encore</h2>
           {trous.length > 0 ? (
             <ul class="list-inside list-disc space-y-1 text-sm text-pierre/60">

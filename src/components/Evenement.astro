@@ -13,9 +13,9 @@ const { evenement, libelle } = Astro.props;
 const lieu = getLieu(evenement.lieuId);
 ---
 
-<div class="carte-fiche">
-  <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
-    <h3 class="text-sm uppercase tracking-wide text-pierre/70">{libelle}</h3>
+<div>
+  <div class="mb-1.5 flex flex-wrap items-center justify-between gap-2">
+    <h3 class="text-xs uppercase tracking-wide text-pierre/50">{libelle}</h3>
     <StatutBadge statut={evenement.statut} />
   </div>
   <p class="donnee text-lg text-pierre">

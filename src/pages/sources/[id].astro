@@ -14,7 +14,7 @@ const personnes = personnesDocumenteesPar(source.id);
 <Base titre={source.titre}>
   <p class="mb-4"><a href="/sources/" class="text-sm text-laiton hover:underline">← Toutes les sources</a></p>
   <h1 class="mb-4 text-2xl font-semibold tracking-tight">{source.titre}</h1>
-  <dl class="carte-fiche mb-8 grid gap-3 text-sm sm:grid-cols-2">
+  <dl class="mb-8 grid gap-4 border-y border-pierre/10 py-5 text-sm sm:grid-cols-2">
     <div>
       <dt class="text-pierre/50">Type</dt>
       <dd class="donnee">{source.type}</dd>

@@ -162,10 +162,10 @@ const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
             .sort((a, b) => a.generation - b.generation || a.x - b.x)
             .map((n) => (
               <li
-                class="noeud-colonne carte-fiche"
+                class="noeud-colonne py-1 pl-3 text-sm"
                 data-branche={n.branche}
                 data-statut={n.statut}
-                style={`margin-left: ${n.generation * 12}px; border-left: 3px solid ${STYLE_STATUT[n.statut]};`}
+                style={`margin-left: ${n.generation * 12}px; border-left: 2px solid ${STYLE_STATUT[n.statut]};`}
               >
                 <a href={`/personnes/${n.id}/`} class="text-pierre hover:text-laiton">{n.nom}</a>
                 <span class="donnee ml-2 text-xs text-pierre/40">{n.branche}</span>
@@ -177,19 +177,18 @@ const STATUTS = ["prouve", "temoignage", "hypothese", "inconnu"] as const;
   </div>
 
   {isoles.length > 0 && (
-    <div class="mt-10">
+    <div class="mt-10 border-t border-pierre/10 pt-6">
       <h2 class="mb-1 text-sm uppercase tracking-wide text-pierre/50">Personnes non reliées</h2>
       <p class="mb-3 text-xs text-pierre/40">Aucun lien connu vers les groupes ci-dessus.</p>
-      <ul class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
         {isoles.map((n) => (
-          <li
-            class="noeud noeud-colonne flex items-center justify-between gap-2 rounded-md border border-pierre/10 bg-zellige/40 px-3 py-2 text-sm"
-            data-branche={n.branche}
-            data-statut={n.statut}
-            style={`border-left: 3px solid ${STYLE_STATUT[n.statut]};`}
-          >
-            <a href={`/personnes/${n.id}/`} class="text-pierre hover:text-laiton">{n.nom}</a>
-            <span class="donnee text-[0.65rem] text-pierre/35">{n.branche}</span>
+          <li class="noeud flex items-center gap-1.5 text-sm" data-branche={n.branche} data-statut={n.statut}>
+            <span
+              class="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+              style={`background:${STYLE_STATUT[n.statut]};`}
+              aria-hidden="true"
+            />
+            <a href={`/personnes/${n.id}/`} class="text-pierre/85 hover:text-laiton">{n.nom}</a>
           </li>
         ))}
       </ul>

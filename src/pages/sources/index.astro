@@ -26,28 +26,28 @@ const LIBELLES_TYPE: Record<string, string> = {
     {sources.length} sources. Chaque donnée « Prouvé » du site pointe vers l'une d'elles.
   </p>
 
-  <ul class="space-y-4">
+  <ul class="divide-y divide-pierre/10">
     {sources.map((s) => {
       const personnes = personnesDocumenteesPar(s.id);
       return (
-        <li id={s.id} class="carte-fiche scroll-mt-24">
+        <li id={s.id} class="scroll-mt-24 py-5">
           <div class="mb-1 flex flex-wrap items-center gap-2">
-            <span class="donnee rounded-sm border border-pierre/30 px-1.5 py-0.5 text-[0.65rem] uppercase text-pierre/60">
+            <span class="donnee text-[0.65rem] uppercase text-pierre/45">
               {LIBELLES_TYPE[s.type] ?? s.type}
             </span>
-            {s.date && <span class="donnee text-xs text-pierre/50">{s.date}</span>}
+            {s.date && <span class="donnee text-xs text-pierre/40">· {s.date}</span>}
           </div>
           <h2 class="text-lg text-pierre">
             <a href={`/sources/${s.id}/`} class="hover:text-laiton">{s.titre}</a>
           </h2>
-          {s.depot && <p class="mt-1 text-sm text-pierre/60">{s.depot}{s.cote ? ` — ${s.cote}` : ""}</p>}
+          {s.depot && <p class="mt-1 text-sm text-pierre/55">{s.depot}{s.cote ? ` — ${s.cote}` : ""}</p>}
           {s.notes && <p class="mt-2 text-sm text-pierre/70">{s.notes}</p>}
           {personnes.length > 0 && (
-            <p class="mt-3 text-sm text-pierre/60">
+            <p class="mt-3 text-sm text-pierre/55">
               Documente :{" "}
               {personnes.map((p, i) => (
                 <>
-                  <a class="text-laiton hover:underline" href={`/personnes/${p.id}/`}>{nomAffiche(p)}</a>
+                  <a class="lien-discret" href={`/personnes/${p.id}/`}>{nomAffiche(p)}</a>
                   {i < personnes.length - 1 ? ", " : ""}
                 </>
               ))}

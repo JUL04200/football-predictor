@@ -4,9 +4,9 @@ import { QUESTIONS_OUVERTES, LIBELLES_STATUT_QUESTION } from "../lib/questions-o
 import { getPersonne, nomAffiche } from "../lib/data";
 
 const STYLE_STATUT: Record<string, string> = {
-  ouverte: "border-laiton text-laiton bg-laiton/10",
-  en_cours: "border-vert text-vert bg-vert/10",
-  resolue: "border-pierre/40 text-pierre/60 bg-transparent",
+  ouverte: "text-laiton",
+  en_cours: "text-vert",
+  resolue: "text-pierre/50",
 };
 ---
 
@@ -17,12 +17,12 @@ const STYLE_STATUT: Record<string, string> = {
     comblé par une supposition tant que la réponse n'est pas trouvée.
   </p>
 
-  <ol class="space-y-6">
+  <ol class="divide-y divide-pierre/10">
     {QUESTIONS_OUVERTES.map((q, i) => (
-      <li class="carte-fiche">
+      <li class="py-6 first:pt-0">
         <div class="mb-2 flex flex-wrap items-center gap-3">
           <span class="donnee text-xs text-pierre/40">n°{i + 1}</span>
-          <span class:list={["donnee inline-block rounded-sm border px-1.5 py-0.5 text-[0.7rem] uppercase", STYLE_STATUT[q.statut]]}>
+          <span class:list={["donnee text-[0.7rem] uppercase", STYLE_STATUT[q.statut]]}>
             {LIBELLES_STATUT_QUESTION[q.statut]}
           </span>
         </div>

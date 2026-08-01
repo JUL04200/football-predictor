@@ -11,9 +11,9 @@ const entrees = (await getCollection("journal")).sort((a, b) => b.data.date.loca
     Une session de recherche, une entrée. Y compris quand elle n'aboutit à rien : un
     échec documenté évite de reparcourir la même impasse deux fois.
   </p>
-  <ul class="space-y-4">
+  <ul class="divide-y divide-pierre/10">
     {entrees.map((e) => (
-      <li class="carte-fiche">
+      <li class="py-5 first:pt-0">
         <p class="donnee text-xs text-pierre/50">{e.data.date}</p>
         <h2 class="mt-1 text-lg">
           <a href={`/journal/${e.slug}/`} class="text-pierre hover:text-laiton">{e.data.titre}</a>
